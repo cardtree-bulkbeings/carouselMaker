@@ -27,8 +27,8 @@ slides:
     name: Maya finds the *leads*
     avatar: assets/agents/grape.png
     color: grape
-    handles: ["Scrapes 200 leads a day", "Checks fit against our ICP", "Writes the first line"]
-    tools: [linkedin, googlesheets]
+    handles: [ "Scrapes 200 leads a day", "Checks fit against our ICP", "Writes the first line" ]
+    tools: [ linkedin, googlesheets ]
     kpi: { value: "200", label: "leads / day" }
 
   - layout: roster
@@ -36,8 +36,8 @@ slides:
     name: Leo books the *calls*
     avatar: assets/agents/tangerine.png
     color: tangerine
-    handles: ["Replies within 60 seconds", "Answers pricing questions", "Books the demo"]
-    tools: [gmail, googlecalendar]
+    handles: [ "Replies within 60 seconds", "Answers pricing questions", "Books the demo" ]
+    tools: [ gmail, googlecalendar ]
     kpi: { value: "60s", label: "reply time" }
 
   - layout: roster
@@ -45,8 +45,8 @@ slides:
     name: Sam never *forgets*
     avatar: assets/agents/sky.png
     color: sky
-    handles: ["Nudges on day 3, 7, 14", "Sends recap after every call", "Updates the CRM"]
-    tools: [whatsapp, hubspot]
+    handles: [ "Nudges on day 3, 7, 14", "Sends recap after every call", "Updates the CRM" ]
+    tools: [ whatsapp, hubspot ]
     kpi: { value: "14", label: "days, zero drops" }
 
   - layout: flow
@@ -70,3 +70,4 @@ slides:
     keyword: TEAM
     sub: I'll DM you the prompts for all 3 agents.
     doc_title: My AI sales team
+theme: violet
