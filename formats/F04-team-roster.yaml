@@ -1,0 +1,86 @@
+id: F04
+name: Team Roster
+used_by: [founder]
+use_when: The post presents a group of AI agents (or AI legends) as a team, each with a role.
+structure:
+  - "1 cover: the team line-up + 'I built an AI {X} team'"
+  - "2 org chart: me on top, agents below (proof of the whole thing at a glance)"
+  - "3…N one character card per member: avatar, name, role, what they handle, tools, one KPI"
+  - "N+1 how they hand work to each other (flow)"
+  - "N+2 the maths vs a human team"
+  - "last CTA"
+rules:
+  - Give every agent a human name and one job. Roles beat features.
+  - One real number per card.
+# ---- scaffold ----
+brand: thedouble-founder
+format: F04
+title: I Built an Entire SALES TEAM with AI
+caption: |
+  3 agents. 0 salaries. Here's who does what.
+  Comment TEAM and I'll send you the setup.
+slides:
+  - layout: cover
+    style: scene
+    kicker: I built an entire
+    headline: Sales team with *AI*
+    tagline: 3 agents · 0 salaries
+    image: image-assets/scene-team-table-cobalt.png
+
+  - layout: org
+    kicker: Meet the team
+    headline: Me + *3* agents
+    top: { name: "Me", role: "Founder", image: image-assets/character.png }
+    members:
+      - { name: "Maya", role: "Prospector", image: assets/agents/grape.png, color: grape }
+      - { name: "Leo", role: "Closer", image: assets/agents/tangerine.png, color: tangerine }
+      - { name: "Sam", role: "Follow-up", image: assets/agents/sky.png, color: sky }
+
+  - layout: roster
+    role: Prospector
+    name: Maya finds the *leads*
+    avatar: assets/agents/grape.png
+    color: grape
+    handles: ["Scrapes 200 leads a day", "Checks fit against our ICP", "Writes the first line"]
+    tools: [linkedin, googlesheets]
+    kpi: { value: "200", label: "leads / day" }
+
+  - layout: roster
+    role: Closer
+    name: Leo books the *calls*
+    avatar: assets/agents/tangerine.png
+    color: tangerine
+    handles: ["Replies within 60 seconds", "Answers pricing questions", "Books the demo"]
+    tools: [gmail, googlecalendar]
+    kpi: { value: "60s", label: "reply time" }
+
+  - layout: roster
+    role: Follow-up
+    name: Sam never *forgets*
+    avatar: assets/agents/sky.png
+    color: sky
+    handles: ["Nudges on day 3, 7, 14", "Sends recap after every call", "Updates the CRM"]
+    tools: [whatsapp, hubspot]
+    kpi: { value: "14", label: "days, zero drops" }
+
+  - layout: flow
+    stage: The handoff
+    headline: How the work *moves*
+    nodes:
+      - { kind: trigger, title: "New lead found", sub: "Maya · LinkedIn", icon: magnifying-glass, color: grape }
+      - { kind: agent, title: "First reply + demo booked", sub: "Leo · email", icon: calendar-check, color: tangerine }
+      - { kind: action, title: "Follow-ups until yes or no", sub: "Sam · WhatsApp", icon: arrows-clockwise, color: sky }
+    result: I only join the calls that are booked.
+
+  - layout: stat
+    kicker: The maths (example numbers)
+    headline: Human team vs *AI* team
+    stats:
+      - { value: "₹3.6L", label: "a month for 3 SDRs" }
+      - { value: "₹9K", label: "a month for 3 agents" }
+
+  - layout: cta
+    headline: Want the exact team setup?
+    keyword: TEAM
+    sub: I'll DM you the prompts for all 3 agents.
+    doc_title: My AI sales team

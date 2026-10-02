@@ -1,0 +1,73 @@
+# F03 sample · SAMPLE COPY: replace numbers, names and images before posting.
+brand: thedouble-company
+format: F03
+title: 5 AI Agents Every Startup Needs
+series: The startup stack
+caption: |
+  You don't need 5 hires to cover these jobs. You need 5 agents.
+  Which one would you set up first? Comment the number.
+slides:
+  - layout: cover
+    style: number
+    number: "5"
+    kicker: The startup stack
+    headline: AI agents every startup *needs*
+    sub: Before your next hire.
+    image: assets/agents/grape.png
+    color: grape
+
+  - layout: item
+    label: Agent 01
+    name: The *inbox* closer
+    what: Replies to every lead in under a minute, day or night.
+    tool: gmail
+    visual:
+      gmail:
+        - { from: "Riya (lead)", subject: "Pricing for 20 seats?", tag: "Replied", time: "2 min", unread: true }
+        - { from: "Dev Mehta", subject: "Can we do a demo Friday?", tag: "Booked", time: "9 min", unread: true }
+        - { from: "Ana · Acme", subject: "Re: proposal", tag: "Follow-up", time: "1 h" }
+    example: "Lead asks for pricing at 1 AM → gets the right plan + a demo link."
+
+  - layout: item
+    label: Agent 02
+    name: The *support* desk
+    what: Answers the same 30 questions so your team doesn't.
+    tool: whatsapp
+    example: "“How do I reset my password?” → answered in 4 seconds, with the link."
+
+  - layout: item
+    label: Agent 03
+    name: The *meeting* prep
+    what: Reads the CRM before every call and briefs you in 3 lines.
+    tool: googlecalendar
+    example: "“Call with Acme at 4: they asked about SSO twice. Lead with that.”"
+
+  - layout: item
+    label: Agent 04
+    name: The *follow-up*
+    what: Chases every quote you sent and forgot about.
+    tool: googlesheets
+    example: "Day 3, 7 and 14 nudges. Stops the moment they reply."
+
+  - layout: item
+    label: Agent 05
+    name: The *weekly* report
+    what: Turns Monday's mess into one page for the team.
+    tool: notion
+    example: "Revenue, signups, churn, top 3 risks. In Notion by 9 AM."
+
+  - layout: recap
+    headline: Your 5-agent *startup* stack
+    items:
+      - { name: "Inbox closer", tool: gmail }
+      - { name: "Support desk", tool: whatsapp }
+      - { name: "Meeting prep", tool: googlecalendar }
+      - { name: "Follow-up", tool: googlesheets }
+      - { name: "Weekly report", tool: notion }
+
+  - layout: cta
+    style: question
+    kicker: Your turn
+    headline: Which one would you set up *first?*
+    answers: ["01", "02", "03", "04", "05"]
+    sub: Comment the number. We'll show you how in the next post.

@@ -1,0 +1,87 @@
+# Component gallery: every app UI kit on one post. Use it to check the kits look like the real apps.
+brand: thedouble-company
+format: LAB
+title: UI kit gallery
+slides:
+  - layout: statement
+    kicker: WhatsApp · card
+    headline: WhatsApp
+    visual:
+      chat:
+        app: whatsapp
+        name: Wellness Studio
+        status: Business Account
+        time: Today
+        messages:
+          - { from: them, text: "Hi! Do you have any packages for weight loss coaching?", time: "10:14" }
+          - { from: me, text: "Yes! We have 1:1 coaching, group programs and a 12-week transformation package. Which sounds best for you?", time: "10:14" }
+          - { from: them, kind: voice, duration: "0:28", time: "10:16" }
+          - { from: me, kind: event, title: "Consultation Scheduled", text: "Tue, Apr 23 · 10:00 AM", time: "10:17" }
+          - { kind: slots, options: ["Tue · 10:00 AM", "Tue · 3:00 PM", "Wed · 11:00 AM"], selected: 1 }
+  - layout: statement
+    kicker: WhatsApp · phone
+    headline: In a phone
+    visual:
+      frame: phone
+      chat:
+        app: whatsapp
+        name: Smile Dental
+        messages:
+          - { from: them, text: "Is Saturday 10 AM free?", time: "23:47" }
+          - { from: me, text: "Yes, booked you with Dr. Mehta 🙂", time: "23:47" }
+  - layout: statement
+    kicker: Call
+    headline: Voice agent
+    visual:
+      chat: { app: call, name: AI Receptionist, status: "Speaking…", transcript: "“Hi! Thanks for calling. How can I help you today?”" }
+  - layout: statement
+    kicker: Claude · project
+    headline: Claude project
+    visual:
+      claude:
+        mode: project
+        project: Hormozi business coach
+        user: Usama
+        files:
+          - { name: "Hormozi Voice (Audio).mp3", meta: "MP3 · 12.4 MB" }
+          - { name: "Coaching Questions.pdf", meta: "PDF · 1.8 MB" }
+          - { name: "$100M Offers.pdf", meta: "PDF · 2.4 MB" }
+  - layout: statement
+    kicker: Claude · chat
+    headline: Claude chat
+    visual:
+      claude:
+        mode: chat
+        project: Hormozi business coach
+        title: Hormozi business coach
+        user: Usama
+        messages:
+          - { from: me, text: "Analyze my business and give me a plan based on Hormozi's principles." }
+          - { from: claude, text: "I've analyzed your business. Here's the breakdown:\n**1. Positioning & Offer**: your offer needs a sharper promise.\n**2. Traffic**: one channel, done daily." }
+        callout: "**Next step:** fix the offer first, then track results for 30 days."
+  - layout: statement
+    kicker: n8n
+    headline: n8n workflow
+    visual:
+      n8n:
+        nodes:
+          - { tool: whatsapp, label: "WhatsApp Trigger" }
+          - { icon: brackets-curly, label: "Normalize Message" }
+          - { label: "AI Agent", agent: true, subs: [{ tool: claude, label: "Chat Model" }, { icon: database, label: "Memory" }, { tool: googlesheets, label: "Sheets" }] }
+          - { tool: googlecalendar, label: "Book Slot" }
+          - { tool: whatsapp, label: "Send Reply" }
+  - layout: statement
+    kicker: Gmail · Sheets · iOS
+    headline: Inbox
+    visual:
+      gmail:
+        - { from: "Riya Sharma", subject: "Pricing for 20 seats?", snippet: "Hi, can you share…", tag: "Replied", time: "2:14 PM", unread: true }
+        - { from: "Dev Mehta", subject: "Demo Friday?", snippet: "Would 4 PM work", time: "1:02 PM", unread: true }
+        - { from: "Acme", subject: "Re: proposal", snippet: "Thanks, looks good", time: "Oct 1" }
+  - layout: statement
+    kicker: Notifications
+    headline: Lock screen
+    visual:
+      notify:
+        - { app: whatsapp, title: "+91 98xxx 21", text: "Is the 3BHK in Baner still available?", time: "2:14 AM" }
+        - { app: gmail, title: "New inquiry", text: "Can I see it this weekend?", time: "2:15 AM" }

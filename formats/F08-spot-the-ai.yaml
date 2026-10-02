@@ -1,0 +1,87 @@
+id: F08
+name: Spot the AI
+used_by: [company]
+use_when: The post challenges the reader to tell AI from human, or attacks an objection with proof. Guess → reveal.
+structure:
+  - "1 cover: the challenge as a question"
+  - "2–3 unlabelled pairs (A / B), 'pick before you swipe'"
+  - "4 'Made your guess? Swipe.'"
+  - "5–6 the same pairs, now labelled"
+  - "7 how it was made (it's a Double)"
+  - "8 CTA: comment your score"
+rules:
+  - Samples must be genuine. Never stage the human side.
+  - Voice versions belong in a Reel; a carousel can't play audio.
+# ---- scaffold ----
+brand: thedouble-company
+format: F08
+title: Still Think AI Sounds Robotic?
+series: Spot the AI
+caption: |
+  Two replies. One is a real person. One is a Double. Guess before you swipe.
+  Comment your score out of 2.
+slides:
+  - layout: cover
+    style: object
+    kicker: A 30-second test
+    headline: Still think AI sounds *robotic?*
+    sub: Two replies. Guess which one is AI.
+    image: assets/agents/bubblegum.png
+    color: bubblegum
+
+  - layout: quiz
+    kicker: Round 1 · A customer asks for a discount
+    headline: Which reply is *AI?*
+    options:
+      - { text: "Haha I wish I could do more 🙈 best I can do is 10% if you book this week. Deal?" }
+      - { text: "I hear you. 10% is the most I can offer, and it's yours if you book by Friday." }
+    prompt: Pick one. Then swipe.
+
+  - layout: quiz
+    kicker: Round 2 · A lead goes quiet
+    headline: And this *one?*
+    options:
+      - { text: "Hey Rohan, no pressure at all. Still thinking about the Goa trip? Happy to hold your dates till Sunday." }
+      - { text: "hey! just checking in on the goa thing, dates are filling up fast lmk 🙂" }
+    prompt: Pick one. Then swipe.
+
+  - layout: statement
+    align: center
+    size: xl
+    headline: Made your *guess?*
+    body: Swipe for the answers.
+
+  - layout: quiz
+    reveal: true
+    kicker: Round 1 · Answer
+    headline: B was *AI*
+    options:
+      - { text: "Haha I wish I could do more 🙈 best I can do is 10% if you book this week. Deal?", is: Human, why: "Written by the founder." }
+      - { text: "I hear you. 10% is the most I can offer, and it's yours if you book by Friday.", is: AI, why: "Her Double, trained on her replies." }
+
+  - layout: quiz
+    reveal: true
+    kicker: Round 2 · Answer
+    headline: A was *AI*
+    options:
+      - { text: "Hey Rohan, no pressure at all. Still thinking about the Goa trip? Happy to hold your dates till Sunday.", is: AI, why: "A Double following up on day 3." }
+      - { text: "hey! just checking in on the goa thing, dates are filling up fast lmk 🙂", is: Human, why: "The sales rep, same day." }
+
+  - layout: statement
+    kicker: How it was made
+    headline: Trained on *her* last 500 replies.
+    visual:
+      double:
+        name: Her Double
+        status: Live · replying
+        capabilities: [knowledge, personality, channels]
+        feed:
+          - { text: "500 past replies learned", color: grape }
+          - { text: "Tone: warm, short, a little playful", color: bubblegum }
+
+  - layout: cta
+    style: question
+    kicker: Your score
+    headline: How many did you get *right?*
+    answers: ["0 / 2", "1 / 2", "2 / 2"]
+    sub: Comment your score. Be honest.

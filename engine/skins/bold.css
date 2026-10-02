@@ -1,0 +1,81 @@
+/* Design language "bold" — after aiagently (1.2K likes / 2.6K comments on the Hormozi clone).
+   White ground with soft accent glows in two corners · centred composition · small tinted STEP pill
+   · huge title that fades from the accent into near-black · pale-tint icon rows inside a white card
+   · a "Next: …" pill at the bottom that hands you to the next slide. */
+
+.sk-bold {
+  --pad: 72px;
+  background:
+    radial-gradient(520px 460px at 104% -4%, var(--glow), transparent 72%),
+    radial-gradient(560px 480px at -6% 104%, var(--glow), transparent 72%),
+    var(--ground);
+  font-family: var(--font-body);
+}
+
+/* chrome: small mark top-left, faint counter top-right, next-teaser centred at the bottom */
+.sk-bold .brand-mark { height: 34px; }
+.sk-bold .counter { font: 600 20px var(--font-body); color: var(--faint); letter-spacing: .02em; }
+.sk-bold .handle { display: none; }
+.sk-bold .chrome-bottom { justify-content: center; }
+.sk-bold .foot-right { position: absolute; right: 0; }
+.sk-bold .next-teaser { padding: 14px 28px 14px 14px; gap: 16px; font: 600 25px/1.2 var(--font-display); letter-spacing: -.01em; box-shadow: 0 10px 30px -10px var(--glow), 0 0 0 1px var(--line); }
+.sk-bold .nt-ic { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 22px; }
+.sk-bold.has-next .body { bottom: 140px; }
+.sk-bold .swipe.mini { background: transparent; color: var(--faint); }
+
+/* type */
+.sk-bold .stack { align-items: center; text-align: center; gap: 26px; }
+.sk-bold .h-xl, .sk-bold .h-lg { font-weight: 700; letter-spacing: -.035em; line-height: 1.02; max-width: 15ch; margin-inline: auto; }
+.sk-bold .h-xl { font-size: 96px; }
+.sk-bold .h-lg { font-size: 90px; }
+.sk-bold.L-step .h-lg, .sk-bold.L-item .h-lg, .sk-bold.L-prompt .h-lg {
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent) 42%, var(--accent-deep) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.sk-bold.L-step .h-lg em, .sk-bold.L-item .h-lg em { color: inherit; }
+.sk-bold .lede { font-size: 31px; color: var(--muted); max-width: 26ch; margin-inline: auto; }
+.sk-bold .kicker { font: 700 22px var(--font-display); letter-spacing: .08em; color: var(--accent); align-self: center; }
+.sk-bold .note { color: var(--accent); align-self: center; text-align: center; max-width: 80%; transform: rotate(-2deg); }
+
+/* STEP pill: small, tinted, accent text (aiagently "STEP 1") */
+.sk-bold .step-head { justify-content: center; }
+.sk-bold .dots { display: none; }
+.sk-bold .pill-step, .sk-bold .pill-c { align-self: center; background: var(--hi-soft); color: var(--accent); font: 700 26px/1 var(--font-display); letter-spacing: .06em; padding: 14px 26px; border-radius: 16px; box-shadow: inset 0 0 0 2px color-mix(in srgb, var(--accent) 14%, transparent); }
+
+/* cards: white, tinted shadow; rows become pale-tint pills with accent icons */
+.sk-bold .vz-rows { background: var(--paper); padding: 26px; display: flex; flex-direction: column; gap: 12px; text-align: left; }
+.sk-bold .vz-rows .row { background: #F6F7FF; border-radius: 18px; padding: 18px 20px; align-items: center; }
+.sk-bold .vz-rows .row + .row { border-top: 0; }
+.sk-bold .vz-rows .spine { background: var(--paper); box-shadow: 0 0 0 1px var(--line); color: var(--accent); }
+.sk-bold .vz-rows .t { font: 600 29px/1.25 var(--font-display); letter-spacing: -.01em; }
+.sk-bold .ui-double, .sk-bold .vz-code, .sk-bold .ui-n8n, .sk-bold .vz-table, .sk-bold .vz-check { text-align: left; }
+.sk-bold .vz-tools .tile { border-radius: 40px; box-shadow: 0 14px 34px -12px var(--glow), 0 0 0 1px var(--line); }
+
+/* chat: phone keeps a real bezel here (aiagently uses phones) */
+.sk-bold .vz-phone { box-shadow: 0 30px 60px -24px rgba(17,17,20,.35); }
+
+/* stats */
+.sk-bold .stat-l .stats { width: 100%; }
+.sk-bold .stt { text-align: left; }
+.sk-bold .stt b { font-weight: 700; }
+
+/* COVER: headline centred on white, person standing below on a soft glow, floating app tiles */
+.sk-bold .cv-text { align-items: center; text-align: center; padding-top: 120px; gap: 18px; }
+.sk-bold .h-cover { font-size: 128px; font-weight: 800; letter-spacing: -.045em; line-height: .98; max-width: 9.5ch; }
+.sk-bold .cv-text .kicker { font: 600 40px var(--font-display); letter-spacing: -.02em; color: var(--ink); text-transform: none; }
+.sk-bold .cv-tagline { justify-content: center; font: 700 26px var(--font-display); letter-spacing: .1em; }
+.sk-bold .cv-tagline::before, .sk-bold .cv-tagline::after { content: ""; width: 40px; height: 3px; background: var(--accent); border-radius: 2px; }
+.sk-bold .cv-stage.person .tray { left: 50%; right: auto; top: 18%; bottom: -30%; width: 860px; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(closest-side, var(--glow), transparent); }
+.sk-bold .cv-stage.person .tray .tex { display: none; }
+.sk-bold .cv-stage.person .cutout { width: 100%; height: 108%; }
+.sk-bold .orbit .orb { border-radius: 28px; box-shadow: 0 18px 40px -14px rgba(17,17,20,.3), 0 0 0 1px var(--line); }
+.sk-bold .float-tag { font: 600 22px var(--font-body); text-transform: none; letter-spacing: 0; border-radius: 99px; padding: 14px 22px; }
+.sk-bold .sticker { background: var(--accent); color: #fff; font: 800 34px var(--font-display); border-radius: 14px; top: 64px; right: 64px; }
+.sk-bold .L-cover .swipe, .sk-bold.L-cover .swipe { background: var(--ink); }
+
+/* CTA: "Want the complete guide?" → COMMENT → "keyword" pill → "I'll send you…" */
+.sk-bold .cta-top { color: var(--ink); font: 700 46px/1.15 var(--font-display); }
+.sk-bold .kw-c { font: 800 132px/1 var(--font-display); letter-spacing: -.04em; text-transform: uppercase; }
+.sk-bold .kw { font: 800 120px/1 var(--font-display); padding: 14px 46px 24px; border-radius: 34px; transform: rotate(-2deg); box-shadow: 0 20px 40px -14px color-mix(in srgb, var(--accent) 55%, transparent); }
+.sk-bold .kw::before { content: "“"; } .sk-bold .kw::after { content: "”"; }
+.sk-bold .cta-c .lede { color: var(--ink); font-weight: 500; }

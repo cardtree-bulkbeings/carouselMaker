@@ -1,0 +1,78 @@
+id: F01
+name: Persona Clone
+used_by: [founder, company]
+use_when: The post shows a clone of a specific person (a legend, a famous founder, yourself, your best salesperson) and what it says.
+structure:
+  - "1 cover: portrait cut-out + 'I turned X into my AI Y' + one coloured name"
+  - "2 the best answer FIRST (proof, works as a second cover)"
+  - "3 what I fed it (sources)"
+  - "4–6 one question → answer per slide (same template every time)"
+  - "7 the line that stuck (quote)"
+  - "8 CTA: comment keyword for the clone"
+rules:
+  - Use a stylised portrait. Never imply the real person endorses the product.
+  - Questions should be ones the reader has (pricing, hiring, focus), not trivia.
+# ---- scaffold ----
+brand: thedouble-founder
+format: F01
+title: I Turned CHANAKYA into My AI Strategy Advisor
+caption: |
+  I fed an AI everything Chanakya wrote and asked it about my startup. Answer #2 stung.
+  Comment CLONE and I'll send you the clone.
+slides:
+  - layout: cover
+    style: person
+    kicker: I turned
+    headline: "*Chanakya* into my AI strategy advisor"
+    tagline: 2,300 years of strategy, *on call*
+    # Drop a stylised portrait cut-out here (PNG, no background)
+    logos: [claude]
+    tag: Chanakya · AI clone
+
+  - layout: qa
+    kicker: First question I asked
+    asker: Me
+    q: My competitor just raised $10M. Should I panic?
+    persona: Chanakya
+    status: AI clone · replying
+    a: "*A rival's wealth is not your weakness.* Find where his money cannot reach: the customer he is too big to care for."
+
+  - layout: statement
+    kicker: What I fed it
+    headline: Every line he wrote. *Nothing else.*
+    visual:
+      rows:
+        - { icon: book-open, text: "Arthashastra", sub: "All 15 books, translated" }
+        - { icon: scroll, text: "Chanakya Niti", sub: "17 chapters of sayings" }
+        - { icon: chats-circle, text: "Rule", sub: "Answer only from the sources. Say when unsure." }
+
+  - layout: qa
+    kicker: Question 2
+    q: How do I hire people smarter than me?
+    persona: Chanakya
+    a: "Test a man in four ways: by *greed*, by fear, by desire and by duty. Hire the one who passes all four."
+
+  - layout: qa
+    kicker: Question 3
+    q: When do I walk away from a deal?
+    persona: Chanakya
+    a: "When the other side needs it *less* than you do. Leave, and let need do the negotiating."
+
+  - layout: qa
+    kicker: Question 4
+    q: I'm doing everything myself. Is that bad?
+    persona: Chanakya
+    a: "A king who does all the work is a *servant* of his kingdom. Build ministers, then govern."
+
+  - layout: quote
+    kicker: The line that stuck with me
+    quote: "Find where his money *cannot reach.*"
+    by: Chanakya, AI clone
+    role: Built on The Double
+
+  - layout: cta
+    headline: Want to ask Chanakya yourself?
+    keyword: CLONE
+    sub: I'll DM you the link to the clone.
+    doc_title: Chanakya · AI strategy advisor
+    doc_label: YOUR AI CLONE

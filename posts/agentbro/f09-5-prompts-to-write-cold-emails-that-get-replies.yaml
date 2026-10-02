@@ -1,0 +1,60 @@
+# F09 sample · SAMPLE COPY: replace numbers, names and images before posting.
+brand: agentbro
+format: F09
+title: 5 Prompts to Write Cold Emails That Get Replies
+caption: |
+  Steal these. Change the {braces}. Send.
+  Comment PROMPTS and I'll DM you all 5 in a doc.
+slides:
+  - layout: cover
+    style: person
+    kicker: Steal these
+    headline: 5 prompts for cold emails that get *replies*
+    tagline: Copy · paste · send
+    logos: [claude, gmail]
+    badge: FREE
+
+  - layout: prompt
+    label: Prompt
+    kicker: The opener
+    title: Write a first line they *can't* ignore
+    tool: claude
+    prompt: "Read {prospect's LinkedIn post}. Write 3 cold email first lines that reference one specific idea from it. Under 20 words each. No flattery."
+    preview:
+      gmail:
+        - { from: "To: Priya (Head of Growth)", subject: "Your post on churn: the 3rd point stuck with me", tag: "Opened", unread: true }
+    tip: Works best with a post from this week
+
+  - layout: prompt
+    label: Prompt
+    kicker: The offer
+    title: Turn features into *one* outcome
+    tool: claude
+    prompt: "My product: {what it does}. Their role: {job title}. Rewrite my offer as one sentence about a result they get in {timeframe}. No jargon."
+
+  - layout: prompt
+    label: Prompt
+    kicker: The proof
+    title: Add proof without *bragging*
+    tool: claude
+    prompt: "Here is a result I got: {result + client type}. Write one sentence that mentions it as a story, not a boast. Max 25 words."
+
+  - layout: prompt
+    label: Prompt
+    kicker: The ask
+    title: End with a *tiny* yes
+    tool: claude
+    prompt: "Write 5 low-commitment closing questions for a cold email to a {job title}. Each answerable with yes or no. No meetings in the first ask."
+
+  - layout: prompt
+    label: Prompt
+    kicker: The follow-up
+    title: Follow up without being *annoying*
+    tool: claude
+    prompt: "They didn't reply to {my email}. Write a day-4 follow-up that adds one new useful idea for {their company}. 3 lines max. No 'just bumping this'."
+
+  - layout: cta
+    headline: Want all 5 in a doc?
+    keyword: PROMPTS
+    sub: I'll DM you the doc with examples.
+    doc_title: Cold email prompt pack

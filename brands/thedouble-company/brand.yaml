@@ -1,0 +1,67 @@
+# The Double (company) — design language "calm" (after theonlyworkshop + Wellbeing Nutrition:
+# off-white, centred tight sans, mono kicker, one word underlined in lime, product UI cards,
+# felt imagery bleeding off the edge). Touch of brand: lime underline, cobalt details, felt world.
+name: The Double
+handle: "@thedouble.ai"
+logo: brands/_shared/thedouble/logo-black.svg
+emphasis: underline          # *word* → lime marker underline
+design: calm                 # engine/skins/calm.css
+fonts:
+  - https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Caveat:wght@700&display=block
+
+tokens:
+  ground: "#F7F6F3"
+  paper: "#FFFFFF"
+  ink: "#0E0F12"
+  muted: "#5C5D63"
+  faint: "#8C8D93"
+  line: "rgba(14,15,18,.08)"
+  chip: "rgba(14,15,18,.05)"
+  accent: "#0E0F12"
+  accent-ink: "#FFFFFF"
+  accent-deep: "#0E0F12"
+  hi: "#D4F53C"              # lime marker
+  hi-soft: "#EEF8C8"
+  glow: "transparent"
+  deep: "#0E0F12"
+  deep-ink: "#FFFFFF"
+  tray: "#2F43F2"
+  live: "#22C55E"
+  good: "#16A34A"
+  bad: "#E5484D"
+  note: "#2F43F2"
+  font-display: "'Inter Tight', Arial, sans-serif"
+  font-human: "'Instrument Serif', Georgia, serif"
+  font-body: "'Inter', system-ui, sans-serif"
+  font-mono: "'DM Mono', ui-monospace, monospace"
+  font-pixel: "'DM Mono', monospace"
+  font-hand: "'Caveat', cursive"
+  display-weight: "600"
+  display-track: "-0.045em"
+  r-card: "28px"
+  r-block: "36px"
+  r-tile: "18px"
+  shadow: "0 1px 2px rgba(0,0,0,.04), 0 16px 40px -16px rgba(0,0,0,.16), 0 0 0 1px rgba(0,0,0,.04)"
+
+palette:
+  cobalt:    ["#2F43F2", "#E3E7FF", "#FFFFFF"]
+  lime:      ["#D4F53C", "#EEF8C8", "#0E0F12"]
+  tangerine: ["#FF7417", "#FFE8D8", "#0E0F12"]
+  grape:     ["#6A2CF5", "#ECE4FF", "#FFFFFF"]
+  bubblegum: ["#FF4FAE", "#FFE2F1", "#0E0F12"]
+  sky:       ["#16B0FA", "#DCF1FC", "#0E0F12"]
+  ink:       ["#0E0F12", "#ECECEE", "#FFFFFF"]
+
+# Colour presets (post: `theme: yellow`). Calm uses `highlight` for the marker underline.
+accents:
+  lime:    { highlight: "#D4F53C" }
+  yellow:  { highlight: "#FFD60A" }
+  cobalt:  { highlight: "#A9B4FF" }
+  pink:    { highlight: "#FFB3D9" }
+  orange:  { highlight: "#FFB27A" }
+
+# Imagery: no humans. Felt agents (assets/agents) and felt scenes only.
+rules:
+  cover: avatar
+  mascot: true
+  people: false

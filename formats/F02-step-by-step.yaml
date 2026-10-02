@@ -1,0 +1,105 @@
+id: F02
+name: Step-by-Step Build
+used_by: [founder, company, agentbro]
+use_when: The reader follows steps in order to build, connect or set up something.
+structure:
+  - "1 cover: result + desire ('books patients 24/7') + badge (FREE / 10 MIN) + tool logos"
+  - "2 the result working (proof first, no intro)"
+  - "3–6 one step per slide, same template: STEP N pill, verb-led title, one line, one visual"
+  - "7 it works / the numbers / the whole system"
+  - "8 CTA: comment keyword for the guide"
+rules:
+  - Every step title starts with a verb.
+  - One visual per step (screenshot, UI kit, code or tool row). No step without a picture.
+  - 4–5 steps max on the carousel. Put the rest in the guide you DM.
+# ---- scaffold ----
+brand: thedouble-founder
+format: F02
+title: How I Built an AI Receptionist for Dentists That Books Patients 24/7
+caption: |
+  Most clinics stop answering at 8 PM. Patients don't stop asking.
+  Comment BUILD and I'll send you the full setup.
+# Founder agent posts may bring in a felt agent as a character (never on the cover).
+mascot: assets/agents/sky.png
+slides:
+  - layout: cover
+    style: person
+    kicker: How I built an
+    headline: AI receptionist for *dentists*
+    tagline: Books patients *24/7*
+    image: image-assets/character.png
+    texture: image-assets/texture-felt-cobalt.png
+    logos: [claude, whatsapp, googlecalendar]
+    tag: Receptionist · live
+    badge: FREE
+
+  - layout: statement
+    kicker: The result
+    headline: 11:47 PM. A patient asks for Saturday. *Booked.*
+    visual:
+      chat:
+        app: whatsapp
+        name: Smile Dental
+        status: AI receptionist · online
+        time: Today
+        messages:
+          - { from: them, text: "Hi, do you have anything Saturday morning? Tooth pain 😣", time: "23:47" }
+          - { from: me, text: "Sorry to hear that. I can fit you in at 10:30 AM with Dr. Mehta. Shall I book it?", time: "23:47" }
+          - { from: them, text: "Yes please!", time: "23:48" }
+          - { from: me, kind: card, icon: calendar-check, title: "Booked · Sat 10:30 AM", text: "Reminder sent the day before" }
+
+  - layout: step
+    title: Teach it your *clinic*
+    body: Upload your price list, timings and FAQs. That's its memory.
+    visual:
+      rows:
+        - { icon: file-text, text: "Services & prices", sub: "Cleaning, fillings, RCT, braces" }
+        - { icon: clock, text: "Clinic hours", sub: "Mon–Sat, 9 AM – 8 PM" }
+        - { icon: question, text: "Top 20 patient questions", sub: "From your front desk" }
+    note: 10 minutes, tops
+    says: This becomes my memory.
+
+  - layout: step
+    title: Give it a *voice* and a name
+    body: Pick a warm voice. Write the first line it says.
+    visual:
+      double:
+        name: Riya · Smile Dental
+        status: Voice ready
+        capabilities: [knowledge, personality, voice]
+        feed:
+          - { text: "Greeting: “Hi, this is Riya from Smile Dental”", color: bubblegum }
+          - { text: "Voice: warm, Indian English", color: sky }
+
+  - layout: step
+    title: Connect *WhatsApp* and your calendar
+    body: Patients message the number they already know.
+    visual:
+      n8n:
+        title: Smile Dental · bookings
+        nodes: [whatsapp, { tool: claude, label: "Receptionist" }, googlecalendar, googlesheets]
+
+  - layout: step
+    title: Set the *one* rule that matters
+    body: If it's an emergency or a complaint, hand over to a human.
+    visual:
+      code: |
+        if pain_level == "severe" or intent == "complaint":
+            notify(front_desk)
+        else:
+            book_slot()
+      title: handoff rule
+
+  - layout: stat
+    kicker: First month (example numbers)
+    headline: What changed at the clinic
+    stats:
+      - { value: "0", label: "missed after-hours messages" }
+      - { value: "38", label: "bookings made after 8 PM" }
+    note: Replace with your real numbers
+
+  - layout: cta
+    headline: Want the exact setup for your clinic?
+    keyword: BUILD
+    sub: I'll DM you the step-by-step guide.
+    doc_title: AI receptionist for dentists

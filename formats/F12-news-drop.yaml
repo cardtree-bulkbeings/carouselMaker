@@ -1,0 +1,83 @@
+id: F12
+name: News Drop
+used_by: [agentbro]
+use_when: The post reports something that just happened in AI.
+structure:
+  - "1 cover: masthead feel, date, the headline"
+  - "2 TL;DR in 3 bullets (second cover)"
+  - "3–5 the details, one per slide, each with a screenshot"
+  - "6 what it means for you"
+  - "7 how to try it now"
+  - "8 CTA: follow for weekly drops"
+rules:
+  - Only post what's true on the day. Link the source in the caption.
+  - Replace every [bracket] before posting.
+# ---- scaffold ----
+brand: agentbro
+format: F12
+title: This Week in AI. 5 Things You Missed
+caption: |
+  The 5 AI updates that actually matter this week. Sources in the comments.
+  Follow for the weekly drop.
+slides:
+  - layout: cover
+    style: type
+    kicker: "[Date] · Weekly drop"
+    headline: This week in AI. 5 things you *missed.*
+    tagline: In 60 seconds
+
+  - layout: news
+    masthead: This week in AI
+    date: "[Date]"
+    headline: The *TL;DR*
+    tldr:
+      - "[Company] launched [product]: [one-line what it does]"
+      - "[Tool] is now free for [who]"
+      - "[Model] beats [model] at [task]"
+
+  - layout: news
+    masthead: 01 · Launch
+    date: "[Date]"
+    breaking: true
+    source: claude
+    headline: "[Company] just launched *[X]*"
+    body: "[What it does in one sentence. Who it's for.]"
+    visual:
+      image: null
+      frame: browser
+      url: "[source-url]"
+      hint: Drop the official screenshot
+
+  - layout: news
+    masthead: 02 · Now free
+    date: "[Date]"
+    source: googlegemini
+    headline: "[Paid thing] is now *free*"
+    body: "[Who gets it, what the limits are.]"
+    visual:
+      image: null
+      frame: browser
+      hint: Drop the announcement screenshot
+
+  - layout: news
+    masthead: 03 · Benchmark
+    date: "[Date]"
+    headline: "[Model] beats [model] at *[task]*"
+    visual:
+      table:
+        cols: ["Model", "Score"]
+        rows: [["[Model A]", "[xx]%"], ["[Model B]", "[xx]%"]]
+        highlight: 1
+
+  - layout: statement
+    kicker: What it means for you
+    headline: "*[One sentence]* you can act on today."
+    visual:
+      checklist: ["[Action 1]", "[Action 2]", "[Action 3]"]
+
+  - layout: cta
+    style: question
+    kicker: Every week
+    headline: Which one are you trying *first?*
+    answers: ["01", "02", "03"]
+    follow: for the weekly drop

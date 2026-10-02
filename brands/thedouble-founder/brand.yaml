@@ -1,0 +1,66 @@
+# Founder — design language "bold" (after aiagently: white ground, face-led covers, one hot accent
+# with soft corner glows, centred titles with a colour→ink gradient, pale-tint icon rows).
+# A touch of The Double: cobalt is the one accent.
+name: Founder
+handle: "@founder"          # TODO: real handle
+logo: brands/_shared/thedouble/icon-black.svg
+emphasis: color             # *word* → accent colour
+design: bold                # engine/skins/bold.css
+fonts:
+  - https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Caveat:wght@700&display=block
+
+tokens:
+  ground: "#FFFFFF"
+  paper: "#FFFFFF"
+  ink: "#111114"
+  muted: "#4A4B55"
+  faint: "#8A8B95"
+  line: "rgba(17,17,20,.08)"
+  chip: "#EEF0FF"            # pale accent tint for rows and tiles
+  accent: "#2F43F2"          # cobalt (The Double)
+  accent-ink: "#FFFFFF"
+  accent-deep: "#16205F"
+  hi: "#2F43F2"
+  hi-soft: "#E6E9FF"
+  glow: "rgba(47,67,242,.16)"
+  deep: "#111114"
+  deep-ink: "#FFFFFF"
+  tray: "#2F43F2"
+  live: "#22C55E"
+  good: "#16A34A"
+  bad: "#E5484D"
+  note: "#2F43F2"
+  font-display: "'Poppins', Arial, sans-serif"
+  font-human: "'Poppins', Arial, sans-serif"
+  font-body: "'Inter', system-ui, sans-serif"
+  font-mono: "'JetBrains Mono', ui-monospace, monospace"
+  font-pixel: "'Inter', sans-serif"
+  font-hand: "'Caveat', cursive"
+  display-weight: "700"
+  display-track: "-0.035em"
+  r-card: "32px"
+  r-block: "40px"
+  r-tile: "20px"
+  shadow: "0 1px 2px rgba(17,17,20,.04), 0 12px 32px -8px rgba(47,67,242,.14), 0 0 0 1px rgba(47,67,242,.06)"
+
+palette:
+  cobalt:    ["#2F43F2", "#E6E9FF", "#FFFFFF"]
+  tangerine: ["#FF7417", "#FFE9DA", "#111114"]
+  grape:     ["#6A2CF5", "#EDE5FF", "#FFFFFF"]
+  sky:       ["#16B0FA", "#DDF2FD", "#111114"]
+  bubblegum: ["#FF4FAE", "#FFE3F2", "#111114"]
+  ink:       ["#111114", "#EDEDF0", "#FFFFFF"]
+
+# Colour presets shown in the studio (post: `theme: green` or `theme: { accent: "#..." }`).
+accents:
+  cobalt:  { accent: "#2F43F2" }
+  green:   { accent: "#16A34A" }
+  red:     { accent: "#E5262E" }
+  orange:  { accent: "#FF6A13" }
+  violet:  { accent: "#6A2CF5" }
+  ink:     { accent: "#111114" }
+
+# Imagery: the founder's real face on the cover; felt agents may appear inside agent-build posts.
+rules:
+  cover: person
+  mascot: true

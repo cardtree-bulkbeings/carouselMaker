@@ -1,0 +1,68 @@
+# F11 sample · SAMPLE COPY: replace numbers, names and images before posting.
+brand: agentbro
+format: F11
+title: Stop Paying for AI.
+caption: |
+  Unpopular opinion: most people paying for 4 AI tools need one. Or none.
+  Agree or disagree?
+slides:
+  - layout: cover
+    style: type
+    headline: Stop *paying* for AI.
+    tagline: Unpopular opinion
+
+  - layout: statement
+    kicker: What everyone believes
+    headline: More AI tools = more *output.*
+    visual:
+      table:
+        cols: ["Tool", "Monthly"]
+        rows:
+          - ["Chat assistant", "$20"]
+          - ["Image generator", "$30"]
+          - ["Writing tool", "$29"]
+          - ["Meeting notes", "$18"]
+          - ["**Total**", "**$97**"]
+        highlight: 1
+    note: per month. Every month.
+
+  - layout: statement
+    kicker: The twist
+    headline: You use *one* of them. The rest are guilt.
+    body: Open your bank app. Count the ones you used this week.
+
+  - layout: statement
+    kicker: Proof 1
+    headline: The free tiers got *good*
+    visual:
+      checklist:
+        - "Free chat assistants now handle most writing jobs"
+        - "Free image tools cover most social posts"
+        - "Free meeting notes come built into video apps"
+
+  - layout: statement
+    kicker: Proof 2
+    headline: Open models run on your *laptop*
+    visual:
+      code: |
+        $ ollama run llama3
+        >>> Summarise this contract in 5 bullets
+        ✓ Done in 6s · $0
+      title: terminal
+
+  - layout: statement
+    kicker: Proof 3
+    headline: One good *prompt* beats 3 apps
+    body: Most "AI tools" are a prompt with a paywall. Learn the prompt.
+
+  - layout: statement
+    kicker: The takeaway
+    headline: Pay for *one.* Master it. Cancel the rest.
+    size: xl
+
+  - layout: cta
+    style: question
+    kicker: Your turn
+    headline: Agree or *disagree?*
+    answers: ["Agree", "Disagree", "It depends"]
+    sub: Tell me in the comments which one you'd keep.

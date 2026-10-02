@@ -1,0 +1,83 @@
+/* Design language "calm" — after theonlyworkshop + Wellbeing Nutrition.
+   Off-white · a mono series label across the top ("WHATSAPP × CLAUDE") · centred, tight, semibold
+   headline with ONE word underlined by a lime marker · grey one-line sub · a clean product card
+   with a mono caption ("Illustrative inbox") · footer: "Next: … →" left, "02 / 10" right.
+   Imagery (felt renders) bleeds off the edge like Wellbeing's photography. */
+
+.sk-calm { --pad: 80px; background: var(--ground); }
+
+/* chrome */
+.sk-calm .chrome-top { top: 64px; }
+.sk-calm .brand-mark { height: 30px; opacity: .9; }
+.sk-calm .counter { display: none; }
+.sk-calm .counter-b { display: inline; color: var(--ink); font-size: 21px; letter-spacing: .1em; }
+.sk-calm .handle { font: 400 21px var(--font-mono); color: var(--ink); letter-spacing: .04em; }
+.sk-calm .next-teaser { background: none; box-shadow: none; padding: 0; font: 400 21px var(--font-mono); letter-spacing: .04em; color: var(--ink); flex-direction: row-reverse; }
+.sk-calm .next-teaser .nt-ic { color: var(--ink); font-size: 20px; }
+.sk-calm.has-next .handle { display: none; }
+.sk-calm .swipe.mini { display: none; }
+.sk-calm .body { top: 168px; }
+
+/* type: centred, tight, semibold */
+.sk-calm .stack { align-items: center; text-align: center; gap: 30px; }
+.sk-calm .h-xl, .sk-calm .h-lg, .sk-calm .h-md { font-weight: 600; letter-spacing: -.05em; line-height: 1.0; max-width: 16ch; margin-inline: auto; }
+.sk-calm .h-xl { font-size: 104px; }
+.sk-calm .h-lg { font-size: 92px; }
+.sk-calm .lede { font-size: 34px; line-height: 1.35; color: #3E3F44; max-width: 28ch; margin-inline: auto; letter-spacing: -.01em; }
+.sk-calm .kicker { font: 400 21px var(--font-mono); letter-spacing: .26em; color: var(--ink); align-self: center; }
+.sk-calm .note { font-family: var(--font-human); font-style: italic; font-weight: 400; font-size: 40px; color: var(--muted); align-self: center; text-align: center; transform: none; }
+.sk-calm .note::before { content: none; }
+.sk-calm.emph-underline em { background-size: 72% .12em; background-position: 55% 96%; }
+
+/* steps are named in mono, not in a pill */
+.sk-calm .step-head { justify-content: center; }
+.sk-calm .dots { display: none; }
+.sk-calm .pill-step, .sk-calm .pill-c { background: none; color: var(--muted); font: 400 21px var(--font-mono); letter-spacing: .26em; padding: 0; align-self: center; }
+
+/* product cards: white, soft, generous */
+.sk-calm .vz-rows, .sk-calm .ui-double, .sk-calm .vz-table, .sk-calm .vz-check, .sk-calm .ui-gmail, .sk-calm .ui-sheet { text-align: left; }
+.sk-calm .vz-rows .spine { background: var(--chip); color: var(--ink); }
+.sk-calm .vz-tools .tile { border-radius: 36px; }
+
+/* chat as a clean card (no phone bezel), WhatsApp-light header */
+.sk-calm .vz-phone.chat { width: 760px; background: var(--paper); padding: 0; border-radius: 30px; overflow: hidden; box-shadow: var(--shadow); text-align: left; }
+.sk-calm .vz-phone .notch { display: none; }
+.sk-calm .chathead, .sk-calm .app-whatsapp .chathead { background: #fff; color: #111; padding: 24px 26px; border-radius: 0; border-bottom: 1px solid #EEE; }
+.sk-calm .app-whatsapp .chathead span { color: #667; }
+.sk-calm .composer { border-radius: 0; background: #F0F2F5; padding: 18px 24px; }
+.sk-calm .thread { padding: 26px 24px; }
+
+/* stats as outlined pills, Wellbeing style */
+.sk-calm .stt { background: var(--paper); text-align: left; }
+.sk-calm .stt:last-child { background: var(--ink); color: #fff; }
+.sk-calm .stt b { font-weight: 600; letter-spacing: -.05em; }
+
+/* versus / quiz / lists keep the calm look */
+.sk-calm .vs .side.win { background: var(--ink); color: #fff; }
+.sk-calm .opt .letter { border-radius: 50%; }
+.sk-calm .opt.is-ai { outline-color: var(--ink); } .sk-calm .opt.is-ai .answer { background: var(--hi); color: var(--ink); }
+.sk-calm .lrow, .sk-calm .ri { text-align: left; }
+.sk-calm .lrow .n, .sk-calm .ri .num { font-family: var(--font-mono); font-weight: 400; color: var(--muted); }
+.sk-calm .quiz-prompt { background: var(--hi); }
+.sk-calm .crit { background: none; font-size: 21px; letter-spacing: .26em; padding: 0; align-self: center; }
+
+/* COVER: series label, centred headline + sub, felt image bleeding off the bottom edge */
+.sk-calm .cv-text { align-items: center; text-align: center; padding-top: 170px; gap: 22px; }
+.sk-calm .h-cover { font-size: 118px; font-weight: 600; letter-spacing: -.055em; line-height: .98; max-width: 11ch; }
+.sk-calm .cv-text .kicker { font-size: 21px; }
+.sk-calm .cv-sub { font-size: 36px; color: #3E3F44; text-align: center; }
+.sk-calm .cv-tagline { justify-content: center; font: 400 21px var(--font-mono); letter-spacing: .24em; color: var(--muted); }
+.sk-calm .cv-tagline::before { content: none; }
+.sk-calm .cv-stage.scene { margin: 56px 0 0; }
+.sk-calm .cv-stage.scene .imgbox { border-radius: var(--r-block) var(--r-block) 0 0; }
+.sk-calm .cv-stage.object .disc { background: radial-gradient(closest-side, var(--c-soft), transparent); width: 760px; height: 760px; }
+.sk-calm .float-tag { font: 400 20px var(--font-mono); letter-spacing: .06em; border-radius: 99px; }
+.sk-calm .sticker { background: var(--hi); color: var(--ink); font: 600 30px var(--font-display); letter-spacing: -.02em; border-radius: 99px; transform: rotate(0); top: 60px; right: 60px; }
+.sk-calm.L-cover .swipe { background: var(--ink); font: 400 21px var(--font-mono); letter-spacing: .06em; }
+
+/* CTA: centred, lime pill keyword */
+.sk-calm .cta-top { color: var(--ink); font: 600 64px/1.02 var(--font-display); letter-spacing: -.05em; max-width: 14ch; }
+.sk-calm .kw-c { display: none; }
+.sk-calm .kw { background: var(--hi); color: var(--ink); font: 700 64px/1 var(--font-display); letter-spacing: -.03em; padding: 26px 44px; border-radius: 99px; transform: none; text-transform: uppercase; }
+.sk-calm .kw::before { content: "Comment ‘"; } .sk-calm .kw::after { content: "’"; }
+.sk-calm .cta-c .lede { color: var(--muted); font-size: 30px; }

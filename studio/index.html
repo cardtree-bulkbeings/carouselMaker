@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carousel Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/engine/slides.css">
+<link rel="stylesheet" href="/engine/kits.css">
+<link rel="stylesheet" href="/studio/studio.css">
+</head>
+<body>
+<div class="app">
+  <!-- LEFT: posts -->
+  <aside class="side">
+    <div class="side-head">
+      <b>Carousel Studio</b>
+      <button class="btn primary sm" id="newBtn">+ New</button>
+    </div>
+    <div class="seg" id="brandFilter">
+      <button data-b="" class="on">All</button><button data-b="founder">Founder</button><button data-b="company">Company</button><button data-b="agentbro">Agent Bro</button>
+    </div>
+    <div class="posts" id="posts"></div>
+  </aside>
+
+  <!-- CENTRE: slides -->
+  <main class="main">
+    <div class="toolbar">
+      <div class="tb-title"><b id="postTitle">Pick a post</b><span id="postMeta"></span></div>
+      <div class="tb-group">
+        <div class="seg" id="viewSeg"><button data-v="strip" class="on">Slides</button><button data-v="grid">Profile grid</button><button data-v="reserve">Slide 2 first</button></div>
+        <span class="zoom"><button id="zOut">−</button><span id="zVal">40%</span><button id="zIn">+</button></span>
+      </div>
+      <div class="tb-group">
+        <span class="colors" id="colors" title="Accent colour"></span>
+        <button class="btn" id="exportBtn" title="Render PNGs into out/">Export PNGs</button>
+        <button class="btn primary" id="zipBtn" title="Download every slide as a .zip">⬇ Download all</button>
+      </div>
+    </div>
+    <div class="stage" id="stage"><div class="empty-state">Choose a post on the left, or create one with <b>+ New</b>.</div></div>
+    <div class="imgbar" id="imgbar" hidden>
+      <span class="ib-label">Image</span>
+      <button class="btn sm" data-a="replace">Replace…</button>
+      <button class="btn sm" data-a="zoomout">− Zoom</button>
+      <button class="btn sm" data-a="zoomin">+ Zoom</button>
+      <button class="btn sm" data-a="reset">Reset position</button>
+      <span class="ib-hint">Drag the image to move it · scroll to zoom · drop a file to replace</span>
+      <button class="btn sm ghost" data-a="close">Done</button>
+    </div>
+  </main>
+
+  <!-- RIGHT: editor -->
+  <aside class="panel">
+    <div class="seg tabs" id="tabs"><button data-t="edit" class="on">Edit</button><button data-t="check">Checklist <span id="checkCount"></span></button><button data-t="assets">Images</button><button data-t="help">Help</button></div>
+    <div class="tab" data-t="edit">
+      <div class="ed-head"><span id="saveState" class="save-state">—</span><span class="ed-hint">Double-click any text on a slide to edit it there. Ctrl+S saves.</span></div>
+      <textarea id="yaml" spellcheck="false"></textarea>
+      <div class="err" id="err" hidden></div>
+    </div>
+    <div class="tab" data-t="check" hidden><div id="checklist"></div></div>
+    <div class="tab" data-t="assets" hidden>
+      <input class="search" id="assetSearch" placeholder="Filter images…">
+      <p class="muted">Drag an image onto a slide's image slot, or click to copy its path.</p>
+      <div class="assets" id="assets"></div>
+    </div>
+    <div class="tab" data-t="help" hidden>
+      <div class="help">
+        <h4>Text</h4><p><code>*word*</code> emphasis · <code>**bold**</code> · <code>~~strike~~</code> · <code>{variable}</code> chip · <code>[[note]]</code> handwriting.</p>
+        <h4>Colour</h4><p>Pick a preset dot or the picker in the toolbar. It writes <code>theme:</code> into the post.</p>
+        <h4>Images</h4><p>Click an image on a slide to select it. Drag to move, scroll or ± to zoom, <b>Replace…</b> to swap. Or drop a file / library image onto it.</p>
+        <h4>Download</h4><p><b>⬇ Download all</b> gives a .zip of every slide (1080×1350 PNG). The ⬇ under a slide downloads just that one.</p>
+        <h4>Layouts</h4><p id="layoutList"></p>
+        <p class="muted">Full guide: <code>docs/DESIGN-SYSTEM.md</code></p>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- new post dialog -->
+<dialog id="newDlg">
+  <form method="dialog" class="dlg">
+    <h3>New carousel</h3>
+    <label>Handle<select id="nBrand"></select></label>
+    <label>Format<select id="nFormat"></select></label>
+    <p class="muted" id="nFormatHint"></p>
+    <label>Title<input id="nTitle" placeholder="e.g. 5 AI Agents Every Clinic Needs"></label>
+    <div class="dlg-btns"><button class="btn" value="cancel">Cancel</button><button class="btn primary" id="nCreate" value="ok">Create</button></div>
+  </form>
+</dialog>
+<input type="file" id="filePick" accept="image/*" hidden>
+<div class="toast" id="toast" hidden></div>
+<script type="module" src="/studio/studio.js"></script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+# F05 sample · SAMPLE COPY: replace numbers, names and images before posting.
+brand: thedouble-founder
+format: F05
+title: A REAL ESTATE Business Can Be Fully Automated with AI. Here's How.
+caption: |
+  From first inquiry to signed deal, here's every step an agent can run.
+  Comment SYSTEM and I'll send you the whole workflow.
+slides:
+  - layout: cover
+    style: person
+    kicker: A real estate business
+    headline: Can run on *autopilot*
+    tagline: Here's every step
+    image: image-assets/character.png
+    logos: [whatsapp, googlesheets, googlecalendar]
+    tag: 4 agents · running
+
+  - layout: statement
+    kicker: The old way
+    headline: Most leads go cold before anyone *calls back.*
+    visual:
+      notify:
+        - { app: whatsapp, title: "Missed call", text: "+91 98xxx 44 · 9:52 PM", time: "9:52 PM" }
+        - { app: gmail, title: "Inquiry · 2BHK Wakad", text: "Is this still available?", time: "11:08 PM" }
+        - { app: whatsapp, title: "+91 97xxx 10", text: "Hello? Anyone there?", time: "Next day" }
+
+  - layout: statement
+    kicker: The journey
+    headline: 4 stages. *4* agents.
+    visual:
+      flow:
+        - { label: "Inquiry", icon: chat-circle-dots, color: grape }
+        - { label: "Qualify", icon: funnel, color: bubblegum }
+        - { label: "Site visit", icon: map-pin, color: sky }
+        - { label: "Close", icon: handshake, color: tangerine }
+
+  - layout: flow
+    stage: Stage 1 · Inquiry
+    headline: Every message gets a *reply*
+    nodes:
+      - { kind: trigger, title: "Buyer messages on WhatsApp", tool: whatsapp }
+      - { kind: agent, title: "Agent answers from the listing", sub: "Price, size, photos", icon: robot, color: grape }
+      - { kind: action, title: "Lead saved to the sheet", tool: googlesheets }
+
+  - layout: flow
+    stage: Stage 2 · Qualify
+    headline: It asks the 3 *questions*
+    nodes:
+      - { kind: trigger, title: "Lead says “interested”", icon: hand-waving, color: bubblegum }
+      - { kind: agent, title: "Budget, loan, move-in date", sub: "Natural, one at a time", icon: robot, color: bubblegum }
+      - { kind: action, title: "Hot leads flagged to you", icon: fire, color: tangerine }
+
+  - layout: flow
+    stage: Stage 3 · Site visit
+    headline: Visits book *themselves*
+    nodes:
+      - { kind: trigger, title: "Qualified lead", icon: check-circle, color: sky }
+      - { kind: agent, title: "Offers 2 slots from your calendar", tool: googlecalendar }
+      - { kind: action, title: "Reminder + location pin sent", tool: whatsapp }
+
+  - layout: statement
+    kicker: The whole system
+    headline: One *workflow.* Running 24/7.
+    visual:
+      n8n:
+        title: Real estate · autopilot
+        nodes: [whatsapp, { tool: claude, label: "Qualify" }, googlesheets, googlecalendar, { tool: gmail, label: "Docs" }]
+
+  - layout: cta
+    headline: Want this workflow for your business?
+    keyword: SYSTEM
+    sub: I'll send you the full n8n file.
+    doc_title: Real estate on autopilot

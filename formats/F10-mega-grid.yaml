@@ -1,0 +1,82 @@
+id: F10
+name: Mega Resource Grid
+used_by: [agentbro]
+use_when: The post dumps a huge collection (50+, 120, 2700+). Too many for one per slide.
+structure:
+  - "1 cover: the huge number"
+  - "2–4 category slides: grid of 9–16 items (logo + name + 3-word use)"
+  - "5 top picks highlighted"
+  - "6 CTA: comment for the full list"
+rules:
+  - Grids can come from a spreadsheet. Keep each 'use' to 3 words.
+  - Mark 1–2 picks per grid with pick: true.
+# ---- scaffold ----
+brand: agentbro
+format: F10
+title: 50+ Claude Skills You're Not Using
+caption: |
+  Most people use Claude for 3 things. Here are 50 more.
+  Comment SKILLS and I'll send you the full list with links.
+slides:
+  - layout: cover
+    style: number
+    number: "50+"
+    kicker: Save this
+    headline: Claude skills you're *not* using
+    color: pink
+
+  - layout: grid
+    category: Work & docs
+    headline: Make Claude do your *busywork*
+    items:
+      - { name: "Spreadsheet analyst", use: "Clean, chart, explain", tool: googlesheets, pick: true }
+      - { name: "Deck builder", use: "Notes to slides", icon: presentation-chart }
+      - { name: "Contract reader", use: "Flags risky clauses", icon: file-text }
+      - { name: "Meeting notes", use: "Actions, not transcripts", icon: notepad }
+      - { name: "PDF form filler", use: "Fills forms for you", icon: file-pdf }
+      - { name: "Email triage", use: "Sorts and drafts", tool: gmail }
+      - { name: "Doc rewriter", use: "Plain English versions", icon: pen-nib }
+      - { name: "Policy writer", use: "SOPs from bullets", icon: list-checks }
+      - { name: "Invoice reader", use: "Extracts the numbers", icon: receipt }
+
+  - layout: grid
+    category: Build & code
+    headline: Ship things without a *team*
+    items:
+      - { name: "Website builder", use: "Landing page fast", icon: browser, pick: true }
+      - { name: "Bug explainer", use: "Why it broke", icon: bug }
+      - { name: "API connector", use: "Glue two apps", icon: plugs-connected }
+      - { name: "Chrome extension", use: "Small tools fast", icon: puzzle-piece }
+      - { name: "SQL writer", use: "Questions to queries", icon: database }
+      - { name: "Automation designer", use: "n8n flows drafted", tool: n8n }
+      - { name: "Test writer", use: "Covers edge cases", icon: test-tube }
+      - { name: "Code reviewer", use: "Second pair of eyes", tool: github }
+      - { name: "Data cleaner", use: "Messy CSV fixed", icon: broom }
+
+  - layout: grid
+    category: Content & growth
+    headline: Grow without *burning* out
+    items:
+      - { name: "Carousel writer", use: "Hooks to slides", tool: instagram, pick: true }
+      - { name: "YouTube scripter", use: "Outline to script", tool: youtube }
+      - { name: "Newsletter editor", use: "Tightens every line", icon: envelope-simple }
+      - { name: "SEO briefs", use: "Search intent mapped", icon: magnifying-glass }
+      - { name: "Ad variations", use: "10 angles fast", icon: megaphone }
+      - { name: "Competitor teardown", use: "Their funnel, mapped", icon: binoculars }
+      - { name: "Reply drafter", use: "Comments answered", icon: chat-circle }
+      - { name: "Brand voice", use: "Sounds like you", icon: microphone }
+      - { name: "Content calendar", use: "30 days planned", tool: notion }
+
+  - layout: recap
+    flag: Top 3 picks
+    headline: If you try *three*, try these
+    items:
+      - { name: "Spreadsheet analyst", tool: googlesheets }
+      - { name: "Website builder", icon: browser }
+      - { name: "Carousel writer", tool: instagram }
+
+  - layout: cta
+    headline: Want the full list of 50+?
+    keyword: SKILLS
+    sub: I'll DM you every skill with a link.
+    doc_title: 50+ Claude skills

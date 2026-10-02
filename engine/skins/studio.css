@@ -1,0 +1,73 @@
+/* Design language "studio" — after theaiagents (2.2K likes, 170 shares).
+   Light grey with a soft top light · wordmark top-left, "04" top-right · pink gradient pill
+   ("AGENT #02") → grey caps subtitle → very heavy, tight, left-aligned headline · a dense product
+   mockup flanked by tool tiles with dashed connectors · handwritten red notes · BUILD STACK cards. */
+
+.sk-studio {
+  --pad: 72px;
+  background: radial-gradient(900px 600px at 50% -10%, #FFFFFF, transparent 70%), linear-gradient(180deg, #F4F4F6, #ECECEF);
+}
+
+/* chrome */
+.sk-studio .chrome-top { top: 58px; }
+.sk-studio .brand-mark.text { font: 900 34px var(--font-display); letter-spacing: -.04em; }
+.sk-studio .counter { font: 500 26px var(--font-display); color: var(--ink); letter-spacing: .02em; }
+.sk-studio .handle { font: 500 21px var(--font-mono); color: var(--faint); }
+.sk-studio .next-teaser { background: var(--ink); color: #fff; box-shadow: none; font: 700 22px var(--font-display); padding: 12px 22px 12px 12px; }
+.sk-studio .nt-ic { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 18px; }
+.sk-studio .swipe.mini { background: var(--paper); box-shadow: var(--shadow); }
+.sk-studio .body { top: 136px; }
+
+/* the signature header stack: pink pill → grey caps subtitle → heavy headline */
+.sk-studio .stack { gap: 22px; }
+.sk-studio .pill-step, .sk-studio .pill-c {
+  background: linear-gradient(90deg, #FF7D97, #FFC3CF); color: #8C0F2E;
+  font: 800 24px/1 var(--font-display); letter-spacing: .02em; text-transform: uppercase;
+  padding: 12px 22px; border-radius: 99px; box-shadow: inset 0 0 0 1.5px rgba(140,15,46,.12);
+}
+.sk-studio .kicker { font: 500 32px var(--font-body); letter-spacing: .04em; color: #8B8C94; margin-top: -6px; }
+.sk-studio .h-xl, .sk-studio .h-lg, .sk-studio .h-md { font-weight: 900; letter-spacing: -.048em; line-height: .98; }
+.sk-studio .h-xl { font-size: 96px; max-width: 16ch; }
+.sk-studio .h-lg { font-size: 84px; max-width: 17ch; }
+.sk-studio .lede { font-size: 30px; color: var(--muted); max-width: 34ch; }
+.sk-studio .dots i.on { background: var(--accent); }
+.sk-studio .dots i.done { background: #FFB3C2; }
+.sk-studio .item .num { display: none; }
+.sk-studio .item-head .tile.big { display: none; }
+.sk-studio .note { color: var(--accent); font-size: 46px; transform: rotate(-4deg); }
+.sk-studio .note::before { content: "↙ "; }
+
+/* mockups: white, soft shadows, pink icon circles */
+.sk-studio .vz-rows .spine, .sk-studio .tile { background: var(--hi-soft); color: var(--accent); }
+.sk-studio .vz-rows .spine { border-radius: 50%; }
+.sk-studio .ifc-ic { background: var(--ink); }
+.sk-studio .vz-phone.chat { width: 100%; background: var(--paper); padding: 0; border-radius: 30px; overflow: hidden; box-shadow: var(--shadow); }
+.sk-studio .vz-phone .notch { display: none; }
+.sk-studio .chathead, .sk-studio .app-whatsapp .chathead { background: #fff; color: #111; padding: 20px 22px; border-radius: 0; border-bottom: 1px solid #EEE; }
+.sk-studio .app-whatsapp .chathead span { color: #667; }
+.sk-studio .composer { border-radius: 0; padding: 16px 22px; }
+.sk-studio .msg { font-size: 22px; }
+.sk-studio .result-pill { background: var(--accent); }
+
+/* prompt card: code-style with the variables in pink */
+.sk-studio .pc-head { background: var(--ink); color: #fff; }
+.sk-studio .pc-body { font: 500 31px/1.5 var(--font-body); }
+.sk-studio .var { background: var(--hi-soft); color: var(--accent-deep); }
+
+/* COVER: heavy headline left, person cut-out right, floating tool tiles and a handwritten note */
+.sk-studio .cv-text { padding-top: 150px; gap: 16px; }
+.sk-studio .h-cover { font-size: 136px; font-weight: 900; letter-spacing: -.055em; line-height: .92; max-width: 7.5ch; }
+.sk-studio .cv-text .kicker { margin: 0; font-size: 28px; }
+.sk-studio .cv-tagline { font: 700 24px var(--font-display); letter-spacing: .08em; }
+.sk-studio .cv-tagline::before { background: var(--accent); }
+.sk-studio .cv-stage.person .tray { display: none; }
+.sk-studio .cv-stage.person .cutout { left: auto; right: -40px; transform: none; width: 72%; height: 118%; }
+.sk-studio .orb.o0 { left: 70px; top: 30%; } .sk-studio .orb.o1 { left: 230px; top: 50%; right: auto; } .sk-studio .orb.o2 { left: 80px; top: 70%; }
+.sk-studio .note.n-cover { color: var(--accent); left: 72px; bottom: 210px; font-size: 48px; }
+.sk-studio .sticker { background: var(--accent); color: #fff; border-radius: 99px; font: 900 32px var(--font-display); }
+.sk-studio .cv-number .giant { color: var(--ink); }
+
+/* CTA */
+.sk-studio .cta-top { color: var(--ink); font: 900 56px/1.02 var(--font-display); letter-spacing: -.04em; }
+.sk-studio .kw-c { font: 900 140px/1 var(--font-display); letter-spacing: -.05em; text-transform: uppercase; }
+.sk-studio .kw { background: var(--accent); color: #fff; font: 900 130px/1 var(--font-display); letter-spacing: -.05em; border-radius: 30px; transform: rotate(-3deg); }

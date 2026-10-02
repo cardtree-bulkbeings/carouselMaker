@@ -1,0 +1,103 @@
+# F06 Use-Case Scenario · Company · Day 1 Post 2
+# SAMPLE COPY.
+brand: thedouble-company
+format: F06
+title: Your AI Clone Answers Every Property Inquiry
+series: Real estate × Your Double
+mascot: assets/agents/cobalt.png
+caption: |
+  2:14 AM. A buyer asks about a 3BHK. Your phone is on silent. Your Double isn't.
+  Comment DOUBLE to set one up for your listings.
+slides:
+  - layout: cover
+    style: scene
+    kicker: Real estate agents
+    headline: Every inquiry. *Answered.* Even at 2 AM.
+    sub: Your AI clone replies, qualifies and books the site visit.
+    image: image-assets/scene-team-table-cobalt.png
+    position: center 60%
+
+  - layout: statement
+    kicker: The moment
+    headline: 2:14 AM. A *buyer* is ready.
+    body: You're asleep. Most agents reply at 10 AM. By then, they've called someone else.
+    visual:
+      notify:
+        - { app: whatsapp, title: "+91 98xxx 21", text: "Hi, is the 3BHK in Baner still available? What's the price?", time: "2:14 AM" }
+        - { app: whatsapp, title: "+91 98xxx 21", text: "Can I see it this weekend?", time: "2:15 AM" }
+      caption: Illustrative notifications
+
+  - layout: statement
+    kicker: It answers like you would
+    headline: Real details. *Instantly.*
+    visual:
+      chat:
+        app: whatsapp
+        name: Arjun · Baner Homes
+        status: online
+        messages:
+          - { from: them, text: "Hi, is the 3BHK in Baner still available? What's the price?", time: "02:14" }
+          - { from: me, text: "Yes, it is! 1,450 sq ft, 9th floor, park-facing. ₹1.35 Cr, negotiable for a quick close.", time: "02:14" }
+          - { from: me, kind: card, icon: image, title: "Floor plan + 8 photos", text: "3BHK · Baner · 1,450 sq ft" }
+      caption: Illustrative conversation
+    says: Pulled straight from your listing sheet.
+
+  - layout: statement
+    kicker: Then it qualifies
+    headline: Budget. Timeline. *Loan?*
+    visual:
+      chat:
+        app: whatsapp
+        name: Arjun · Baner Homes
+        status: online
+        messages:
+          - { from: me, text: "Quick question so I can help faster: are you buying with a home loan?", time: "02:15" }
+          - { from: them, text: "Yes, pre-approved up to 1.4", time: "02:16" }
+          - { from: me, text: "Perfect, that fits. Moving in within 3 months?", time: "02:16" }
+          - { from: them, text: "Ideally yes", time: "02:16" }
+      caption: Illustrative conversation
+
+  - layout: statement
+    kicker: And books the visit
+    headline: Saturday, 11 AM. *Done.*
+    visual:
+      chat:
+        app: whatsapp
+        name: Arjun · Baner Homes
+        status: online
+        messages:
+          - { from: them, text: "Can I see it this weekend?", time: "02:17" }
+          - { from: me, text: "Saturday 11 AM or Sunday 4 PM?", time: "02:17" }
+          - { from: them, text: "Saturday works", time: "02:17" }
+          - { from: me, kind: card, icon: calendar-check, title: "Site visit · Sat 11:00 AM", text: "Location pin + reminder sent" }
+      caption: Illustrative conversation
+
+  - layout: statement
+    kicker: While you slept
+    headline: You wake up to a *booked* visit.
+    visual:
+      double:
+        name: Your Double · Baner Homes
+        status: Live · 3 chats tonight
+        capabilities: [knowledge, voice, channels, actions]
+        feed:
+          - { text: "Lead qualified · loan pre-approved", time: "2:16 AM", color: grape }
+          - { text: "Site visit booked · Sat 11:00", time: "2:17 AM", color: tangerine }
+          - { text: "Lead saved → Google Sheets", time: "2:17 AM", color: cobalt }
+
+  - layout: statement
+    kicker: How it works
+    headline: Train it. Connect it. *Sleep.*
+    visual:
+      cards:
+        - { label: "01 · Train", title: "Your listings", text: "Upload prices, photos and FAQs.", icon: books, color: grape }
+        - { label: "02 · Connect", title: "Your WhatsApp", text: "Same number buyers already have.", icon: whatsapp-logo, color: cobalt }
+        - { label: "03 · Live", title: "Every chat", text: "It answers, qualifies, books.", icon: lightning, color: tangerine }
+
+  - layout: cta
+    headline: Want one for your listings?
+    keyword: DOUBLE
+    sub: We'll set up your first Double with you.
+    visual:
+      image: image-assets/closing-crew-peek-cobalt.png
+      frame: plain
