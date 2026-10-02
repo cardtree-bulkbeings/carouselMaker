@@ -1,0 +1,102 @@
+/* World "quest" v2: Agent Bro as the Player. A carousel, not an ad. Airy.
+   Stolen from many, copied from none:
+   · theaiagents → white sheet, wordmark top-left + "04" top-right, gradient pill label, grey caps
+                   subtitle, very heavy left-aligned headline, soft white mockup cards, handwritten notes
+   · aiagently   → soft accent glow in the corners, "Next →" pill, huge COMMENT keyword ending
+   · algowinner  → numbered box label + "2 / 9" counter, one red keyword in the headline
+   · meghanify   → "COPY THIS PROMPT" card with an example preview underneath
+   · games       → quest difficulty / time / reward chips, a slim XP bar, loot rarity, achievement chip
+   White ground. Black type. ONE hot accent. Rarity colours only on loot. Two type families. */
+
+.sk-quest { --pad: 72px; --common: #8E949C; --rare: #2F80ED; --epic: #9B51E0; --legendary: #E8A400;
+  background: radial-gradient(560px 460px at 106% -6%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 72%),
+              radial-gradient(520px 420px at -8% 108%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 72%), #FFFFFF; }
+
+/* chrome */
+.sk-quest .chrome-top { top: 58px; }
+.sk-quest .brand-mark.text { font: 900 32px var(--font-display); letter-spacing: -.045em; }
+.sk-quest .counter { font: 700 24px var(--font-display); color: var(--ink); letter-spacing: .02em; }
+.sk-quest .handle { font: 500 20px var(--font-body); color: var(--faint); }
+.sk-quest .next-teaser { background: var(--ink); color: #fff; box-shadow: 0 10px 24px -10px rgba(0,0,0,.4); font: 700 22px var(--font-display); padding: 12px 22px 12px 12px; }
+.sk-quest .nt-ic { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 18px; }
+.sk-quest .swipe.mini { background: #fff; box-shadow: 0 6px 16px -8px rgba(0,0,0,.3), 0 0 0 1px var(--line); }
+.sk-quest .body { top: 134px; }
+
+/* the header stack: label pill → grey caps subtitle → heavy headline */
+.sk-quest .stack { gap: 22px; }
+.sk-quest .pill-step, .sk-quest .pill-c {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 70%, #fff), color-mix(in srgb, var(--accent) 28%, #fff)); color: var(--accent-deep);
+  font: 800 23px/1 var(--font-display); letter-spacing: .02em; text-transform: uppercase; padding: 12px 22px; border-radius: 99px; box-shadow: none; align-self: flex-start; }
+.sk-quest .kicker { font: 700 26px var(--font-display); letter-spacing: .06em; color: #8B8C94; margin-top: -4px; }
+.sk-quest .kicker::before { content: none; }
+.sk-quest .h-xl, .sk-quest .h-lg, .sk-quest .h-md { font-family: var(--font-display); font-weight: 900; letter-spacing: -.05em; line-height: .98; }
+.sk-quest .h-xl { font-size: 98px; max-width: 15ch; }
+.sk-quest .h-lg { font-size: 90px; max-width: 16ch; }
+.sk-quest .lede { font-size: 31px; color: var(--muted); max-width: 32ch; }
+.sk-quest .note { color: var(--accent); font-size: 48px; transform: rotate(-4deg); }
+.sk-quest .note::before { content: "↙ "; }
+.sk-quest .item .num { display: none; }
+.sk-quest .item-head .tile.big { width: 84px; height: 84px; border-radius: 24px; background: #fff; box-shadow: var(--shadow); }
+
+/* quest progress: a slim XP bar instead of dots, quest chips under the label */
+.sk-quest .step-head { justify-content: flex-start; gap: 22px; }
+.sk-quest .dots { display: none; }
+.sk-quest .xp { display: inline-flex; align-items: center; gap: 12px; margin-left: auto; font: 700 20px var(--font-display); color: var(--muted); }
+.sk-quest .xp::before { content: "XP"; color: var(--ink); }
+.sk-quest .xp-track { display: block; width: 220px; height: 12px; border-radius: 99px; background: color-mix(in srgb, var(--ink) 8%, transparent); overflow: hidden; }
+.sk-quest .xp-track i { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, color-mix(in srgb, var(--accent) 60%, #fff), var(--accent)); }
+.sk-quest .meta-row { gap: 10px; }
+.sk-quest .meta { background: #fff; color: var(--ink); font: 600 20px var(--font-body); padding: 9px 16px; border-radius: 99px; box-shadow: 0 0 0 1.5px var(--line); }
+
+/* cards: soft white mockups */
+.sk-quest .vz-rows, .sk-quest .ui-double, .sk-quest .vz-table, .sk-quest .vz-check, .sk-quest .example, .sk-quest .lrow, .sk-quest .ri, .sk-quest .stt, .sk-quest .rc-box,
+.sk-quest .fnode, .sk-quest .sc-table, .sk-quest .opt, .sk-quest .vs .side, .sk-quest .prompt-card, .sk-quest .ifc, .sk-quest .hub-tool, .sk-quest .hub-feat {
+  background: #fff; border: 0; border-radius: 26px; box-shadow: 0 1px 2px rgba(0,0,0,.05), 0 16px 40px -16px rgba(0,0,0,.18), 0 0 0 1px rgba(0,0,0,.05); }
+.sk-quest .vz-rows .spine, .sk-quest .tile, .sk-quest .hub-ic { background: var(--hi-soft); color: var(--accent); }
+.sk-quest .vz-rows .spine { border-radius: 50%; }
+.sk-quest .ifc-ic { background: var(--ink); }
+.sk-quest .stt:last-child { background: var(--accent); color: #fff; }
+
+/* LOOT: prompt cards carry their rarity as a coloured header + chip */
+.sk-quest .prompt-l { --rar: var(--accent); }
+.sk-quest .rar-common { --rar: var(--common); } .sk-quest .rar-rare { --rar: var(--rare); } .sk-quest .rar-epic { --rar: var(--epic); } .sk-quest .rar-legendary { --rar: var(--legendary); }
+.sk-quest .prompt-card { box-shadow: 0 0 0 2px var(--rar), 0 18px 40px -18px color-mix(in srgb, var(--rar) 60%, transparent); }
+.sk-quest .pc-head { background: var(--rar); color: #fff; }
+.sk-quest .pc-body { font: 500 32px/1.5 var(--font-body); }
+.sk-quest .var { background: color-mix(in srgb, var(--rar) 14%, #fff); color: color-mix(in srgb, var(--rar) 70%, #000); }
+.sk-quest .rarity { background: color-mix(in srgb, var(--rar) 14%, #fff); color: color-mix(in srgb, var(--rar) 75%, #000); border-radius: 99px; font: 800 19px var(--font-display); letter-spacing: .08em; }
+.sk-quest .rarity::before { content: "★ "; color: var(--rar); }
+
+/* stamp: a clean "cleared" badge */
+.sk-quest .stamp { background: var(--ink); color: #fff; border: 0; border-radius: 99px; transform: rotate(-6deg); padding: 14px 26px; font: 800 26px var(--font-display); letter-spacing: .06em; box-shadow: 0 14px 30px -12px rgba(0,0,0,.45); opacity: 1; }
+.sk-quest .stamp::before { content: "✓ "; color: #4ADE80; }
+
+/* COVER (theaiagents-style): heavy headline left, his photo right, tool tiles + quest stats */
+.sk-quest .cv-text { padding-top: 136px; gap: 16px; }
+.sk-quest .h-cover { font-family: var(--font-display); font-weight: 900; font-size: 136px; letter-spacing: -.055em; line-height: .92; max-width: 7.6ch; }
+.sk-quest .cv-text .kicker { margin: 0; font-size: 26px; }
+.sk-quest .cv-tagline { font: 700 24px var(--font-display); letter-spacing: .08em; }
+.sk-quest .cv-tagline::before { background: var(--accent); }
+.sk-quest .cv-stage.person .tray { display: none; }
+.sk-quest .cv-stage.person .cutout { left: auto; right: -40px; transform: none; width: 72%; height: 118%; }
+.sk-quest .orbit .orb { width: 100px; height: 100px; font-size: 54px; border-radius: 26px; box-shadow: 0 14px 30px -12px rgba(0,0,0,.3), 0 0 0 1px var(--line); }
+.sk-quest .orb.o0 { left: 72px; top: auto; bottom: 250px; transform: rotate(-6deg); }
+.sk-quest .orb.o1 { left: 190px; top: auto; bottom: 268px; right: auto; transform: rotate(4deg); }
+.sk-quest .orb.o2 { left: 308px; top: auto; bottom: 250px; transform: rotate(-3deg); }
+.sk-quest .cv-stats { left: 72px; bottom: 130px; }
+.sk-quest .cv-stats span { background: #fff; border-radius: 18px; box-shadow: 0 10px 26px -12px rgba(0,0,0,.3), 0 0 0 1px var(--line); }
+.sk-quest .cv-stats small { font: 700 15px var(--font-display); color: var(--muted); }
+.sk-quest .cv-stats b { font: 900 30px/1.1 var(--font-display); }
+.sk-quest .note.n-cover { color: var(--accent); left: 72px; bottom: 390px; }
+.sk-quest .sticker { background: var(--accent); color: #fff; border-radius: 99px; font: 900 32px var(--font-display); transform: rotate(6deg); }
+.sk-quest.L-cover .swipe { background: var(--ink); }
+
+/* CTA: big COMMENT keyword with a small achievement chip (aiagently ending) */
+.sk-quest .cta-c { gap: 18px; }
+.sk-quest .cta-top { font: 900 54px/1.02 var(--font-display); color: var(--ink); letter-spacing: -.04em; }
+.sk-quest .kw-line { gap: 8px; }
+.sk-quest .kw-line::before { content: "🏆 Achievement unlocked"; padding: 8px 18px; border-radius: 99px; background: color-mix(in srgb, var(--legendary) 18%, #fff); color: #8A5A00; font: 700 20px var(--font-display); letter-spacing: .04em; }
+.sk-quest .kw-c { font: 900 136px/1 var(--font-display); text-transform: uppercase; letter-spacing: -.05em; color: var(--ink); }
+.sk-quest .kw { background: var(--accent); color: #fff; font: 900 116px/1 var(--font-display); letter-spacing: -.045em; border-radius: 30px; transform: rotate(-2deg); padding: 14px 44px 22px; box-shadow: 0 20px 40px -16px color-mix(in srgb, var(--accent) 70%, transparent); }
+.sk-quest .kw::before { content: "“"; } .sk-quest .kw::after { content: "”"; }
+.sk-quest .answers span { border-radius: 99px; }

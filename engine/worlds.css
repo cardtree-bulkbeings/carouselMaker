@@ -1,0 +1,49 @@
+/* World artifacts: neutral defaults. The world skins (codex / bureau / quest) style them properly;
+   v1 skins only see the pieces a post opts into. */
+
+/* progress as XP bar: hidden unless a world shows it */
+.xp { display: none; }
+
+/* meta chips (difficulty, time, department, staff no …) */
+.meta-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.stack.center .meta-row, .sk-bold .meta-row, .sk-calm .meta-row { justify-content: center; }
+.meta { padding: 8px 16px; border-radius: 99px; background: var(--chip); font: 600 21px var(--font-body); color: var(--ink); }
+
+/* stamp / seal pressed onto a slide */
+.stamp { position: absolute; z-index: 6; right: 70px; bottom: 150px; transform: rotate(-10deg); padding: 14px 22px; border: 4px solid var(--accent); border-radius: 12px; color: var(--accent); font: 800 28px/1 var(--font-display); letter-spacing: .08em; text-transform: uppercase; opacity: .9; }
+
+/* player stats on a cover */
+.cv-stats { position: absolute; z-index: 5; left: 72px; bottom: 150px; display: flex; gap: 10px; }
+.cv-stats span { display: flex; flex-direction: column; padding: 10px 16px; border-radius: 14px; background: var(--paper); box-shadow: var(--shadow); }
+.cv-stats small { font: 600 16px var(--font-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.cv-stats b { font: 800 34px/1.1 var(--font-display); }
+
+/* loot rarity */
+.rarity { padding: 8px 16px; border-radius: 99px; font: 700 20px var(--font-mono); text-transform: uppercase; letter-spacing: .1em; background: var(--chip); }
+
+/* LAW layout */
+.law-l { justify-content: center; align-items: center; text-align: center; }
+.law-num { font: 600 24px var(--font-body); letter-spacing: .3em; text-transform: uppercase; color: var(--accent); }
+.h-law { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-track); font-size: 104px; line-height: 1.0; max-width: 14ch; text-wrap: balance; }
+.law-src { font-size: 26px; color: var(--muted); font-style: italic; }
+
+/* ID BADGE (bureau) */
+.ui-badge { position: relative; width: 500px; margin: 0 auto; background: var(--paper); border-radius: 30px; padding: 0 0 30px; display: flex; flex-direction: column; align-items: center; gap: 10px; overflow: hidden; box-shadow: 0 2px 0 rgba(0,0,0,.06), 0 30px 60px -30px rgba(0,0,0,.35); text-align: center; }
+.bd-hole { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); width: 90px; height: 16px; border-radius: 99px; background: var(--ground); box-shadow: inset 0 1px 3px rgba(0,0,0,.2); z-index: 2; }
+.bd-dept { width: 100%; padding: 50px 20px 18px; background: var(--c); color: var(--c-ink); font: 700 24px var(--font-display); letter-spacing: .18em; text-transform: uppercase; }
+.bd-photo { width: 300px; height: 260px; margin-top: 18px; border-radius: 22px; background: var(--c-soft); display: grid; place-items: center; overflow: hidden; }
+.bd-photo img { width: 88%; height: 88%; object-fit: contain; }
+.bd-name { font: 700 46px/1.05 var(--font-display); letter-spacing: -.02em; margin-top: 6px; }
+.bd-role { font-size: 24px; color: var(--muted); }
+.bd-foot { display: flex; justify-content: space-between; width: 82%; font: 500 18px var(--font-mono); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; margin-top: 6px; }
+.bd-bar { display: flex; gap: 3px; height: 40px; margin-top: 4px; }
+.bd-bar i { width: 4px; background: var(--ink); } .bd-bar i:nth-child(3n) { width: 8px; } .bd-bar i:nth-child(5n) { width: 2px; }
+
+/* MEMO (bureau) */
+.ui-memo { position: relative; width: 100%; max-width: 860px; margin: 0 auto; background: var(--paper); padding: 40px 46px; text-align: left; font-family: var(--font-mono); box-shadow: 0 2px 0 rgba(0,0,0,.06), 0 24px 50px -28px rgba(0,0,0,.3); }
+.mm-title { font: 700 26px var(--font-display); letter-spacing: .2em; text-transform: uppercase; padding-bottom: 18px; margin-bottom: 14px; border-bottom: 3px double var(--ink); text-align: center; }
+.mm-row { display: flex; gap: 16px; font-size: 24px; padding: 6px 0; }
+.mm-row span { width: 90px; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; font-size: 20px; padding-top: 3px; }
+.mm-row b { font-weight: 500; }
+.mm-body { margin-top: 16px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 25px; line-height: 1.5; }
+.mm-stamp { position: absolute; right: 40px; bottom: 30px; transform: rotate(-12deg); border: 4px double #C2413A; color: #C2413A; padding: 8px 16px; font: 800 26px var(--font-display); letter-spacing: .12em; text-transform: uppercase; opacity: .85; }

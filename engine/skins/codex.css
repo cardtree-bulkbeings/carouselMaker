@@ -1,0 +1,105 @@
+/* World "codex" v2: Founder as the Architect. Airy.
+   Stolen from many, copied from none:
+   · meghanify      → editorial serif headlines on white, soft tinted cards, one highlighted word
+   · aiagently      → centred composition, small tinted label above a big title, "Next →" pill
+   · theonlyworkshop→ generous air, a caption under every visual, counter bottom-right
+   · wellbeing      → the image bleeds to the edge, small running labels in the corners
+   · Leonardo/Dune  → Laws, roman numerals, marginal notes, a wax seal, the arched niche
+   White ground. Ink + ONE pigment (ultramarine). Seal red only on the seal. */
+
+.sk-codex { --pad: 84px; --seal: #B23A2E; background: #FFFFFF; }
+.sk-codex::before { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(700px 520px at 100% 0%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 70%); }
+
+/* chrome: tiny running labels like a book */
+.sk-codex .chrome-top { top: 58px; }
+.sk-codex .brand-mark { height: 28px; }
+.sk-codex .series { font: 600 17px var(--font-body); letter-spacing: .3em; color: var(--muted); }
+.sk-codex .counter { display: none; }
+.sk-codex .counter-b { display: inline; font: 400 26px var(--font-display); font-style: italic; color: var(--muted); }
+.sk-codex .handle { font: 500 19px var(--font-body); color: var(--faint); letter-spacing: .04em; }
+.sk-codex .next-teaser { background: var(--paper); box-shadow: 0 8px 24px -10px color-mix(in srgb, var(--accent) 35%, transparent), 0 0 0 1px var(--line); padding: 12px 24px 12px 12px; font: 400 26px var(--font-display); font-style: italic; color: var(--ink); }
+.sk-codex .next-teaser .nt-ic { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 20px; }
+.sk-codex.has-next .handle { display: none; }
+.sk-codex .swipe.mini { display: none; }
+.sk-codex .body { top: 140px; }
+
+/* type: editorial serif, centred */
+.sk-codex .stack { align-items: center; text-align: center; gap: 26px; }
+.sk-codex .h-xl, .sk-codex .h-lg, .sk-codex .h-md, .sk-codex .h-law { font-family: var(--font-display); font-weight: 400; letter-spacing: -.025em; line-height: .95; max-width: 15ch; margin-inline: auto; color: var(--ink); }
+.sk-codex .h-xl { font-size: 116px; }
+.sk-codex .h-lg { font-size: 104px; }
+.sk-codex .h-law { font-size: 124px; max-width: 12ch; }
+.sk-codex em { font-family: var(--font-display); font-style: italic; color: var(--accent); background: none; }
+.sk-codex .lede { font-size: 32px; line-height: 1.42; color: var(--muted); max-width: 28ch; margin-inline: auto; }
+.sk-codex .kicker { padding: 10px 20px; border-radius: 99px; background: var(--hi-soft); color: var(--accent); font: 600 19px var(--font-body); letter-spacing: .2em; align-self: center; }
+.sk-codex .note { font-family: var(--font-hand); font-weight: 700; color: var(--accent); font-size: 46px; align-self: flex-end; transform: rotate(-4deg); }
+.sk-codex .note::before { content: "↳ "; }
+
+/* Folio / Law labels: italic roman numerals in the pigment */
+.sk-codex .step-head, .sk-codex .item-head { justify-content: center; }
+.sk-codex .dots, .sk-codex .xp, .sk-codex .item .num, .sk-codex .hero-mark { display: none; }
+.sk-codex .pill-step, .sk-codex .pill-c, .sk-codex .law-num { background: none; box-shadow: none; padding: 0; color: var(--accent); font: 400 48px var(--font-display); font-style: italic; letter-spacing: 0; text-transform: none; align-self: center; }
+.sk-codex .meta { background: var(--hi-soft); color: var(--accent); font: 600 18px var(--font-body); letter-spacing: .14em; text-transform: uppercase; }
+.sk-codex .law-src { font-family: var(--font-display); font-style: italic; font-size: 30px; }
+.sk-codex .law-src::before { content: "— "; }
+
+/* cards: soft pigment tint, no borders (meghanify) */
+.sk-codex .vz-rows, .sk-codex .ui-double, .sk-codex .vz-table, .sk-codex .vz-check, .sk-codex .example, .sk-codex .lrow, .sk-codex .ri,
+.sk-codex .stt, .sk-codex .rc-box, .sk-codex .fnode, .sk-codex .prompt-card, .sk-codex .sc-table, .sk-codex .ifc {
+  background: #F4F5FD; box-shadow: none; border: 0; border-radius: 26px; text-align: left; }
+.sk-codex .vz-rows { padding: 16px 30px; }
+.sk-codex .vz-rows .row + .row { border-top-color: color-mix(in srgb, var(--accent) 12%, transparent); }
+.sk-codex .vz-rows .spine, .sk-codex .tile { background: #FFFFFF; color: var(--accent); border-radius: 50%; }
+.sk-codex .vz-rows .t { font-family: var(--font-display); font-size: 36px; }
+.sk-codex .stt { background: #F4F5FD; } .sk-codex .stt:last-child { background: var(--accent); color: #fff; }
+.sk-codex .stt b { font-family: var(--font-display); font-weight: 400; }
+
+/* Q&A: question as a pull-quote, the clone answers from a medallion card */
+.sk-codex .q-wrap { align-self: center; align-items: center; max-width: 92%; }
+.sk-codex .q { background: none; color: var(--ink); font: 400 54px/1.08 var(--font-display); font-style: italic; padding: 0; border-radius: 0; text-align: center; }
+.sk-codex .q::before { content: "“"; } .sk-codex .q::after { content: "”"; }
+.sk-codex .q-wrap .who { letter-spacing: .3em; }
+.sk-codex .a-card { background: #F4F5FD; box-shadow: none; padding: 48px 52px; align-items: center; text-align: center; border-radius: 34px; }
+.sk-codex .a-head { flex-direction: column; gap: 10px; }
+.sk-codex .a-head .av { width: 140px; height: 140px; border: 5px solid #fff; box-shadow: 0 0 0 2px var(--accent); }
+.sk-codex .a-head .av.letter { background: var(--accent); color: #fff; font-family: var(--font-display); font-weight: 400; }
+.sk-codex .a-head b { font: 600 20px var(--font-body); letter-spacing: .3em; text-transform: uppercase; }
+.sk-codex .status { display: none; }
+.sk-codex .a { font: 400 56px/1.14 var(--font-display); letter-spacing: -.015em; }
+
+/* quote */
+.sk-codex .qmarks { font-family: var(--font-display); color: var(--accent); }
+.sk-codex .h-quote { font-family: var(--font-display); font-weight: 400; font-style: normal; font-size: 96px; letter-spacing: -.02em; line-height: 1.0; }
+
+/* the wax seal (small, the only red) */
+.sk-codex .stamp { right: 90px; bottom: 160px; width: 150px; height: 150px; padding: 0; border: 0; border-radius: 50%; display: grid; place-items: center; text-align: center;
+  background: radial-gradient(circle at 38% 34%, #D8645A, var(--seal) 55%, #7E2219); color: #FBEDE6; font: 700 18px/1.15 var(--font-body); letter-spacing: .14em;
+  box-shadow: 0 0 0 9px color-mix(in srgb, var(--seal) 60%, transparent), 0 14px 26px -10px rgba(90,20,10,.5); opacity: 1; transform: rotate(-12deg); }
+
+/* COVER: serif title on white, the founder in an arched niche of ultramarine */
+.sk-codex .cv-text { align-items: center; text-align: center; padding-top: 120px; gap: 18px; }
+.sk-codex .h-cover { font-family: var(--font-display); font-weight: 400; font-size: 140px; letter-spacing: -.03em; line-height: .9; max-width: 10ch; color: var(--ink); }
+.sk-codex .cv-text .kicker { font-size: 18px; }
+.sk-codex .cv-tagline { justify-content: center; font: 400 36px var(--font-display); font-style: italic; letter-spacing: 0; text-transform: none; color: var(--muted); }
+.sk-codex .cv-tagline::before { content: none; }
+.sk-codex .cv-stage.person .tray { left: 50%; right: auto; width: 620px; transform: translateX(-50%); top: 8%; bottom: -40px; border-radius: 310px 310px 0 0;
+  background: radial-gradient(420px 460px at 50% 28%, color-mix(in srgb, var(--accent) 55%, #fff), var(--accent) 62%); }
+.sk-codex .cv-stage.person .tray .tex { display: none; }
+.sk-codex .cv-stage.person .cutout { width: 84%; height: 108%; }
+.sk-codex .cv-stage.person .cutout.filled { left: 50%; width: 586px; top: calc(8% + 17px); bottom: -40px; height: auto; border-radius: 293px 293px 0 0; overflow: hidden; }
+.sk-codex .cv-stage.person .cutout.filled img { object-position: center 30%; }
+.sk-codex .orbit { display: none; }
+.sk-codex .float-tag { left: 50%; right: auto; bottom: 30px; transform: translateX(-50%); background: #fff; border: 0; border-radius: 99px; box-shadow: 0 8px 24px -10px rgba(0,0,0,.3); font: 600 17px var(--font-body); letter-spacing: .26em; padding: 12px 22px; }
+.sk-codex .float-tag .sq { display: none; }
+.sk-codex .sticker { background: var(--seal); color: #FBEDE6; border-radius: 50%; width: 120px; height: 120px; padding: 0; display: grid; place-items: center; font: 700 20px var(--font-body); letter-spacing: .12em; transform: rotate(-12deg); top: 80px; right: 80px; }
+.sk-codex.L-cover .swipe { background: var(--ink); }
+
+/* CTA: a title page */
+.sk-codex .cta-top { font: 400 60px/1.02 var(--font-display); color: var(--ink); max-width: 15ch; }
+.sk-codex .kw-c { font: 400 64px var(--font-display); font-style: italic; color: var(--muted); text-transform: none; }
+.sk-codex .kw { background: var(--accent); color: #fff; font: 400 140px/1 var(--font-display); letter-spacing: 0; padding: 14px 54px 22px; border-radius: 99px; transform: none; box-shadow: 0 20px 40px -18px color-mix(in srgb, var(--accent) 70%, transparent); }
+.sk-codex .vz-doc .pg { border-radius: 18px; background: #fff; }
+.sk-codex .vz-doc .p2 { background: #F4F5FD; } .sk-codex .vz-doc .p3 { background: var(--hi-soft); }
+.sk-codex .vz-doc b { font-family: var(--font-display); font-weight: 400; font-size: 48px; }
+.sk-codex .follow { font-family: var(--font-display); font-style: italic; font-size: 30px; }

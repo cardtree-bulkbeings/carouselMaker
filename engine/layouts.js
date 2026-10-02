@@ -12,6 +12,16 @@ function info(s, c) {
   return `<div class="info-cards n${s.info.length}">${s.info.map((f, i) => `<div class="ifc"><span class="ifc-ic">${icon(f.icon || 'stack')}</span><div><b data-k="${c.k}.info.${i}.title">${md(f.title)}</b><span data-k="${c.k}.info.${i}.text">${md(f.text || '')}</span></div></div>`).join('')}</div>`;
 }
 
+// Meta chips under a header: `meta: ["Difficulty ★★☆", "20 min", "Reward: auto-replies"]`
+// (quest difficulty, department + staff no., folio dates …).
+function meta(s, c) {
+  if (!s.meta) return '';
+  return `<div class="meta-row">${s.meta.map((m, i) => `<span class="meta" data-k="${c.k}.meta.${i}">${md(m)}</span>`).join('')}</div>`;
+}
+
+// Progress as an XP bar (worlds that use it hide the dots; others hide the bar).
+const xpBar = (n, total) => (total > 1 ? `<span class="xp"><span class="xp-track"><i style="width:${Math.round((n / total) * 100)}%"></i></span><b>${n}/${total}</b></span>` : '');
+
 // ---------------------------------------------------------------- COVER
 // style: person | scene | object | number | type
 function cover(s, c) {
@@ -25,7 +35,7 @@ function cover(s, c) {
   if (style === 'person') {
     stage = `<div class="cv-stage person" style="${colorVars(c.brand, s.color)}">
       <div class="tray">${s.texture ? `<img class="tex" src="/${esc(s.texture)}" alt="">` : ''}</div>
-      ${s.image ? imageBox(s.image, `${k}.image`, { cls: 'cutout', fit: 'contain', hint: 'Drop a cut-out PNG', adj: s, field: 'image' }) : `<div class="imgbox cutout empty silhouette" data-img="${k}.image" data-hint="Drop a cut-out PNG (no background)">${SILHOUETTE}</div>`}
+      ${s.image ? imageBox(s.image, `${k}.image`, { cls: `cutout ${s.fill ? 'filled' : ''}`, fit: s.fill ? 'cover' : 'contain', hint: 'Drop a cut-out PNG', adj: s, field: 'image' }) : `<div class="imgbox cutout empty silhouette" data-img="${k}.image" data-hint="Drop a cut-out PNG (no background)">${SILHOUETTE}</div>`}
       ${s.logos ? `<div class="orbit">${s.logos.map((t, i) => `<span class="orb o${i}">${logo(t).mark}</span>`).join('')}</div>` : ''}
       ${tag}${note}
     </div>`;
@@ -45,6 +55,7 @@ function cover(s, c) {
       ${chipRow}
     </div>
     ${stage}${badge}
+    ${s.stats ? `<div class="cv-stats">${s.stats.map((x, i) => `<span><small>${esc(x.label)}</small><b data-k="${k}.stats.${i}.value">${md(x.value)}</b></span>`).join('')}</div>` : ''}
   </div>`;
 }
 
@@ -54,6 +65,7 @@ const SILHOUETTE = `<svg viewBox="0 0 400 500" class="sil"><circle cx="200" cy="
 function statement(s, c) {
   return `<div class="stack st ${s.align === 'center' ? 'center' : ''} ${s.size ? 'sz-' + s.size : ''} ${s.visual ? '' : 'novis'}">
     ${c.T('kicker', 'kicker')}
+    ${meta(s, c)}
     ${c.T('headline', 'h-xl fit')}
     ${c.T('body', 'lede')}
     ${s.visual ? `<div class="vis-area">${c.V(s.visual)}</div>` : ''}
@@ -70,7 +82,8 @@ function step(s, c) {
   const dots = total > 1 ? `<span class="dots">${Array.from({ length: total }, (_, i) => `<i class="${i + 1 === n ? 'on' : i + 1 < n ? 'done' : ''}"></i>`).join('')}</span>` : '';
   return `<div class="stack step ${s.visual ? '' : 'novis'}">
     <span class="ghost-num">${pad2(n)}</span>
-    <div class="step-head"><span class="pill-step">${esc(s.label || 'Step')} ${n}</span>${dots}</div>
+    <div class="step-head"><span class="pill-step">${esc(s.label || c.lex('step', 'Step'))} ${c.num(n).replace(/^0/, '')}</span>${dots}${xpBar(n, total)}</div>
+    ${meta(s, c)}
     ${c.T('kicker', 'kicker')}
     ${c.T('title', 'h-lg fit')}
     ${c.T('body', 'lede')}
@@ -85,7 +98,8 @@ function item(s, c) {
   const n = s.n ?? c.itemNo;
   const mark = s.tool ? logo(s.tool).mark : icon(s.icon || 'sparkle');
   return `<div class="stack item ${s.visual ? '' : 'novis'}" style="${colorVars(c.brand, s.color || cycleColor(c.brand, n - 1))}">
-    <div class="item-head"><span class="num">${pad2(n)}</span><span class="tile big">${mark}</span>${s.label ? `<span class="pill-c" data-k="${c.k}.label">${md(s.label)}</span>` : ''}</div>
+    <div class="item-head"><span class="num">${c.num(n)}</span><span class="tile big">${mark}</span>${s.label || c.lex('item', null) ? `<span class="pill-c" data-k="${c.k}.label">${md(s.label || `${c.lex('item')} ${c.num(n)}`)}</span>` : ''}</div>
+    ${meta(s, c)}
     ${c.T('kicker', 'kicker')}
     ${c.T('name', 'h-lg fit')}
     ${c.T('what', 'lede')}
@@ -114,8 +128,9 @@ function qa(s, c) {
 // ---------------------------------------------------------------- PROMPT
 function prompt(s, c) {
   const n = s.n ?? c.itemNo;
-  return `<div class="stack prompt-l ${s.preview ? '' : 'novis'}">
-    <div class="item-head"><span class="pill-step">${esc(s.label || 'Prompt')} ${pad2(n)}</span>${s.tool ? `<span class="tool sm">${logo(s.tool).mark}<b>${esc(logo(s.tool).title)}</b></span>` : ''}</div>
+  return `<div class="stack prompt-l ${s.preview ? '' : 'novis'} ${s.rarity ? 'rar-' + esc(s.rarity) : ''}">
+    <div class="item-head"><span class="pill-step">${esc(s.label || c.lex('prompt', 'Prompt'))} ${c.num(n)}</span>${s.rarity ? `<span class="rarity">${esc(s.rarity)}</span>` : ''}${s.tool ? `<span class="tool sm">${logo(s.tool).mark}<b>${esc(logo(s.tool).title)}</b></span>` : ''}</div>
+    ${meta(s, c)}
     ${c.T('title', 'h-lg fit')}
     <div class="prompt-card"><div class="pc-head"><span>Copy this prompt</span>${icon('copy')}</div><div class="pc-body fit" data-k="${c.k}.prompt">${md(s.prompt)}</div></div>
     ${s.preview ? `<div class="preview"><span class="lbl">${esc(s.preview_label || 'Example output')}</span>${c.V(s.preview, 'preview')}</div>` : ''}
@@ -334,4 +349,17 @@ function cta(s, c) {
   </div>`;
 }
 
-export const LAYOUTS = { cover, statement, step, item, qa, prompt, versus, scorecard, quiz, flow, roster, org, grid, quote, stat, recap, news, list, cta };
+// ---------------------------------------------------------------- LAW (a numbered principle: Codex world)
+function law(s, c) {
+  const n = s.n ?? c.itemNo;
+  return `<div class="stack law-l ${s.visual ? '' : 'novis'}">
+    <span class="law-num">${esc(s.label || c.lex('law', 'Law'))} ${c.num(n).replace(/^0/, '')}</span>
+    ${c.T('law', 'h-law fit')}
+    ${c.T('gloss', 'lede')}
+    ${s.visual ? `<div class="vis-area">${c.V(s.visual)}</div>` : ''}
+    ${c.T('source', 'law-src')}
+    ${c.T('note', 'note')}
+  </div>`;
+}
+
+export const LAYOUTS = { cover, statement, step, item, qa, prompt, versus, scorecard, quiz, flow, roster, org, grid, quote, stat, recap, news, list, cta, law };

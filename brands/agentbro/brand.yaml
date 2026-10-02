@@ -12,7 +12,7 @@ fonts:
   - https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@600;700&display=block
 
 tokens:
-  ground: "#F1F1F3"
+  ground: "#FFFFFF"
   paper: "#FFFFFF"
   ink: "#0B0B0E"
   muted: "#54555D"

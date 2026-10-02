@@ -1,0 +1,72 @@
+# WORLD · The Bureau: Company as the Institution of the future (docs/WORLDS.md §2).
+# Monsters, Inc. × Wes Anderson × Apple. The five capabilities are five departments. No humans.
+name: The Double
+handle: "@thedouble.ai"
+logo: brands/_shared/thedouble/logo-black.svg
+emphasis: highlight
+design: bureau
+lexicon: { step: Procedure, item: Staff, prompt: Form, next: Next on shift, next_qa: Next }
+fonts:
+  - https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=block
+
+tokens:
+  ground: "#FFFFFF"
+  paper: "#FFFFFF"
+  ink: "#211C2E"             # aubergine ink
+  muted: "#675F72"
+  faint: "#8E879A"
+  line: "rgba(33,28,46,.12)"
+  chip: "rgba(33,28,46,.06)"
+  accent: "#2F43F2"
+  accent-ink: "#FFFFFF"
+  accent-deep: "#151B55"
+  hi: "#F6D58E"              # mustard pastel marker
+  hi-soft: "#FBEBC6"
+  glow: "transparent"
+  deep: "#211C2E"
+  deep-ink: "#F4ECDF"
+  tray: "#2F43F2"
+  live: "#3AA757"
+  good: "#2F8F4E"
+  bad: "#C2413A"
+  note: "#2F43F2"
+  font-display: "'Inter Tight', Arial, sans-serif"
+  font-human: "'Inter Tight', sans-serif"
+  font-body: "'Inter', system-ui, sans-serif"
+  font-mono: "'DM Mono', ui-monospace, monospace"
+  font-pixel: "'DM Mono', monospace"
+  font-hand: "'DM Mono', monospace"
+  display-weight: "600"
+  display-track: "-0.03em"
+  r-card: "18px"
+  r-block: "22px"
+  r-tile: "12px"
+  shadow: "0 1px 2px rgba(0,0,0,.04), 0 16px 40px -18px rgba(33,28,46,.22), 0 0 0 1px rgba(33,28,46,.06)"
+
+# Departments = The Double's five capabilities, in their colours.
+palette:
+  knowledge:   ["#6A2CF5", "#E7DDFF", "#FFFFFF"]   # Dept. of Knowledge (grape)
+  personality: ["#FF4FAE", "#FFDDEE", "#211C2E"]   # Dept. of Personality (bubblegum)
+  voice:       ["#16B0FA", "#D5EEFB", "#211C2E"]   # Dept. of Voice (sky)
+  channels:    ["#2F43F2", "#DEE2FF", "#FFFFFF"]   # Dept. of Channels (cobalt)
+  actions:     ["#FF7417", "#FFE4D1", "#211C2E"]   # Dept. of Actions (tangerine)
+  ink:         ["#211C2E", "#E9E3DA", "#F4ECDF"]
+  # aliases (v1 colour names)
+  grape:       ["#6A2CF5", "#E7DDFF", "#FFFFFF"]
+  bubblegum:   ["#FF4FAE", "#FFDDEE", "#211C2E"]
+  sky:         ["#16B0FA", "#D5EEFB", "#211C2E"]
+  cobalt:      ["#2F43F2", "#DEE2FF", "#FFFFFF"]
+  tangerine:   ["#FF7417", "#FFE4D1", "#211C2E"]
+  lime:        ["#D4F53C", "#EEF8C8", "#211C2E"]
+
+accents:
+  mustard: { highlight: "#F6D58E" }
+  pink:    { highlight: "#F7C6D6" }
+  mint:    { highlight: "#BFE6D3" }
+  powder:  { highlight: "#C9DAF2" }
+  lilac:   { highlight: "#DCCEF7" }
+
+rules:
+  cover: avatar
+  mascot: true
+  people: false

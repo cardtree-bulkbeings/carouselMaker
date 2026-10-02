@@ -1,0 +1,76 @@
+/* World "bureau" v2: Company as the friendly Institution of the future. Airy.
+   Stolen from many, copied from none:
+   · theonlyworkshop → white, centred tight sans headline, mono series label, one word marked,
+                       product card with a caption, "Next →" left / "02 / 08" right
+   · meghanify       → soft pastel cards with numbered labels
+   · wellbeing       → pill chips for facts, small corner labels
+   · Monsters, Inc. / Wes Anderson → departments, staff ID badges, memos, a rubber stamp, symmetry
+   White ground. Department pastels only on objects (badges, cards). Felt agents on every slide. */
+
+.sk-bureau { --pad: 82px; --stamp: #C2413A; background: #FFFFFF; }
+
+/* chrome */
+.sk-bureau .chrome-top { top: 60px; }
+.sk-bureau .brand-mark { height: 30px; }
+.sk-bureau .series { padding: 8px 18px; border: 1.5px solid var(--line); border-radius: 99px; font: 500 18px var(--font-mono); letter-spacing: .2em; color: var(--ink); background: #fff; }
+.sk-bureau .counter { display: none; }
+.sk-bureau .counter-b { display: inline; font: 500 20px var(--font-mono); color: var(--ink); letter-spacing: .1em; }
+.sk-bureau .handle { font: 500 19px var(--font-mono); color: var(--muted); }
+.sk-bureau .next-teaser { background: none; box-shadow: none; padding: 0; gap: 10px; font: 500 20px var(--font-mono); letter-spacing: .04em; color: var(--ink); flex-direction: row-reverse; text-transform: none; }
+.sk-bureau .next-teaser .nt-ic { width: auto; height: auto; background: none; color: var(--ink); font-size: 20px; }
+.sk-bureau.has-next .handle { display: none; }
+.sk-bureau .swipe.mini { display: none; }
+.sk-bureau .body { top: 150px; }
+
+/* type: centred, tight, friendly */
+.sk-bureau .stack { align-items: center; text-align: center; gap: 28px; }
+.sk-bureau .h-xl, .sk-bureau .h-lg, .sk-bureau .h-md { font-family: var(--font-display); font-weight: 600; letter-spacing: -.045em; line-height: 1.02; max-width: 15ch; margin-inline: auto; }
+.sk-bureau .h-xl { font-size: 104px; }
+.sk-bureau .h-lg { font-size: 94px; }
+.sk-bureau.emph-highlight em { background: linear-gradient(transparent 62%, var(--hi) 62%, var(--hi) 92%, transparent 92%); padding: 0 .06em; color: var(--ink); border-radius: 0; }
+.sk-bureau .lede { font-size: 33px; line-height: 1.38; color: #4C4757; max-width: 28ch; margin-inline: auto; }
+.sk-bureau .kicker { font: 500 19px var(--font-mono); letter-spacing: .26em; color: var(--ink); align-self: center; }
+.sk-bureau .note { font-family: var(--font-mono); font-size: 24px; color: var(--muted); align-self: center; text-align: center; transform: none; }
+.sk-bureau .note::before { content: "※ "; }
+
+/* labels: department signs as soft pills */
+.sk-bureau .step-head, .sk-bureau .item-head { justify-content: center; }
+.sk-bureau .dots, .sk-bureau .xp, .sk-bureau .item .num, .sk-bureau .item-head .tile.big, .sk-bureau .hero-mark { display: none; }
+.sk-bureau .pill-step, .sk-bureau .pill-c { background: none; color: var(--muted); font: 500 19px var(--font-mono); letter-spacing: .26em; padding: 0; box-shadow: none; align-self: center; }
+.sk-bureau .meta { background: var(--c-soft, var(--chip)); color: var(--ink); font: 500 17px var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
+
+/* cards: white with soft shadow, or pastel department tint */
+.sk-bureau .vz-rows, .sk-bureau .ui-double, .sk-bureau .vz-table, .sk-bureau .vz-check, .sk-bureau .example, .sk-bureau .lrow, .sk-bureau .ri,
+.sk-bureau .stt, .sk-bureau .rc-box, .sk-bureau .fnode, .sk-bureau .sc-table, .sk-bureau .opt, .sk-bureau .vs .side, .sk-bureau .ui-memo {
+  background: #fff; border: 0; box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 16px 40px -18px rgba(33,28,46,.22), 0 0 0 1px rgba(33,28,46,.06); text-align: left; }
+.sk-bureau .vz-rows .spine { background: var(--hi-soft); color: var(--ink); }
+.sk-bureau .stt:last-child { background: var(--ink); color: #fff; }
+.sk-bureau .ui-badge { box-shadow: 0 1px 2px rgba(0,0,0,.05), 0 30px 60px -28px rgba(33,28,46,.35), 0 0 0 1px rgba(33,28,46,.06); }
+
+/* the rubber stamp */
+.sk-bureau .stamp { border: 5px double var(--stamp); color: var(--stamp); background: none; border-radius: 8px; font: 700 28px var(--font-display); letter-spacing: .16em; padding: 10px 22px; opacity: .8; mix-blend-mode: multiply; right: 90px; bottom: 170px; transform: rotate(-9deg); }
+
+/* mascot = a staff member on the floor */
+.sk-bureau .mascot .bubble { border-radius: 16px 16px 16px 4px; font: 500 21px var(--font-body); }
+
+/* COVER: centred title, the agent in a pastel doorway */
+.sk-bureau .cv-text { align-items: center; text-align: center; padding-top: 150px; gap: 22px; }
+.sk-bureau .h-cover { font-family: var(--font-display); font-weight: 600; font-size: 120px; letter-spacing: -.05em; line-height: 1.0; max-width: 11ch; }
+.sk-bureau .cv-text .kicker { font-size: 19px; }
+.sk-bureau .cv-sub { font-size: 34px; color: #4C4757; text-align: center; }
+.sk-bureau .cv-tagline { justify-content: center; font: 500 19px var(--font-mono); letter-spacing: .22em; }
+.sk-bureau .cv-tagline::before { content: none; }
+.sk-bureau .cv-stage.object .disc { width: 560px; height: 720px; top: 50%; border-radius: 280px 280px 0 0; background: var(--c-soft); }
+.sk-bureau .cv-stage.object .obj { width: 600px; height: 560px; margin-top: 170px; }
+.sk-bureau .cv-stage.scene { margin: 50px 0 0; }
+.sk-bureau .cv-stage.scene .imgbox { border-radius: 40px 40px 0 0; }
+.sk-bureau .float-tag { border-radius: 99px; font: 500 18px var(--font-mono); }
+.sk-bureau .sticker { background: var(--hi); color: var(--ink); border-radius: 99px; transform: rotate(0); font: 600 26px var(--font-display); }
+.sk-bureau.L-cover .swipe { background: var(--ink); font: 500 19px var(--font-mono); }
+
+/* CTA */
+.sk-bureau .cta-top { font: 600 64px/1.02 var(--font-display); color: var(--ink); max-width: 14ch; letter-spacing: -.045em; }
+.sk-bureau .kw-c { display: none; }
+.sk-bureau .kw { background: var(--hi); color: var(--ink); font: 700 64px/1 var(--font-display); letter-spacing: -.02em; padding: 26px 46px; border-radius: 99px; box-shadow: none; transform: none; text-transform: uppercase; }
+.sk-bureau .kw::before { content: "Comment ‘"; } .sk-bureau .kw::after { content: "’"; }
+.sk-bureau .answers span { border-radius: 99px; }

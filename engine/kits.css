@@ -158,3 +158,10 @@
 .cta-s { align-items: center; text-align: center; }
 .save-ic { width: 220px; height: 220px; border-radius: 60px; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font-size: 120px; box-shadow: 0 30px 60px -24px color-mix(in srgb, var(--accent) 60%, transparent); }
 .emph-underline .save-ic { background: var(--hi); color: var(--ink); }
+
+/* answer text never clips (the card grows instead) */
+.a { overflow: visible; }
+/* footer: a crowded row never collides */
+.counter-b { white-space: nowrap; }
+.chrome-bottom .mascot .bubble { max-width: 340px; }
+.has-mascot.has-next .mascot .bubble { display: none; }

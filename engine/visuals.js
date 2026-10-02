@@ -56,30 +56,58 @@ const V = {
     }).join('')}</div>`;
   },
 
+  // Chat apps, faithful to the real light-mode UIs. One self-contained kit (wa-*) so skins can't distort it.
+  // chat: { app: whatsapp | imessage | instagram | call, name, status, avatar, time, frame: phone, messages: [...] }
+  // message kinds: text (default) · voice · card/event · buttons/slots · image · system/date · typing
   chat(v, c, k) {
     const ch = v.chat; const app = ch.app || 'whatsapp';
+    const initial = esc((ch.name || '?').replace(/[^A-Za-z0-9]/g, '')[0] || '?');
+    const avatar = ch.avatar ? `<img class="wa-av" src="/${esc(ch.avatar)}" alt="">` : `<span class="wa-av">${initial}</span>`;
+    const ticks = `<i class="wa-ticks">${icon('checks', 'bold')}</i>`;
+    if (app === 'call') {
+      return `<div class="wa-call ${v.frame === 'phone' || ch.frame === 'phone' ? 'in-phone' : ''}">
+        <div class="wa-call-top"><span>${icon('lock-simple', 'fill')} End-to-end encrypted</span></div>
+        ${avatar}<b data-k="${k}.chat.name">${md(ch.name || 'Incoming call')}</b><span class="wa-call-st" data-k="${k}.chat.status">${md(ch.status || 'Calling…')}</span>
+        <div class="wa-bigwave">${'<i></i>'.repeat(24)}</div>
+        ${ch.transcript ? `<div class="wa-transcript" data-k="${k}.chat.transcript">${md(ch.transcript)}</div>` : ''}
+        <div class="wa-callbtns"><span>${icon('speaker-high', 'fill')}</span><span>${icon('video-camera', 'fill')}</span><span>${icon('microphone-slash', 'fill')}</span><span class="end">${icon('phone-disconnect', 'fill')}</span></div>
+      </div>`;
+    }
     const msgs = (ch.messages || []).map((m, i) => {
       const who = m.from === 'me' || m.from === 'out' ? 'out' : 'in';
       const kk = `${k}.chat.messages.${i}`;
-      if (m.kind === 'voice') return `<div class="msg ${who} voice">${icon('play', 'fill')}<span class="wave">${'<i></i>'.repeat(28)}</span><small>${esc(m.duration || '0:14')}</small></div>`;
-      if (m.kind === 'card') return `<div class="msg ${who} card">${icon(m.icon || 'calendar-check')}<div><b data-k="${kk}.title">${md(m.title)}</b><span data-k="${kk}.text">${md(m.text || '')}</span></div></div>`;
-      if (m.kind === 'system') return `<div class="msg sys" data-k="${kk}.text">${md(m.text)}</div>`;
-      return `<div class="msg ${who}"><span data-k="${kk}.text">${md(m.text)}</span>${m.time ? `<small>${esc(m.time)}</small>` : ''}</div>`;
+      const meta = `<span class="wa-meta">${esc(m.time || '')}${who === 'out' && app === 'whatsapp' ? ticks : ''}</span>`;
+      const tail = (i === 0 || (ch.messages[i - 1] && (ch.messages[i - 1].from === 'me' || ch.messages[i - 1].from === 'out' ? 'out' : 'in') !== who)) ? 'tail' : '';
+      switch (m.kind) {
+        case 'system': case 'date':
+          return `<div class="wa-date" data-k="${kk}.text">${md(m.text)}</div>`;
+        case 'typing':
+          return `<div class="wa-msg in tail wa-typing"><i></i><i></i><i></i></div>`;
+        case 'voice':
+          return `<div class="wa-msg ${who} ${tail} wa-voice"><span class="wa-play">${icon('play', 'fill')}</span><span class="wa-wave">${'<i></i>'.repeat(30)}</span><span class="wa-vmeta"><small>${esc(m.duration || '0:14')}</small>${meta}</span></div>`;
+        case 'image':
+          return `<div class="wa-msg ${who} ${tail} wa-img"><img src="/${esc(m.image)}" alt="">${m.text ? `<span data-k="${kk}.text">${md(m.text)}</span>` : ''}${meta}</div>`;
+        case 'card': case 'event':
+          return `<div class="wa-msg ${who} ${tail} wa-card"><div class="wa-card-in"><span class="wa-card-ic">${icon(m.icon || 'calendar-check', 'fill')}</span><div><b data-k="${kk}.title">${md(m.title)}</b><span data-k="${kk}.text">${md(m.text || '')}</span></div></div>${m.action ? `<div class="wa-card-act">${esc(m.action)}</div>` : ''}${meta}</div>`;
+        case 'buttons': case 'slots': {
+          const opts = m.options || [];
+          return `<div class="wa-buttons ${who}">${opts.map((o, j) => `<span class="${j === m.selected ? 'sel' : ''}">${icon(m.kind === 'slots' ? 'clock' : 'arrow-bend-up-left')} ${esc(o)}</span>`).join('')}</div>`;
+        }
+        default:
+          return `<div class="wa-msg ${who} ${tail}"><span class="wa-text" data-k="${kk}.text">${md(m.text)}</span>${meta}</div>`;
+      }
     }).join('');
-    const avatar = ch.avatar ? `<img class="av" src="/${esc(ch.avatar)}" alt="">` : `<span class="av">${esc((ch.name || '?')[0])}</span>`;
-    if (app === 'call') {
-      return `<div class="vz-phone call"><div class="notch"></div><div class="callscr">
-        ${avatar}<b data-k="${k}.chat.name">${md(ch.name || 'Incoming call')}</b><span data-k="${k}.chat.status">${md(ch.status || 'Your Double · on call')}</span>
-        <div class="bigwave">${'<i></i>'.repeat(22)}</div>
-        ${ch.transcript ? `<div class="transcript" data-k="${k}.chat.transcript">${md(ch.transcript)}</div>` : ''}
-        <div class="callbtns"><span>${icon('microphone-slash')}</span><span class="end">${icon('phone-disconnect', 'fill')}</span><span>${icon('speaker-high')}</span></div>
-      </div></div>`;
-    }
-    return `<div class="vz-phone chat app-${app}"><div class="notch"></div>
-      <div class="chathead">${icon('caret-left')}${avatar}<div><b data-k="${k}.chat.name">${md(ch.name || 'Your Double')}</b><span data-k="${k}.chat.status">${md(ch.status || 'online')}</span></div></div>
-      <div class="thread">${ch.time ? `<div class="msg sys">${esc(ch.time)}</div>` : ''}${msgs}</div>
-      <div class="composer"><span>Message</span>${icon('microphone', 'fill')}</div>
+    const right = app === 'whatsapp' ? `${icon('video-camera')}${icon('phone')}${icon('dots-three-vertical', 'bold')}` : app === 'imessage' ? icon('video-camera') : `${icon('phone')}${icon('video-camera')}`;
+    const composer = app === 'whatsapp'
+      ? `<div class="wa-compose"><span class="wa-input">${icon('smiley')}<em>Message</em>${icon('paperclip')}${icon('camera')}</span><span class="wa-mic">${icon('microphone', 'fill')}</span></div>`
+      : `<div class="wa-compose"><span class="wa-input">${icon(app === 'instagram' ? 'camera' : 'plus')}<em>${app === 'imessage' ? 'iMessage' : 'Message…'}</em>${icon('microphone')}</span></div>`;
+    const body = `<div class="wa app-${app}">
+      <div class="wa-head">${icon('caret-left', 'bold')}${avatar}<div class="wa-who"><b data-k="${k}.chat.name">${md(ch.name || 'Your Double')}${ch.verified !== false && app === 'whatsapp' && /business|clinic|studio|dental|homes|salon/i.test(ch.name || '') ? `<i class="wa-verified">${icon('seal-check', 'fill')}</i>` : ''}</b><span data-k="${k}.chat.status">${md(ch.status || 'online')}</span></div><span class="wa-icons">${right}</span></div>
+      <div class="wa-thread">${ch.time ? `<div class="wa-date">${esc(ch.time)}</div>` : ''}${msgs}</div>
+      ${composer}
     </div>`;
+    if (v.frame === 'phone' || ch.frame === 'phone') return `<div class="wa-phone"><div class="wa-status"><b>9:41</b><span>${icon('cell-signal-full', 'fill')}${icon('wifi-high', 'bold')}${icon('battery-full', 'fill')}</span></div><div class="wa-island"></div>${body}</div>`;
+    return body;
   },
 
   code(v, c, k) {
@@ -196,6 +224,31 @@ V.hub = (v, c, k) => {
     <div class="hub-tools">${(h.tools || []).map((t) => { const l = logo(t); return `<span class="hub-tool">${l.mark}<b>${esc(l.title)}</b></span>`; }).join('')}</div>
     <div class="hub-center">${centerKind ? V[centerKind](h.center, c, `${k}.hub.center`) : ''}</div>
     <div class="hub-feats">${(h.features || []).map((f, i) => `<div class="hub-feat"><span class="hub-ic">${icon(f.icon || 'sparkle')}</span><div><b data-k="${k}.hub.features.${i}.title">${md(f.title)}</b>${f.text ? `<span data-k="${k}.hub.features.${i}.text">${md(f.text)}</span>` : ''}</div></div>`).join('')}</div>
+  </div>`;
+};
+
+// Bureau world: a staff ID badge. badge: { name, role, dept, no, photo, color, since }
+V.badge = (v, c, k) => {
+  const b = v.badge;
+  return `<div class="ui-badge" style="${colorVars(c.brand, b.color || 'cobalt')}">
+    <span class="bd-hole"></span>
+    <div class="bd-dept">${esc(b.dept || 'Department')}</div>
+    <div class="bd-photo">${b.photo ? `<img src="/${esc(b.photo)}" alt="">` : ''}</div>
+    <b class="bd-name" data-k="${k}.badge.name">${md(b.name || 'Name')}</b>
+    <span class="bd-role" data-k="${k}.badge.role">${md(b.role || '')}</span>
+    <div class="bd-foot"><span>Staff ${esc(b.no || '#001')}</span><span>${esc(b.since || 'Since 2026')}</span></div>
+    <div class="bd-bar">${'<i></i>'.repeat(30)}</div>
+  </div>`;
+};
+
+// Bureau world: an inter-office memo. memo: { title, to, from, re, date, body, stamp }
+V.memo = (v, c, k) => {
+  const m = v.memo;
+  return `<div class="ui-memo">
+    <div class="mm-title">${esc(m.title || 'Inter-office memo')}</div>
+    ${[['To', m.to], ['From', m.from], ['Re', m.re], ['Date', m.date]].filter(([, x]) => x).map(([l, x]) => `<div class="mm-row"><span>${l}</span><b data-k="${k}.memo.${l.toLowerCase()}">${md(x)}</b></div>`).join('')}
+    <div class="mm-body" data-k="${k}.memo.body">${md(m.body || '')}</div>
+    ${m.stamp ? `<span class="mm-stamp">${esc(m.stamp)}</span>` : ''}
   </div>`;
 };
 

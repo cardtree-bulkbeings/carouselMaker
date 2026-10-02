@@ -1,0 +1,68 @@
+# WORLD PROTOTYPE · The Codex (Founder). Same post as F01, told as a folio from the Architect's codex.
+brand: founder-codex
+format: F01
+title: I Turned CHANAKYA into My AI Strategy Advisor
+series: The Codex · Counsel of Chanakya
+caption: |
+  I fed an AI everything Chanakya wrote and asked it about my startup. Law II stung.
+  Comment COUNSEL and I'll send you the clone.
+slides:
+  - layout: cover
+    style: person
+    kicker: I turned
+    headline: "*Chanakya* into my AI strategy advisor"
+    tagline: 2,300 years of strategy, *on call*
+    image: assets/uploads/muqrrjgc-meditating-sage-on-rocky-ground.png
+    fill: true
+    image_zoom: 1.25
+    image_y: 30
+    tag: Counsel of Chanakya
+
+  - layout: qa
+    kicker: The first question
+    asker: Me
+    q: My competitor just raised $10M. Should I panic?
+    persona: Chanakya
+    avatar: assets/uploads/muqrrjgc-meditating-sage-on-rocky-ground.png
+    avatar_zoom: 2.2
+    avatar_y: 40
+    a: "A rival's wealth is not your weakness. Find where his money *cannot reach*: the customer he is too big to care for."
+
+  - layout: statement
+    kicker: What I fed it
+    headline: Every line he wrote. *Nothing else.*
+    visual:
+      rows:
+        - { icon: book-open, text: "Arthashastra", sub: "All 15 books, translated" }
+        - { icon: scroll, text: "Chanakya Niti", sub: "17 chapters of sayings" }
+        - { icon: feather, text: "One rule", sub: "Answer only from the sources. Say when unsure." }
+    note: no internet, no opinions
+
+  - layout: law
+    law: Test a man by greed, fear, desire and *duty.*
+    gloss: Hire the one who passes all four. I now ask one question for each in every interview.
+    source: Arthashastra, on choosing ministers
+
+  - layout: law
+    law: Leave when they need it *less* than you.
+    gloss: Walk away first and let need do the negotiating.
+    source: Asked about a deal I was about to sign
+
+  - layout: law
+    law: A king who does all the work is a *servant.*
+    gloss: Build ministers, then govern. This is why I build agents.
+    source: Asked about doing everything myself
+    stamp: Sealed
+
+  - layout: quote
+    kicker: The line that stuck
+    quote: Find where his money cannot reach.
+    by: Chanakya, AI clone
+    role: Built on The Double
+
+  - layout: cta
+    headline: Want to ask Chanakya yourself?
+    keyword: COUNSEL
+    sub: I'll DM you the link to the clone.
+    doc_title: Counsel of Chanakya
+    doc_label: FROM THE CODEX

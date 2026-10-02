@@ -71,3 +71,9 @@
 .sk-studio .cta-top { color: var(--ink); font: 900 56px/1.02 var(--font-display); letter-spacing: -.04em; }
 .sk-studio .kw-c { font: 900 140px/1 var(--font-display); letter-spacing: -.05em; text-transform: uppercase; }
 .sk-studio .kw { background: var(--accent); color: #fff; font: 900 130px/1 var(--font-display); letter-spacing: -.05em; border-radius: 30px; transform: rotate(-3deg); }
+
+/* v1.1: airy. White sheet with a soft accent glow (aiagently), one subtitle style (Satoshi caps). */
+.sk-studio { background: radial-gradient(560px 460px at 106% -6%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 72%),
+  radial-gradient(520px 420px at -8% 108%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 72%), #FFFFFF; }
+.sk-studio .kicker { font: 700 26px var(--font-display); letter-spacing: .06em; color: #8B8C94; }
+.sk-studio .handle { font: 500 20px var(--font-body); }

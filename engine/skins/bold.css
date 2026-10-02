@@ -79,3 +79,10 @@
 .sk-bold .kw { font: 800 120px/1 var(--font-display); padding: 14px 46px 24px; border-radius: 34px; transform: rotate(-2deg); box-shadow: 0 20px 40px -14px color-mix(in srgb, var(--accent) 55%, transparent); }
 .sk-bold .kw::before { content: "“"; } .sk-bold .kw::after { content: "”"; }
 .sk-bold .cta-c .lede { color: var(--ink); font-weight: 500; }
+
+/* v1.1: the aiagently shine. Emphasised words and step titles get a glossy accent→deep gradient. */
+.sk-bold .h-cover em, .sk-bold .h-xl em, .sk-bold .h-lg em, .sk-bold .cta-top em {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 80%, #fff) 0%, var(--accent) 45%, var(--accent-deep) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent; padding-bottom: .06em; }
+.sk-bold .h-cover { background: linear-gradient(180deg, #2A2B33 0%, #0B0B0E 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sk-bold .h-cover em { -webkit-text-fill-color: transparent; }

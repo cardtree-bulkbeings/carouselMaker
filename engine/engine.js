@@ -60,6 +60,9 @@ export function themeStyle(post, brand) {
   return v.join(';');
 }
 
+const ROMAN = [[1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'], [100, 'C'], [90, 'XC'], [50, 'L'], [40, 'XL'], [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']];
+const roman = (n) => ROMAN.reduce((out, [v, r]) => { while (n >= v) { out += r; n -= v; } return out; }, '');
+
 /** Render a parsed post. Returns an HTML string of <section class="slide"> elements. */
 export function renderPost(post, brand) {
   const slides = post.slides || [];
@@ -71,17 +74,20 @@ export function renderPost(post, brand) {
   return slides.map((s, i) => {
     const layout = LAYOUTS[s.layout] ? s.layout : 'statement';
     if (layout === 'step') stepNo++;
-    if (['item', 'prompt', 'roster'].includes(layout)) itemNo++;
+    if (['item', 'prompt', 'roster', 'law'].includes(layout)) itemNo++;
     const k = `slides.${i}`;
     const c = {
       brand, post, i, n, k, stepNo, stepTotal, itemNo, brandMark: brandMark(brand),
+      // World vocabulary + numbering: brand.yaml `lexicon: { step: Folio, item: Law, prompt: Loot }`, `numerals: roman`.
+      lex: (key, fallback) => post.lexicon?.[key] ?? brand.lexicon?.[key] ?? fallback,
+      num: (x) => (brand.numerals === 'roman' && Number.isFinite(Number(x)) ? roman(Number(x)) : String(x).padStart(2, '0')),
       T: (field, cls = '', tag = 'div') => (s[field] == null || s[field] === '' ? '' : `<${tag} class="${cls}" data-k="${k}.${field}">${md(s[field])}</${tag}>`),
       V: (v, field = 'visual') => visual(v, c, `${k}.${field}`),
     };
     let inner;
     try { inner = LAYOUTS[layout](s, c); } catch (e) { inner = `<div class="render-error">Slide ${i + 1} (${esc(layout)}): ${esc(e.message)}</div>`; }
     const isCover = layout === 'cover';
-    const counter = `${String(i + 1).padStart(2, '0')} / ${String(n).padStart(2, '0')}`;
+    const counter = brand.numerals === "roman" ? `${roman(i + 1)} · ${roman(n)}` : `${String(i + 1).padStart(2, "0")} / ${String(n).padStart(2, "0")}`;
     const series = isCover ? null : (s.series ?? post.series);
     // Research: early brand appearance lowers engagement, so the cover carries no logo.
     const top = `<header class="chrome-top">${isCover ? '<span></span>' : c.brandMark}${series ? `<span class="series">${md(series)}</span>` : ''}${isCover ? '<span></span>' : `<span class="counter">${counter}</span>`}</header>`;
@@ -91,7 +97,7 @@ export function renderPost(post, brand) {
     const nx = slides[i + 1];
     let next = s.next;
     if (next === undefined && post.auto_next !== false && nx && !isCover && i > 0 && ['step', 'item', 'prompt', 'roster', 'qa'].includes(nx.layout)) {
-      const label = nx.layout === 'step' ? `${nx.label || 'Step'} ${stepNo + 1}` : nx.layout === 'qa' ? 'Next question' : 'Next';
+      const label = nx.layout === 'step' ? `${nx.label || c.lex('step', 'Step')} ${c.num(stepNo + 1).replace(/^0/, '')}` : nx.layout === 'qa' ? c.lex('next_qa', 'Next question') : c.lex('next', 'Next');
       const t = String(nx.title || nx.name || nx.q || '').replace(/[*~{}[\]]/g, '');
       next = t ? `${label}: ${t.length > 34 ? t.slice(0, 32).trim() + '…' : t}` : null;
     }
@@ -105,7 +111,9 @@ export function renderPost(post, brand) {
     const bottom = `<footer class="chrome-bottom">${left}${nextHtml}<span class="foot-right"><span class="counter-b">${isCover ? '' : counter}</span>${swipe}</span></footer>`;
     const bg = s.bg ? `bg-${s.bg}` : '';
     const bgImg = s.background ? `<img class="slide-bg" src="/${esc(s.background)}" alt="">` : '';
-    return `<section class="slide b-${brand.id} sk-${brand.design || 'base'} L-${layout} ${bg} ${next ? 'has-next' : ''} ${showMascot ? 'has-mascot' : ''} emph-${brand.emphasis || 'serif'}" data-i="${i}" style="${theme}">${bgImg}${top}<div class="body">${inner}</div>${bottom}</section>`;
+    // A stamp / seal / badge pressed onto the slide (world artifact): `stamp: "Sealed"`.
+    const stamp = s.stamp ? `<span class="stamp" data-k="${k}.stamp">${md(s.stamp)}</span>` : '';
+    return `<section class="slide b-${brand.id} sk-${brand.design || 'base'} L-${layout} ${bg} ${next ? 'has-next' : ''} ${showMascot ? 'has-mascot' : ''} emph-${brand.emphasis || 'serif'}" data-i="${i}" style="${theme}">${bgImg}${top}<div class="body">${inner}</div>${stamp}${bottom}</section>`;
   }).join('');
 }
 

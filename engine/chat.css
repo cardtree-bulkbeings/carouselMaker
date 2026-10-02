@@ -1,0 +1,108 @@
+/* Chat UI kit: WhatsApp (light, 2025), iMessage, Instagram DM, WhatsApp call.
+   Self-contained (wa-*), real proportions, readable at carousel size. Skins don't restyle it. */
+
+.wa { width: 760px; max-width: 100%; margin: 0 auto; background: #FFFFFF; border-radius: 30px; overflow: hidden; text-align: left;
+  font-family: -apple-system, 'SF Pro Text', 'Inter', 'Segoe UI', Roboto, sans-serif; color: #111B21; letter-spacing: 0;
+  box-shadow: 0 1px 2px rgba(0,0,0,.06), 0 24px 60px -24px rgba(0,0,0,.28), 0 0 0 1px rgba(0,0,0,.05); }
+.hub-center .wa { width: 100%; }
+
+/* header */
+.wa-head { display: flex; align-items: center; gap: 14px; padding: 18px 22px; background: #FFFFFF; border-bottom: 1px solid #E9EDEF; }
+.wa-head > .ic { font-size: 28px; color: #111B21; }
+.wa-av { width: 60px; height: 60px; border-radius: 50%; flex: none; object-fit: cover; display: grid; place-items: center; background: #DFE5E7; color: #54656F; font: 600 28px/1 inherit; }
+.wa-who { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.wa-who b { display: flex; align-items: center; gap: 6px; font-size: 26px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.wa-who span { font-size: 19px; color: #667781; }
+.wa-verified { color: #25D366; font-size: 22px; display: inline-flex; }
+.wa-icons { display: inline-flex; gap: 26px; color: #111B21; font-size: 30px; }
+
+/* thread + doodle wallpaper */
+.wa-thread { display: flex; flex-direction: column; gap: 6px; padding: 20px 22px 18px; background-color: #EFEAE2;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' fill='none' stroke='%23D6CFC4' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='20' cy='22' r='7'/%3E%3Cpath d='M70 18l10 10M80 18l-10 10'/%3E%3Cpath d='M30 80c6-8 14-8 20 0'/%3E%3Crect x='82' y='70' width='16' height='12' rx='3'/%3E%3Cpath d='M98 102l6 6M14 104h12'/%3E%3C/svg%3E"); }
+.app-imessage .wa-thread, .app-instagram .wa-thread { background: #FFFFFF; background-image: none; gap: 4px; }
+.wa-date { align-self: center; margin: 6px 0 10px; padding: 6px 14px; border-radius: 10px; background: #FFFFFF; color: #54656F; font-size: 17px; box-shadow: 0 1px .5px rgba(11,20,26,.13); }
+
+/* bubbles */
+.wa-msg { position: relative; max-width: 78%; align-self: flex-start; background: #FFFFFF; border-radius: 14px; padding: 10px 14px 8px; font-size: 24px; line-height: 1.32; box-shadow: 0 1px .5px rgba(11,20,26,.13); margin-top: 2px; }
+.wa-msg.out { align-self: flex-end; background: #D9FDD3; }
+.wa-msg.tail.in { border-top-left-radius: 0; margin-top: 8px; }
+.wa-msg.tail.out { border-top-right-radius: 0; margin-top: 8px; }
+.wa-msg.tail.in::before, .wa-msg.tail.out::before { content: ""; position: absolute; top: 0; width: 14px; height: 16px; }
+.wa-msg.tail.in::before { left: -12px; background: #FFFFFF; clip-path: polygon(100% 0, 0 0, 100% 100%); }
+.wa-msg.tail.out::before { right: -12px; background: #D9FDD3; clip-path: polygon(0 0, 100% 0, 0 100%); }
+.wa-text { white-space: pre-wrap; }
+.wa-meta { float: right; display: inline-flex; align-items: center; gap: 4px; margin: 10px 0 -4px 14px; font-size: 15px; color: #667781; }
+.wa-ticks { display: inline-flex; color: #53BDEB; font-size: 19px; }
+
+/* voice note */
+.wa-voice { display: flex; align-items: center; gap: 12px; min-width: 420px; padding: 12px 14px; }
+.wa-play { font-size: 30px; color: #54656F; display: inline-flex; }
+.wa-wave { flex: 1; display: flex; align-items: center; gap: 3px; height: 36px; }
+.wa-wave i { flex: 1; border-radius: 2px; background: #8696A0; height: 30%; }
+.wa-wave i:nth-child(3n) { height: 75%; } .wa-wave i:nth-child(4n+1) { height: 52%; } .wa-wave i:nth-child(5n+2) { height: 95%; } .wa-wave i:nth-child(-n+9) { background: #06CF9C; }
+.wa-vmeta { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; } .wa-vmeta small { font-size: 15px; color: #667781; } .wa-vmeta .wa-meta { margin: 0; float: none; }
+
+/* image */
+.wa-img { padding: 6px; } .wa-img img { display: block; width: 100%; border-radius: 10px; } .wa-img > span { display: block; padding: 8px 8px 0; }
+
+/* booking / event card */
+.wa-card { padding: 6px; min-width: 420px; }
+.wa-card-in { display: flex; gap: 14px; align-items: center; padding: 14px; border-radius: 10px; background: rgba(0,0,0,.035); }
+.wa-msg.out .wa-card-in { background: rgba(0,0,0,.04); }
+.wa-card-ic { width: 56px; height: 56px; border-radius: 12px; display: grid; place-items: center; background: #E7FCE3; color: #008069; font-size: 32px; flex: none; }
+.wa-card-in b { display: block; font-size: 23px; font-weight: 600; } .wa-card-in > div > span { display: block; font-size: 19px; color: #667781; margin-top: 2px; }
+.wa-card-act { margin-top: 6px; padding: 10px; border-top: 1px solid rgba(0,0,0,.08); text-align: center; color: #008069; font-weight: 600; font-size: 21px; }
+.wa-card .wa-meta { margin-right: 6px; }
+
+/* quick replies / slot buttons (WhatsApp Business interactive buttons) */
+.wa-buttons { align-self: flex-start; display: flex; flex-direction: column; gap: 4px; width: 78%; margin-top: 2px; }
+.wa-buttons.out { align-self: flex-end; }
+.wa-buttons span { display: flex; justify-content: center; align-items: center; gap: 10px; padding: 12px; border-radius: 10px; background: #FFFFFF; color: #008069; font-size: 21px; font-weight: 600; box-shadow: 0 1px .5px rgba(11,20,26,.13); }
+.wa-buttons span.sel { background: #D9FDD3; }
+
+/* typing */
+.wa-typing { display: flex; gap: 6px; padding: 16px 18px; } .wa-typing i { width: 10px; height: 10px; border-radius: 50%; background: #9AA6AC; }
+
+/* composer */
+.wa-compose { display: flex; align-items: center; gap: 10px; padding: 12px 14px 16px; background: #F0F2F5; }
+.app-whatsapp .wa-compose { background: #EFEAE2; }
+.wa-input { flex: 1; display: flex; align-items: center; gap: 16px; padding: 14px 20px; border-radius: 30px; background: #FFFFFF; color: #8696A0; font-size: 28px; box-shadow: 0 1px .5px rgba(11,20,26,.1); }
+.wa-input em { flex: 1; font-style: normal; font-size: 22px; color: #8696A0; }
+.wa-mic { width: 60px; height: 60px; border-radius: 50%; background: #00A884; color: #FFFFFF; display: grid; place-items: center; font-size: 28px; flex: none; }
+
+/* iMessage */
+.app-imessage .wa-head { flex-direction: row; background: #F6F6F6; }
+.app-imessage .wa-msg { border-radius: 26px; box-shadow: none; background: #E9E9EB; padding: 12px 18px; }
+.app-imessage .wa-msg.out { background: #0A84FF; color: #fff; } .app-imessage .wa-msg.out .wa-meta { color: rgba(255,255,255,.75); }
+.app-imessage .wa-msg::before { display: none; }
+/* Instagram DM */
+.app-instagram .wa-msg { border-radius: 26px; box-shadow: none; background: #EFEFEF; padding: 12px 18px; }
+.app-instagram .wa-msg.out { background: linear-gradient(135deg, #7A3CF5, #3F6BFF); color: #fff; } .app-instagram .wa-msg.out .wa-meta { color: rgba(255,255,255,.75); }
+.app-instagram .wa-msg::before { display: none; }
+
+/* phone frame (optional): modern iPhone with status bar + dynamic island */
+.wa-phone { position: relative; width: 600px; margin: 0 auto; padding: 14px; border-radius: 70px; background: #111; box-shadow: 0 0 0 2px #3a3a3c, 0 40px 80px -30px rgba(0,0,0,.5); }
+.wa-phone .wa { width: 100%; border-radius: 56px; box-shadow: none; }
+.wa-phone .wa-head { padding-top: 74px; }
+.wa-status { position: absolute; z-index: 3; top: 34px; left: 64px; right: 56px; display: flex; justify-content: space-between; align-items: center; font: 600 22px -apple-system, 'Inter', sans-serif; color: #111; }
+.wa-status span { display: inline-flex; gap: 8px; font-size: 22px; }
+.wa-island { position: absolute; z-index: 3; top: 30px; left: 50%; transform: translateX(-50%); width: 150px; height: 42px; border-radius: 22px; background: #000; }
+
+/* WhatsApp call */
+.wa-call { width: 640px; margin: 0 auto; border-radius: 40px; padding: 40px 30px 44px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; color: #fff;
+  background: linear-gradient(180deg, #0B141A, #1F2C34); font-family: -apple-system, 'Inter', sans-serif; box-shadow: 0 30px 60px -30px rgba(0,0,0,.5); }
+.wa-call-top { font-size: 18px; color: #8696A0; margin-bottom: 20px; } .wa-call-top .ic { font-size: 16px; }
+.wa-call .wa-av { width: 170px; height: 170px; font-size: 70px; background: #00A884; color: #fff; }
+.wa-call > b { font-size: 38px; font-weight: 600; margin-top: 8px; }
+.wa-call-st { font-size: 22px; color: #8696A0; }
+.wa-bigwave { display: flex; gap: 6px; align-items: center; height: 110px; margin: 18px 0 6px; }
+.wa-bigwave i { width: 7px; border-radius: 4px; background: #06CF9C; height: 30%; }
+.wa-bigwave i:nth-child(2n) { height: 70%; } .wa-bigwave i:nth-child(3n) { height: 100%; } .wa-bigwave i:nth-child(5n) { height: 45%; }
+.wa-transcript { font-size: 24px; line-height: 1.45; color: #E9EDEF; max-width: 30ch; margin-bottom: 18px; }
+.wa-callbtns { display: flex; gap: 22px; margin-top: 10px; padding: 18px 26px; border-radius: 40px; background: #233138; }
+.wa-callbtns span { width: 76px; height: 76px; border-radius: 50%; background: #3B4A54; display: grid; place-items: center; font-size: 34px; }
+.wa-callbtns .end { background: #F15C6D; }
+
+/* never inherit a world's emphasis styling inside app UIs */
+.wa em, .wa-call em { background: none !important; color: inherit; font-style: normal; padding: 0; -webkit-text-fill-color: currentColor; }
+.wa-input em { color: #8696A0; }

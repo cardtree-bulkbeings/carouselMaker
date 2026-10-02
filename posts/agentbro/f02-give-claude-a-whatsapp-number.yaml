@@ -13,7 +13,7 @@ slides:
     headline: Give *Claude* a WhatsApp number
     tagline: Setup in 20 minutes
     # Drop your cut-out photo here (PNG, no background)
-    logos: [claude, whatsapp, n8n]
+    logos: [ claude, whatsapp, n8n ]
     note: it replies while you sleep
 
   - layout: statement
@@ -21,7 +21,7 @@ slides:
     headline: What if your WhatsApp could *actually* reply?
     visual:
       hub:
-        tools: [whatsapp, n8n, claude, googlesheets]
+        tools: [ whatsapp, n8n, claude, googlesheets ]
         center:
           chat:
             app: whatsapp
@@ -66,7 +66,7 @@ slides:
     visual:
       n8n:
         title: WhatsApp × Claude
-        nodes: [whatsapp, { tool: claude, label: "Claude" }, googlecalendar, { tool: whatsapp, label: "Reply" }]
+        nodes: [ whatsapp, { tool: claude, label: "Claude" }, googlecalendar, { tool: whatsapp, label: "Reply" } ]
 
   - layout: step
     kicker: The safety net
@@ -89,3 +89,4 @@ slides:
     keyword: WORKFLOW
     sub: I'll DM you the n8n file + the prompt.
     doc_title: WhatsApp × Claude setup
+theme: pink

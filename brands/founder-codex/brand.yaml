@@ -1,0 +1,63 @@
+# WORLD · The Codex: Founder as the Architect (docs/WORLDS.md §1).
+# Leonardo's notebooks × Dune's restraint × modern editorial. Switch a post here with `brand: founder-codex`.
+name: Founder
+handle: "@founder"
+logo: brands/_shared/thedouble/icon-black.svg
+emphasis: color
+design: codex
+numerals: roman
+lexicon: { step: Folio, item: Law, law: Law, prompt: Recipe, next: Next folio, next_qa: Next question }
+fonts:
+  - https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&family=Caveat:wght@600;700&family=JetBrains+Mono:wght@500&display=block
+
+tokens:
+  ground: "#FFFFFF"
+  paper: "#FFFFFF"
+  ink: "#1C1814"             # iron-gall ink
+  muted: "#5E554A"
+  faint: "#8C8275"
+  line: "rgba(28,24,20,.14)"
+  chip: "rgba(28,24,20,.06)"
+  accent: "#2638C9"          # ultramarine (= The Double's cobalt, the Renaissance's rarest pigment)
+  accent-ink: "#FFFFFF"
+  accent-deep: "#141C66"
+  hi: "#2638C9"
+  hi-soft: "#E9ECFB"
+  glow: "transparent"
+  deep: "#1C1814"
+  deep-ink: "#F9F5EC"
+  tray: "#2638C9"
+  live: "#3E8E41"
+  good: "#3E7D3A"
+  bad: "#A8332A"
+  note: "#2638C9"
+  font-display: "'Instrument Serif', Georgia, serif"
+  font-human: "'Instrument Serif', Georgia, serif"
+  font-body: "'Inter Tight', system-ui, sans-serif"
+  font-mono: "'JetBrains Mono', monospace"
+  font-pixel: "'Inter Tight', sans-serif"
+  font-hand: "'Caveat', cursive"
+  display-weight: "400"
+  display-track: "-0.02em"
+  r-card: "6px"
+  r-block: "8px"
+  r-tile: "6px"
+  shadow: "none"
+
+palette:
+  ultramarine: ["#2638C9", "#DDE1F5", "#FFFFFF"]
+  vermilion:   ["#A8332A", "#F2DCD7", "#FFFFFF"]
+  ochre:       ["#B7862B", "#F2E6CC", "#1C1814"]
+  verdigris:   ["#3F7F73", "#DCEBE7", "#FFFFFF"]
+  ink:         ["#1C1814", "#E6DFD2", "#F9F5EC"]
+
+accents:
+  ultramarine: { accent: "#2638C9" }
+  vermilion:   { accent: "#A8332A" }
+  verdigris:   { accent: "#2F6F63" }
+  ochre:       { accent: "#9A6B12" }
+  ink:         { accent: "#1C1814" }
+
+rules:
+  cover: person
+  mascot: true
