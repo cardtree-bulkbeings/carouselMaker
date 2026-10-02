@@ -1,0 +1,67 @@
+# F07 Versus · Agent Bro
+# SAMPLE COPY: keep the verdicts fair. Check current pricing before posting.
+brand: agentbro
+format: F07
+title: Zapier vs Make vs n8n for AI Agents
+caption: |
+  Which automation tool should run your AI agents? Honest take, no sponsors.
+  Which one are you on? Comment below.
+slides:
+  - layout: cover
+    style: person
+    kicker: Versus
+    headline: Zapier vs Make vs *n8n*
+    tagline: For AI agents
+    logos: [zapier, make, n8n]
+
+  - layout: statement
+    kicker: Choose your fighter
+    headline: Same job. Very *different* tools.
+    visual:
+      cards:
+        - { label: "Zapier", title: "Easiest", text: "Thousands of apps. Click, connect, done.", icon: lightning, color: orange }
+        - { label: "Make", title: "Most visual", text: "Drag-and-drop scenarios with branches.", icon: flow-arrow, color: violet }
+        - { label: "n8n", title: "Most control", text: "Self-host it, write code when you need to.", icon: code, color: red }
+
+  - layout: versus
+    criterion: Round 1 · Getting started
+    headline: First agent in *10 minutes?*
+    sides:
+      - { label: "Zapier", text: "Yes. Templates for almost everything.", verdict: good }
+      - { label: "Make", text: "Close. A little more to learn.", verdict: meh }
+      - { label: "n8n", text: "Steeper. You'll read docs.", verdict: bad }
+
+  - layout: versus
+    criterion: Round 2 · Real agent logic
+    headline: Loops, memory, *tools?*
+    sides:
+      - { label: "Zapier", text: "Basic. Gets messy fast.", verdict: bad }
+      - { label: "Make", text: "Good branching and iterators.", verdict: meh }
+      - { label: "n8n", text: "Built-in AI agent nodes and memory.", verdict: good }
+
+  - layout: versus
+    criterion: Round 3 · Cost at scale
+    headline: 10,000 runs a *month?*
+    sides:
+      - { label: "Zapier", text: "Gets expensive per task.", verdict: bad }
+      - { label: "Make", text: "Cheaper per operation.", verdict: meh }
+      - { label: "n8n", text: "Self-host and pay for the server.", verdict: good }
+
+  - layout: scorecard
+    kicker: Final score
+    headline: Pick by *who you are*
+    cols: ["Zapier", "Make", "n8n"]
+    winner: 2
+    rows:
+      - ["Non-technical", true, "Okay", false]
+      - ["Complex agents", false, "Okay", true]
+      - ["Cheap at scale", false, "Okay", true]
+      - ["Fastest start", true, "Okay", false]
+    verdict: Start on Zapier. Graduate to *n8n.*
+
+  - layout: cta
+    style: question
+    kicker: Your pick
+    headline: Which one runs *your* agents?
+    answers: ["Zapier", "Make", "n8n", "None yet"]
+    sub: Tell me why in the comments.

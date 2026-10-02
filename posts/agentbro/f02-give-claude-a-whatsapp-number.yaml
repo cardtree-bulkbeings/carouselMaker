@@ -1,27 +1,29 @@
-# F02 Step-by-Step Build · Agent Bro · Day 1 Post 2
-# SAMPLE COPY: check every step against the real setup before posting.
+# Agent Bro · "Give Claude a WhatsApp number" as a quest.
 brand: agentbro
 format: F02
 title: Give Claude a WhatsApp Number. Yes, Seriously.
 caption: |
-  Claude can now answer your WhatsApp. FAQs, leads, bookings. Here's the whole setup.
-  Comment WORKFLOW and I'll send you the step-by-step guide.
+  Side quest of the week: give Claude a WhatsApp number. 4 objectives, ~20 minutes.
+  Comment WORKFLOW to unlock the full guide.
 slides:
   - layout: cover
     style: person
-    kicker: Yes, seriously.
+    kicker: Side quest
     headline: Give *Claude* a WhatsApp number
-    tagline: Setup in 20 minutes
-    # Drop your cut-out photo here (PNG, no background)
-    logos: [ claude, whatsapp, n8n ]
-    note: it replies while you sleep
+    tagline: Yes, seriously
+    # Drop his cut-out photo here
+    logos: [claude, whatsapp, n8n]
+    stats:
+      - { label: Difficulty, value: "★★☆" }
+      - { label: Time, value: "20 min" }
+      - { label: Reward, value: "Auto-replies" }
 
   - layout: statement
-    kicker: What you're building
+    kicker: Quest reward
     headline: What if your WhatsApp could *actually* reply?
     visual:
       hub:
-        tools: [ whatsapp, n8n, claude, googlesheets ]
+        tools: [whatsapp, n8n, claude, googlesheets]
         center:
           chat:
             app: whatsapp
@@ -31,17 +33,17 @@ slides:
               - { from: them, text: "Are you open Saturday?", time: "10:24" }
               - { from: me, text: "Yes! 10 AM to 6 PM. Want me to book you in?", time: "10:24" }
               - { from: them, text: "11 AM please", time: "10:25" }
-              - { from: me, kind: event, title: "Booked · Sat 11:00 AM", text: "Glow Salon · Haircut", time: "10:25" }
+              - { from: me, kind: card, icon: calendar-check, title: "Booked · Sat 11:00 AM", text: "See you then!" }
         features:
-          - { icon: chat-circle-dots, title: "Answers FAQs", text: "From your own docs" }
+          - { icon: chat-circle-dots, title: "Answers FAQs", text: "From your docs" }
           - { icon: funnel, title: "Qualifies leads", text: "Asks the right questions" }
-          - { icon: calendar-check, title: "Books slots", text: "Straight into your calendar" }
-          - { icon: user-switch, title: "Hands off", text: "To a human when needed" }
+          - { icon: calendar-check, title: "Books slots", text: "Into your calendar" }
+    note: this is the loot
 
   - layout: step
-    kicker: Meta Business account
     title: Get a WhatsApp *number*
     body: Use a fresh number. Your personal one can get flagged.
+    meta: ["Easy", "5 min", "Meta Business"]
     visual:
       rows:
         - { icon: globe, text: "business.facebook.com → WhatsApp", sub: "Create a Business account" }
@@ -49,9 +51,9 @@ slides:
         - { icon: key, text: "Copy the access token", code: "EAAG…your-token" }
 
   - layout: step
-    kicker: The brain
     title: Tell Claude who it *is*
     body: One prompt with your hours, prices and rules.
+    meta: ["Easy", "5 min", "Claude"]
     visual:
       claude:
         project: Front desk · WhatsApp
@@ -60,24 +62,25 @@ slides:
           - { from: claude, text: "Got it. I'll answer from your price list, keep replies under 3 lines and book slots with the calendar tool." }
 
   - layout: step
-    kicker: The wiring
-    title: Connect it with *n8n*
+    title: Wire it up with *n8n*
     body: Message in → Claude → reply out. Four nodes.
+    meta: ["Medium", "8 min", "n8n"]
     visual:
       n8n:
         title: WhatsApp × Claude
-        nodes: [ whatsapp, { tool: claude, label: "Claude" }, googlecalendar, { tool: whatsapp, label: "Reply" } ]
+        nodes: [whatsapp, { tool: claude, label: "Claude" }, googlecalendar, { tool: whatsapp, label: "Reply" }]
 
   - layout: step
-    kicker: The safety net
     title: Hand off when it's *unsure*
-    body: Anything about refunds or complaints goes to you.
+    body: Refunds and complaints come to you.
+    meta: ["Boss check", "2 min"]
     visual:
       notify:
         - { app: whatsapp, title: "Handoff · Priya", text: "Asked about a refund. Your turn.", time: "now" }
+    stamp: Quest cleared
 
   - layout: list
-    kicker: Read this twice
+    kicker: Read before you play
     headline: The *honest* limits
     items:
       - { title: "Templates for outbound", text: "You can only start chats with approved templates." }
@@ -88,5 +91,4 @@ slides:
     headline: Want the full workflow file?
     keyword: WORKFLOW
     sub: I'll DM you the n8n file + the prompt.
-    doc_title: WhatsApp × Claude setup
-theme: pink
+    doc_title: WhatsApp × Claude quest guide

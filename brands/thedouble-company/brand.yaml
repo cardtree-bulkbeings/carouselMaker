@@ -51,6 +51,12 @@ palette:
   bubblegum: ["#FF4FAE", "#FFE2F1", "#0E0F12"]
   sky:       ["#16B0FA", "#DCF1FC", "#0E0F12"]
   ink:       ["#0E0F12", "#ECECEE", "#FFFFFF"]
+  # departments (the five capabilities), used by staff badges and meta chips
+  knowledge:   ["#6A2CF5", "#E7DDFF", "#FFFFFF"]
+  personality: ["#FF4FAE", "#FFDDEE", "#0E0F12"]
+  voice:       ["#16B0FA", "#D5EEFB", "#0E0F12"]
+  channels:    ["#2F43F2", "#DEE2FF", "#FFFFFF"]
+  actions:     ["#FF7417", "#FFE4D1", "#0E0F12"]
 
 # Colour presets (post: `theme: yellow`). Calm uses `highlight` for the marker underline.
 accents:

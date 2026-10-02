@@ -1,68 +1,69 @@
-# Agent Bro — the AI agent guy (not The Double). Design language "studio" (after theaiagents:
-# light grey, pink "AGENT #01" pill, grey caps subtitle, very heavy tight headline, dense product
-# mockups with tool tiles + dashed connectors, handwritten notes, BUILD STACK footer cards).
-# DRAFT identity: change name / handle / colours here and every Agent Bro post updates.
+# Agent Bro, the AI-agent guy (not The Double). Main design language: "quest" (docs/WORLDS.md §3, v2).
+# Persona 5 labels × Pokémon-card stat blocks × theaiagents density. Quests, loot, XP, achievements.
 name: Agent Bro
-handle: "@agentbro"         # TODO: real handle
-logo: null                  # wordmark is drawn from `name` until a logo exists
+handle: "@agentbro"
+logo: null
 emphasis: color
-design: studio              # engine/skins/studio.css
+design: quest
+lexicon: { step: Quest, item: Slot, prompt: Loot, next: Next objective, next_qa: Next }
 fonts:
   - https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=block
-  - https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@600;700&display=block
+  - https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Caveat:wght@700&display=block
 
 tokens:
   ground: "#FFFFFF"
   paper: "#FFFFFF"
-  ink: "#0B0B0E"
-  muted: "#54555D"
-  faint: "#8B8C94"
-  line: "rgba(11,11,14,.08)"
-  chip: "#FFE3EA"            # pink tint for icon circles
-  accent: "#F0325A"          # hot pink-red
+  ink: "#0D0D10"
+  muted: "#55555E"
+  faint: "#85858E"
+  line: "rgba(13,13,16,.12)"
+  chip: "#FFE0E3"
+  accent: "#E5172F"          # persona red
   accent-ink: "#FFFFFF"
-  accent-deep: "#B3123A"
-  hi: "#F0325A"
-  hi-soft: "#FFE3EA"
+  accent-deep: "#8F0E1D"
+  hi: "#E5172F"
+  hi-soft: "#FFE0E3"
   glow: "transparent"
-  deep: "#0B0B0E"
+  deep: "#0D0D10"
   deep-ink: "#FFFFFF"
-  tray: "#0B0B0E"
+  tray: "#E5172F"
   live: "#22C55E"
   good: "#16A34A"
-  bad: "#F0325A"
-  note: "#F0325A"
+  bad: "#E5172F"
+  note: "#E5172F"
   font-display: "'Satoshi', Arial, sans-serif"
   font-human: "'Satoshi', Arial, sans-serif"
   font-body: "'Inter', system-ui, sans-serif"
-  font-mono: "'JetBrains Mono', ui-monospace, monospace"
-  font-pixel: "'JetBrains Mono', monospace"
+  font-mono: "'JetBrains Mono', monospace"
+  font-pixel: "'Satoshi', sans-serif"
   font-hand: "'Caveat', cursive"
   display-weight: "900"
-  display-track: "-0.045em"
-  r-card: "26px"
-  r-block: "34px"
+  display-track: "-0.05em"
+  r-card: "16px"
+  r-block: "20px"
   r-tile: "18px"
-  shadow: "0 1px 2px rgba(0,0,0,.05), 0 14px 36px -14px rgba(0,0,0,.18), 0 0 0 1px rgba(0,0,0,.04)"
+  shadow: "0 1px 2px rgba(0,0,0,.05), 0 16px 40px -16px rgba(0,0,0,.18), 0 0 0 1px rgba(0,0,0,.05)"
 
 palette:
-  pink:   ["#F0325A", "#FFE3EA", "#FFFFFF"]
-  blue:   ["#2563FF", "#DFE8FF", "#FFFFFF"]
-  violet: ["#7C3AED", "#EDE4FF", "#FFFFFF"]
-  orange: ["#FF7A1A", "#FFE9D9", "#0B0B0E"]
-  green:  ["#16A34A", "#DCF5E4", "#FFFFFF"]
-  ink:    ["#0B0B0E", "#E7E7EA", "#FFFFFF"]
+  red:       ["#E5172F", "#FFE0E3", "#FFFFFF"]
+  rare:      ["#2F80ED", "#DCE9FC", "#FFFFFF"]
+  epic:      ["#9B51E0", "#EEE1FA", "#FFFFFF"]
+  legendary: ["#E8A400", "#FCEFC9", "#0D0D10"]
+  ink:       ["#0D0D10", "#E5E5E8", "#FFFFFF"]
+  # aliases
+  pink:      ["#F0325A", "#FFE3EA", "#FFFFFF"]
+  blue:      ["#2F80ED", "#DCE9FC", "#FFFFFF"]
+  violet:    ["#7C3AED", "#EDE4FF", "#FFFFFF"]
+  orange:    ["#FF7A1A", "#FFE9D9", "#0D0D10"]
+  green:     ["#16A34A", "#DCF5E4", "#FFFFFF"]
 
-# Colour presets (post: `theme: green` or `theme: { accent: "#..." }`).
 accents:
-  pink:    { accent: "#F0325A" }
-  green:   { accent: "#12B76A" }
-  yellow:  { accent: "#F5B800", accent_ink: "#0B0B0E" }
-  blue:    { accent: "#2563FF" }
-  violet:  { accent: "#7C3AED" }
-  orange:  { accent: "#FF6A13" }
+  red:    { accent: "#E5172F" }
+  blue:   { accent: "#2F80ED" }
+  purple: { accent: "#9B51E0" }
+  gold:   { accent: "#E8A400", accent_ink: "#0D0D10" }
+  green:  { accent: "#12B76A" }
 
-# Imagery: only his own photos. No mascots, no felt characters.
 rules:
   cover: person
   mascot: false

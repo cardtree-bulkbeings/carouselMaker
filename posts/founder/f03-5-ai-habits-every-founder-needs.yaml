@@ -1,0 +1,71 @@
+# F03 Numbered List · Founder · Day 8 Post 1
+# SAMPLE COPY: make every habit one you actually do. Swap the cover image for your cut-out photo.
+brand: thedouble-founder
+format: F03
+title: 5 AI HABITS Every Founder Needs
+mascot: assets/agents/grape.png
+caption: |
+  Not tools. Habits. The 5 things I do with AI every single week.
+  Which one are you starting with? Comment the number.
+slides:
+  - layout: cover
+    style: person
+    kicker: 5 AI habits
+    headline: Every founder *needs*
+    tagline: Not tools. Habits.
+    image: image-assets/character.png
+    logos: [claude, notion, googlecalendar]
+    tag: Weekly · since 2025
+
+  - layout: item
+    label: Habit 01
+    name: Start the day with a *brief*
+    what: Before email, an agent reads my calendar and inbox and gives me 3 lines.
+    tool: googlecalendar
+    visual:
+      notify:
+        - { app: claude, title: "Morning brief · 7:30", text: "3 calls today. Acme asked about SSO twice: lead with it. 2 invoices overdue.", time: "7:30" }
+    says: I write this every morning.
+
+  - layout: item
+    label: Habit 02
+    name: Never write a *first* draft
+    what: Every doc, email and proposal starts as an AI draft I edit, not a blank page.
+    tool: claude
+    example: "“Draft the pitch for Acme from yesterday's call notes. My tone, under 150 words.”"
+
+  - layout: item
+    label: Habit 03
+    name: Ask *Chanakya* before deciding
+    what: Big decisions go past my AI board first. Clones of people I'd never get a meeting with.
+    icon: users-three
+    example: "Jobs on the product. Buffett on the money. Chanakya on the competitor."
+
+  - layout: item
+    label: Habit 04
+    name: Hand off the *follow-ups*
+    what: If a task repeats twice, an agent owns it from the third time.
+    tool: whatsapp
+    example: "Quote follow-ups on day 3, 7 and 14. I haven't sent one myself in months."
+
+  - layout: item
+    label: Habit 05
+    name: Review the *agents* on Friday
+    what: 20 minutes reading what they did. Fix one prompt. Kill one that isn't earning its keep.
+    tool: notion
+
+  - layout: recap
+    headline: My 5 AI *habits*
+    items:
+      - { name: "Morning brief", tool: googlecalendar }
+      - { name: "No first drafts", tool: claude }
+      - { name: "Ask the board", icon: users-three }
+      - { name: "Hand off follow-ups", tool: whatsapp }
+      - { name: "Friday agent review", tool: notion }
+
+  - layout: cta
+    style: question
+    kicker: Your turn
+    headline: Which one are you starting *this week?*
+    answers: ["01", "02", "03", "04", "05"]
+    sub: Comment the number. I'll share how I set it up.

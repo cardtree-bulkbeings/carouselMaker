@@ -1,11 +1,12 @@
-# F03 sample · SAMPLE COPY: replace numbers, names and images before posting.
+# F03 Numbered List · Company · staff-directory treatment (badges + memo).
 brand: thedouble-company
 format: F03
 title: 5 AI Agents Every Startup Needs
-series: The startup stack
+series: Staff directory
+mascot: assets/agents/cobalt.png
 caption: |
-  You don't need 5 hires to cover these jobs. You need 5 agents.
-  Which one would you set up first? Comment the number.
+  Five new hires. No salaries. Here's who does what at the Bureau.
+  Which one would you hire first? Comment the number.
 slides:
   - layout: cover
     style: number
@@ -16,58 +17,69 @@ slides:
     image: assets/agents/grape.png
     color: grape
 
-  - layout: item
-    label: Agent 01
-    name: The *inbox* closer
-    what: Replies to every lead in under a minute, day or night.
-    tool: gmail
+  - layout: statement
+    kicker: Memo
+    headline: Five roles. *Zero* salaries.
     visual:
-      gmail:
-        - { from: "Riya (lead)", subject: "Pricing for 20 seats?", tag: "Replied", time: "2 min", unread: true }
-        - { from: "Dev Mehta", subject: "Can we do a demo Friday?", tag: "Booked", time: "9 min", unread: true }
-        - { from: "Ana · Acme", subject: "Re: proposal", tag: "Follow-up", time: "1 h" }
-    example: "Lead asks for pricing at 1 AM → gets the right plan + a demo link."
+      memo:
+        to: Every founder
+        from: The Bureau of Doubles
+        re: Your next five hires
+        date: Monday, 9:00 AM
+        body: "Effective today, the inbox, the support desk, meeting prep, follow-ups and the weekly report are covered. Staff profiles follow."
+        stamp: Approved
+    says: Badges are on the next slides.
 
   - layout: item
-    label: Agent 02
+    label: Staff 01
+    name: The *inbox* closer
+    tool: gmail
+    what: Replies to every lead in under a minute, day or night.
+    meta: ["Dept. of Channels", "Night shift"]
+    visual:
+      badge: { name: "Ivy", role: "Inbox closer", dept: "Channels", no: "#001", photo: assets/agents/cobalt.png, color: channels }
+
+  - layout: item
+    label: Staff 02
     name: The *support* desk
-    what: Answers the same 30 questions so your team doesn't.
     tool: whatsapp
-    example: "“How do I reset my password?” → answered in 4 seconds, with the link."
+    what: Answers the same 30 questions so your team doesn't have to.
+    meta: ["Dept. of Knowledge", "24/7"]
+    visual:
+      badge: { name: "Kit", role: "Support desk", dept: "Knowledge", no: "#002", photo: assets/agents/grape.png, color: knowledge }
 
   - layout: item
-    label: Agent 03
+    label: Staff 03
     name: The *meeting* prep
-    what: Reads the CRM before every call and briefs you in 3 lines.
     tool: googlecalendar
-    example: "“Call with Acme at 4: they asked about SSO twice. Lead with that.”"
+    what: Reads the CRM before every call and briefs you in 3 lines.
+    meta: ["Dept. of Voice", "Before every call"]
+    visual:
+      badge: { name: "Echo", role: "Meeting prep", dept: "Voice", no: "#003", photo: assets/agents/sky.png, color: voice }
 
   - layout: item
-    label: Agent 04
+    label: Staff 04
     name: The *follow-up*
-    what: Chases every quote you sent and forgot about.
     tool: googlesheets
-    example: "Day 3, 7 and 14 nudges. Stops the moment they reply."
-
-  - layout: item
-    label: Agent 05
-    name: The *weekly* report
-    what: Turns Monday's mess into one page for the team.
-    tool: notion
-    example: "Revenue, signups, churn, top 3 risks. In Notion by 9 AM."
+    what: Chases every quote you sent and forgot about.
+    meta: ["Dept. of Actions", "Day 3 · 7 · 14"]
+    visual:
+      badge: { name: "Rex", role: "Follow-up", dept: "Actions", no: "#004", photo: assets/agents/tangerine.png, color: actions }
+    stamp: Never late
 
   - layout: recap
-    headline: Your 5-agent *startup* stack
+    flag: Pin to the noticeboard
+    headline: Your 5-agent *startup* staff
     items:
-      - { name: "Inbox closer", tool: gmail }
-      - { name: "Support desk", tool: whatsapp }
-      - { name: "Meeting prep", tool: googlecalendar }
-      - { name: "Follow-up", tool: googlesheets }
-      - { name: "Weekly report", tool: notion }
+      - { name: "Ivy · inbox closer", tool: gmail, color: channels }
+      - { name: "Kit · support desk", tool: whatsapp, color: knowledge }
+      - { name: "Echo · meeting prep", tool: googlecalendar, color: voice }
+      - { name: "Rex · follow-up", tool: googlesheets, color: actions }
+      - { name: "Penny · weekly report", tool: notion, color: personality }
 
   - layout: cta
     style: question
-    kicker: Your turn
-    headline: Which one would you set up *first?*
+    kicker: Hiring form
+    headline: Which one would you hire *first?*
     answers: ["01", "02", "03", "04", "05"]
-    sub: Comment the number. We'll show you how in the next post.
+    sub: Comment the number. We'll show you how to set it up.

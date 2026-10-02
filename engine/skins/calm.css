@@ -81,3 +81,11 @@
 .sk-calm .kw { background: var(--hi); color: var(--ink); font: 700 64px/1 var(--font-display); letter-spacing: -.03em; padding: 26px 44px; border-radius: 99px; transform: none; text-transform: uppercase; }
 .sk-calm .kw::before { content: "Comment ‘"; } .sk-calm .kw::after { content: "’"; }
 .sk-calm .cta-c .lede { color: var(--muted); font-size: 30px; }
+
+/* ============ Bureau artifacts inside the calm language (staff badges, memos, stamps) ============ */
+.sk-calm .stamp { border: 5px double #C2413A; color: #C2413A; background: none; border-radius: 8px; font: 700 28px var(--font-display); letter-spacing: .16em; padding: 10px 22px; opacity: .8; mix-blend-mode: multiply; right: 90px; bottom: 170px; transform: rotate(-9deg); }
+.sk-calm .meta { background: var(--c-soft, var(--chip)); color: var(--ink); font: 500 17px var(--font-mono); letter-spacing: .1em; text-transform: uppercase; }
+.sk-calm .item .meta-row { justify-content: center; }
+.sk-calm .ui-badge, .sk-calm .ui-memo { box-shadow: 0 1px 2px rgba(0,0,0,.05), 0 30px 60px -28px rgba(14,15,18,.3), 0 0 0 1px rgba(14,15,18,.06); }
+.sk-calm .mascot .bubble { border-radius: 16px 16px 16px 4px; font: 500 21px var(--font-body); }
+.sk-calm .save-flag { background: var(--hi); color: var(--ink); }
