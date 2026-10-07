@@ -19,12 +19,10 @@ caption: |
   Comment PROMPTS and I'll DM you all 5 in a doc.
 slides:
   - layout: cover
-    style: person
-    kicker: Steal these
-    headline: 5 prompts for cold emails that get *replies*
-    tagline: Copy · paste · send
-    logos: [claude, gmail]
-    badge: FREE
+    style: number
+    number: "5"
+    kicker: Steal these · Free
+    headline: prompts for cold emails that get *replies*
 
   - layout: prompt
     label: Prompt

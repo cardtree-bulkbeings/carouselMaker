@@ -1,5 +1,6 @@
 # F01 sample · SAMPLE COPY: replace numbers, names and images before posting.
 brand: thedouble-founder
+face: false                 # his clone, not the founder: no face sticker
 format: F01
 title: I Turned CHANAKYA into My AI Strategy Advisor
 caption: |
@@ -8,16 +9,15 @@ caption: |
 slides:
   - layout: cover
     style: person
+    bg: paper                 # the portrait has its own background
     kicker: I turned
     headline: "*Chanakya* into my AI strategy advisor"
     tagline: 2,300 years of strategy, *on call*
-    # Drop a stylised portrait cut-out here (PNG, no background)
     logos: [ claude ]
     tag: Chanakya · AI clone
     image: assets/uploads/muqrrjgc-meditating-sage-on-rocky-ground.png
-    image_x: -5
-    image_y: -25
-    image_zoom: 1.45
+    move:
+      image: { s: 1.54, x: 296, y: -2 }
 
   - layout: qa
     kicker: First question I asked

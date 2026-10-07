@@ -5,12 +5,17 @@ handle: "@agentbro"
 logo: null
 emphasis: color
 design: quest
+skin: brands/agentbro/skin.css
+modes: [ light, dark ]       # studio shows a Light / Dark switch
+mode: light
 lexicon: { step: Quest, item: Slot, prompt: Loot, next: Next objective, next_qa: Next }
 fonts:
   - https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=block
-  - https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Caveat:wght@700&display=block
+  - https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Caveat:wght@700&display=block
 
 tokens:
+  # Light is the default. `mode: dark` on a post (or the studio's Light/Dark switch) turns on the lab at night;
+  # the dark palette lives in brands/agentbro/skin.css.
   ground: "#FFFFFF"
   paper: "#FFFFFF"
   ink: "#0D0D10"
@@ -18,7 +23,7 @@ tokens:
   faint: "#85858E"
   line: "rgba(13,13,16,.12)"
   chip: "#FFE0E3"
-  accent: "#E5172F"          # persona red
+  accent: "#E5172F"
   accent-ink: "#FFFFFF"
   accent-deep: "#8F0E1D"
   hi: "#E5172F"

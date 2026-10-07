@@ -8,12 +8,14 @@ caption: |
   Comment your score out of 2.
 slides:
   - layout: cover
-    style: object
-    kicker: A 30-second test
-    headline: Still think AI sounds *robotic?*
+    style: split
+    label: The Double
+    label_r: A 30-second test
+    foot_r: "[ Spot the AI ]"
+    headline: Still think AI *sounds robotic?*
     sub: Two replies. Guess which one is AI.
-    image: assets/agents/bubblegum.png
-    color: bubblegum
+    image: image-assets/scene-creator-studio-bubblegum.png
+    position: 55% center
 
   - layout: quiz
     kicker: Round 1 · A customer asks for a discount
@@ -34,6 +36,7 @@ slides:
   - layout: statement
     align: center
     size: xl
+    cap: personality
     headline: Made your *guess?*
     body: Swipe for the answers.
 
@@ -54,6 +57,7 @@ slides:
       - { text: "hey! just checking in on the goa thing, dates are filling up fast lmk 🙂", is: Human, why: "The sales rep, same day." }
 
   - layout: statement
+    cap: knowledge
     kicker: How it was made
     headline: Trained on *her* last 500 replies.
     visual:

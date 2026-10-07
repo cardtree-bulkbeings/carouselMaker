@@ -8,7 +8,8 @@ How the pieces fit:
 
 ```
 brand kit (brands/<id>/brand.yaml)     → tokens, fonts, colours, imagery rules, colour presets
-  └─ design language (engine/skins/*)  → bold · calm · studio  (how a brand *looks*)
+  └─ design language (engine/skins/*)  → bold · calm · quest  (how a brand *looks*)
+system layer (engine/system.css)       → spacing, reading sizes, fill rules for every handle (loaded last)
 layouts (engine/layouts.js)            → 20 slide types (cover, step, item, quiz, cta …)
 visuals (engine/visuals.js)            → the picture half: UI kits, screenshots, rows, flows …
 formats (formats/F01–F12.yaml)         → a recipe: which layouts, in which order, with which rules
@@ -71,7 +72,7 @@ side margins **72–88 px**, card radius **24–32 px**. Weights 600 (calm) → 
 | | **Founder** | **Company (The Double)** | **Agent Bro** |
 |---|---|---|---|
 | Who | The Double's founder, first person ("I built…") | The product's voice ("Your Double…") | The AI-agent guy. **Not** The Double |
-| Design language | `bold`, after aiagently | `calm`, after theonlyworkshop + Wellbeing | `studio`, after theaiagents |
+| Design language | `bold`, after aiagently | `calm`, after theonlyworkshop + Wellbeing | `quest`, after theaiagents |
 | Ground | White + soft accent glows in two corners | Off-white `#F7F6F3` | Light grey with a soft top light |
 | Type | Poppins 700–800, centred; Inter body | Inter Tight 600, very tight, centred; DM Mono labels | Satoshi 900, left-aligned; Inter body |
 | Accent (default) | Cobalt `#2F43F2` (title gradient → ink) | Ink + **lime marker underline** `#D4F53C` | Hot pink `#F0325A` |
@@ -88,20 +89,41 @@ Change any colour per post: `theme: green` (a preset) or `theme: { accent: "#12B
 
 ## 4. Type scale (px on the 1080×1350 slide)
 
-| Role | Founder (bold) | Company (calm) | Agent Bro (studio) |
+Instagram shows a slide at ~360 px wide (a third of export size). Anything under 22 px here is unreadable
+on a phone, so **22 px is the floor** and body copy sits at 34–38 px. The rules live in `engine/system.css`.
+
+| Role | Founder (bold) | Company (calm) | Agent Bro (quest) |
 |---|---|---|---|
-| Cover headline | 128 / 800 | 118 / 600 | 136 / 900 |
-| Slide headline (`h-xl`) | 96 / 700 | 104 / 600 | 96 / 900 |
-| Step / item title (`h-lg`) | 90 / 700 gradient | 92 / 600 | 84 / 900 |
-| Type-only slide headline | 112 | 112 | 112 |
-| Lede / sub | 31 | 34 | 30 |
-| Label / kicker | 22 bold caps | 21 mono, tracked .26em | 32 grey caps (subtitle) |
-| Body in cards | 22–30 | 22–30 | 22–30 |
-| Notes (handwriting) | Caveat 44 | Instrument Serif italic 40 | Caveat 46, red |
+| Giant cover number (`style: number`) | 660 / accent shine | 660 / ink or `color:` | 660 / red shine |
+| Cover headline | 128 / 800 (112 beside a number) | 118 / 600 | 136 / 900 (120 beside a number) |
+| Slide headline (`h-xl`) | 96 / 700 | 104 / 600 | 98 / 900 |
+| Step / item title (`h-lg`) | 90 / 700 gradient | 92 / 600 | 90 / 900 |
+| Lede / sub | 35 | 36 | 34 |
+| Label / kicker | 24 bold caps | 23 mono, tracked .26em | 24 red caps |
+| Body in cards / rows / quiz | 30–44 | 30–44 | 30–44 |
+| Prompt text | 44 | 44 | 42 |
+| Chrome (counter, next, handle) | 22 | 22 | 22–24 |
+| Notes (handwriting) | Caveat 44 | Instrument Serif italic 40 | Caveat 48, red |
 
 Headlines auto-shrink to fit (never below 45%). Write shorter rather than relying on it.
 
----
+### Fill rules (v2, from the references)
+
+1. **Fill the frame.** In every reference the mockup spans ~85–92% of the slide width and nothing floats
+   in dead space. The engine **zooms each visual to fill its area** (`zoomToFill` in `engine/engine.js`): it
+   lays the mockup out narrower and scales it up, so a 2-row card grows its text instead of sitting small.
+   Per visual cap: single-column kits 1.4×, multi-column grids ~1.1×. Override per slide: `visual: { grow: 1.2, … }`.
+2. **Read at phone size.** See the type scale above. 22 px floor.
+3. **One rhythm.** label → 14 → headline → 22 → sub → 44 → visual. Same positions on every slide of a post.
+4. **Numbers are the loudest thing.** A count on a cover ("5 AI agents…", "50+ skills") is a giant numeral:
+   `style: number`, `number: "5"`, and drop the number from the headline. The checklist flags covers that
+   start with a number but don't use it. The character / person stands beside the number and bleeds off
+   the bottom edge.
+5. **One label per slide.** "STAFF 01" or "HABIT 01" only. No "01 + tool logo + label" row. The tool mark
+   shows as the picture only when the slide has no visual.
+6. **Lists and CTAs hold the slide.** Recap = one full-width row per item with a big number. Three-way
+   versus = three full-width rows (not narrow columns). Question CTA sits in the optical centre with big
+   answer chips; the follow line pins to the bottom.
 
 ## 5. Slide anatomy
 
@@ -174,6 +196,7 @@ Never "In this post…" / "Here's what you'll learn".
 | `recap` | save slide | items [{name, tool/icon}], flag |
 | `news` | F12 | masthead, date, breaking, source, headline, tldr, visual |
 | `list` | honest limits, rules | items [{title, text}] |
+| `exchange` | F01 "try to break it" / attack rounds | kicker, headline, messages [{who, text, side}], verdict. Pair with `bg: cobalt` |
 | `cta` | last slide | `style: comment` (keyword) · `question` (answers) · `save` |
 
 Text markup in any field: `*emphasis*` · `**bold**` · `~~strike~~` · `{variable}` · `[[handwritten]]`.
@@ -218,3 +241,84 @@ Each `formats/F*.yaml` file holds the full slide-by-slide structure, rules, and 
 - **With Claude:** see `CLAUDE.md`. "Build Day 3 for all handles" → Claude reads the plan, picks formats,
   writes the YAML, exports and reviews.
 - **Images to make:** `docs/ASSETS.md`.
+
+## 11. Icons, characters and surfaces (v2)
+
+- **3D clay icons** live in `assets/logos/<slug>.png` (brand logos, 45) and `assets/icons/` (chat, email,
+  phone, globe, browser, database, cloud, pdf, video, contact, website, planner). They are used only where the
+  icon **is the picture**: hero tiles on item slides, recap rows, tool rows and tiles, the mega grid, cover orbit.
+- **Inside UI kits** (WhatsApp, Claude, n8n, Gmail, Sheets, notifications, code) logos stay flat (Simple Icons)
+  and glyphs stay Phosphor, like the real apps. Generic `icon:` names in rows, cards and flows stay Phosphor.
+- **Felt characters**: `assets/agents/` cobalt, tangerine, bubblegum, sky, grape, green, yellow, red, ink, snow.
+  Company palette has matching `green`, `yellow`, `red`, `snow`. As chat or call avatars they sit whole in a
+  tinted circle (`avatar: assets/agents/green.png`).
+- **Company ground** is `#F8F8F8`. Extra marker presets: `mint`, `sky`.
+- **`bg: cobalt`** on any slide: full-bleed #3452F0, white type, pink `#FF9BC8` emphasis (5:1 and 11:1 contrast).
+  Built for the F01 attack exchange (`posts/company/f01-i-turned-myself-into-an-ai-agent.yaml`).
+- **No clipped glyphs**: gradient headlines carry extra room above and below (engine/system.css). Tracking
+  stays at or above −0.04em so letters never touch.
+- **Available, not in use**: `engine/skins/folio.css`, the Codex look made font-agnostic (`font-emph`, tinted
+  cards). Switch a brand with `design: folio` + a display font. The archive codex posts keep `codex.css`.
+
+## 12. Free placement (studio)
+
+Click any element on a slide (text, image, mockup, logo, mascot) to select it. Drag to move, drag a corner
+or scroll to resize, **↑ / ↓ / Front / Back** to change layers, arrow keys nudge (Shift = 10 px), Alt-click
+picks the parent, **Crop** pans/zooms a picture inside its frame, **Reset** returns it to the layout.
+Saved per slide as `move: { headline: { x, y, s, z }, image: {…} }` and applied on export too.
+Cut-out images are never cropped by their box.
+
+## 13. Cover styles v2 (`layout: cover`, `style: …`)
+
+See them all in `posts/lab/covers-{company,founder,agentbro}.yaml` and copy a slide as a post's cover.
+
+| style | After | Best for | Fields |
+|---|---|---|---|
+| `split` | wellbeing "7 biomarkers" | Company | headline (`*rest*` = light serif italic), sub, image (bleeds right; `side: left`), corner labels `label` `label_r` `foot` `foot_r` |
+| `vs` | wellbeing "boosters vs killers" | Company F07/F08 | `a: {text, image, color}`, `b: {…}`, `joiner`, corner labels |
+| `scatter` | wellbeing "B12 menu" | Company F03 | headline, sub, `items: [{image or tool, label, x, y, size, rot}]` (defaults ring the edge) |
+| `pair` | theonlyworkshop · aiwithanushka | all (F02 "Give X a Y") | kicker, headline, sub, `pair: [tool or image, …]`, `joiner: "×" or "→"`, `labels: true`, optional `visual` |
+| `banner` | aiagently "WHATSAPP AI AGENT" | Founder, Agent Bro | kicker (handwritten), `tool` (inline tile), headline (caps), tagline, image (person), logos, `color` |
+| `count` | aiagently "4 AI Agents" | Founder, Agent Bro F03 | number, kicker (line 1), headline (line 2), image, logos (3D, floating) |
+| `guide` | theaiagents "best Guide" | Agent Bro, Founder | `tool` + `tool_label`, headline (`*big words*`), image, `chips: [tools]`, `checklist`, `tag` |
+
+Company covers never use a person: use felt agents and scenes. A missing photo shows a soft silhouette.
+
+## 14. Account identities (v3)
+
+| | Company | Founder | Agent Bro |
+|---|---|---|---|
+| Look | off-white, centred, editorial | white, left-aligned "founder's notebook" | "the lab": engineering grid, mono `// labels` |
+| Type | Inter Tight 600 + DM Mono | Poppins 700 + DM Mono labels | Satoshi 900 + JetBrains Mono |
+| Colour | ink + lime marker (+ `bg: cobalt` slides) | cobalt shine; lime only on the keyword | red emphasis; `mode: light` (default) or `mode: dark` |
+| Signature | felt agents, editorial slides | visuals on a cobalt-tint panel, giant outlined step number, quote + CTA on full cobalt | red square wordmark, red quest tag, hairline cards, white/ink next pill |
+| Files | `engine/skins/calm.css` | `skins/bold.css` + `brands/thedouble-founder/skin.css` | `skins/quest.css` + `brands/agentbro/skin.css` |
+
+Safety: every save keeps the previous version in `.history/`; the studio has Undo (Ctrl+Z), Redo and History.
+Switching a cover's style never drops the cover's own words or image.
+
+## 15. The Double design system (Company + Founder)
+
+Source: `DoubleDesignSystem.html` (+ `_files/`). Assets sorted into `assets/brand/` (logos, washes, textures,
+stages, objects, scenes, characters). Shared layer: `engine/double.css`. Agent Bro is not The Double; it keeps "the lab".
+
+- **Type:** Funnel Display 700 (−3.5%) headlines · ONE Newsreader italic phrase per headline (`*phrase*`) ·
+  Geist body · Geist Mono labels (+10%) · Silkscreen status chips (`tag:`).
+- **Italic colour:** cobalt on light · lime on cobalt · `#A9B6FF` on deep (automatic).
+- **Capability colours** = what a slide is about, in setup order: knowledge grape `#6A2CF5` · personality
+  bubblegum `#FF4FAE` · voice sky `#16B0FA` · channels cobalt `#2F43F2` · actions tangerine `#FF7417`.
+  Per slide: `cap: voice` (or `cap: none`). Whole post: `rhythm: capabilities` (inner slides cycle in order).
+  A slide with an agent `color:` (roster, badge) uses that capability.
+- **Grounds:** linen `#F6F4EF` (default) · capability (Company = pigment **wash**; Founder = flat **soft tint**
+  plus ONE full-strength block holding the visual) · `bg: cobalt` (covers, CTAs, attack slides) · `bg: deep` (Night:
+  `#151B55` + 18px grid). CTAs on Double handles are automatically cobalt with a lime "KEYWORD →" button.
+- **Lime means live:** squares, chips, the CTA button. Never a ground. No green, no yellow, no lavender.
+- **Founder's own taste:** left-aligned, first person, big solid step numbers, cobalt covers with the face in a
+  stage light, his face as a sticker on each slide's bold block (`face:` in brand.yaml; `face: false` per post or
+  slide, e.g. a persona clone like Chanakya). `bg: paper` keeps a cover light when the photo has its own background.
+
+### Colour budget per carousel (v2, applies to Company + Founder)
+- Cobalt only for the cover (optional), quotes and the final CTA. Never several cobalt slides in a row.
+- `rhythm: capabilities` colours the **parallel middle only** (step, item, prompt, roster, flow); other slides stay linen.
+- A wash/tint marks one idea; calm linen between them. Night (`bg: deep`) once per post at most, for an AI/night moment.
+- Small type on a wash sits on a white panel. Emphasis inside body text is always the readable cobalt italic.

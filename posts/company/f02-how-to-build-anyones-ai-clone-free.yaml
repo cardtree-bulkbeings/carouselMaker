@@ -1,0 +1,96 @@
+# F02 Step-by-Step Build · Company · Day 5 (collab with Founder) · editorial treatment
+# SAMPLE COPY: example numbers are marked; swap in real ones before posting.
+brand: thedouble-company
+format: F02
+title: How to Build ANYONE's AI Clone (FREE)
+series: The clone guide
+mascot: assets/agents/grape.png
+caption: |
+  A clone of you, your best salesperson or a mentor you admire. Free to start. Here's the order to build it in.
+  Comment CLONE and we'll send you the full setup.
+theme: lime
+slides:
+  - layout: cover
+    style: split
+    label: The Double
+    label_r: Free · step by step
+    foot_r: "[ The clone guide ]"
+    headline: Build anyone's AI clone *for free*
+    sub: You, your best seller, or a mentor.
+    image: image-assets/step-1-knowledge-board.png
+    position: 50% center
+
+  - layout: lanes
+    headline: Two clones. *Pick* one first.
+    lanes:
+      - { label: Clone of you, title: "Answers like you.", text: "Your DMs, FAQs and sales calls, in your words." }
+      - { label: Clone of a mentor, title: "Thinks like them.", text: "Books, talks and interviews, answering your questions." }
+    footer: Start with yours. *Add mentors later.*
+
+  - layout: index
+    headline: What every clone *needs*
+    body: Seven pieces. Miss one and it sounds off.
+    items: [ Sources, Tone, Rules, Examples, Voice, Channels, A test ]
+
+  - layout: ledger
+    cap: knowledge
+    kicker: Step 1 · Pick the sources
+    headline: Feed it what they *actually* said.
+    cols: [ Source, Effort, Why it works ]
+    rows:
+      - [ "Your WhatsApp chats", "Low", "Real questions, real answers, your tone" ]
+      - [ "Sales call recordings", "Medium", "How you handle price and doubt" ]
+      - [ "Talks & podcasts", "Medium", "How they explain, in their words" ]
+      - [ "Books & essays", "High", "The ideas, not the voice" ]
+    footer: Spoken words beat written ones for tone.
+
+  - layout: brief
+    cap: personality
+    kicker: Step 2 · Write the rules
+    headline: Give it *10 answers* first.
+    body: "Write the 10 questions people ask most. Answer each the way you would. Add 3 things it must never say."
+    facts:
+      - { label: Time, value: "20 min" }
+      - { label: Code, value: "Zero" }
+    footer: That's its personality.
+
+  - layout: pipeline
+    cap: actions
+    kicker: Step 3 · Train and test
+    headline: Four stops. *One afternoon.*
+    steps: [ Collect, Train, Test, Share ]
+    note: Ask it the 10 questions again.
+    sub: Fix any answer that doesn't sound like you.
+    compare:
+      - { label: First try (example), value: "6/10" }
+      - { label: After one fix (example), value: "9/10" }
+
+  - layout: notebook
+    title: The stack
+    notes:
+      - { tool: claude, name: Claude, points: [ Writes in your tone, Reads your sources, Free to start ] }
+      - { tool: whatsapp, name: WhatsApp, points: [ Where people ask, Replies from your number, Voice notes too ] }
+      - { tool: googlesheets, name: Sheets, points: [ Your FAQ list, Leads it captures, Easy to edit ] }
+      - { tool: googlecalendar, name: Calendar, points: [ Books calls, Sends reminders, Never double-books ] }
+
+  - layout: tree
+    cap: channels
+    headline: One clone. *Every* channel.
+    body: Train it once. Put it everywhere you get asked.
+    root: Your Double
+    branches:
+      - { name: WhatsApp, tool: whatsapp }
+      - { name: Instagram, tool: instagram }
+      - { name: Website, tool: googlechrome }
+      - { name: Email, tool: gmail }
+      - { name: Calls, image: assets/icons/phone.png }
+    footer: Same answers, everywhere.
+
+  - layout: cta
+    style: photo
+    headline: Want the full setup?
+    sub: The source list, the 10-question template and the rules.
+    keyword: CLONE
+    note: We'll send it to you.
+    image: image-assets/closing-crew-peek-cobalt.png
+    position: center 30%

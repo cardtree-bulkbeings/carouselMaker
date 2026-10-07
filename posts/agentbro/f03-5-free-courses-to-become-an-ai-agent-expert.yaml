@@ -9,14 +9,12 @@ caption: |
   Save this. Comment COURSES for the links.
 slides:
   - layout: cover
-    style: person
-    kicker: Free loot
-    headline: 5 free courses to master AI *agents*
-    tagline: $0 · self-paced
-    logos: [huggingface, github, kaggle]
-    stats:
-      - { label: Cost, value: "$0" }
-      - { label: Level, value: "Zero → pro" }
+    style: count
+    number: "5"
+    kicker: Free courses to master
+    headline: AI *agents*
+    logos: [ huggingface, github, kaggle, youtube ]
+    image: assets/uploads/muuw2gxm-character-2.png
 
   - layout: item
     label: Course 01
@@ -24,7 +22,7 @@ slides:
     name: Hugging Face *Agents* Course
     what: Build your first agent from scratch, then with real frameworks. Certificate at the end.
     tool: huggingface
-    meta: ["Beginner", "Self-paced", "Certificate"]
+    meta: [ "Beginner", "Self-paced", "Certificate" ]
     example: "Best for: understanding how agents think, not just which buttons to press."
 
   - layout: item
@@ -33,7 +31,7 @@ slides:
     name: AI Agents for *Beginners*
     what: Microsoft's open lesson series on GitHub. Short lessons, runnable notebooks.
     tool: github
-    meta: ["Beginner", "Notebooks", "GitHub"]
+    meta: [ "Beginner", "Notebooks", "GitHub" ]
     example: "Best for: people who learn by running the code."
 
   - layout: item
@@ -42,7 +40,7 @@ slides:
     name: DeepLearning.AI *short courses*
     what: One-hour courses on agent patterns, tool use and multi-agent systems.
     icon: graduation-cap
-    meta: ["Intermediate", "1 hour each"]
+    meta: [ "Intermediate", "1 hour each" ]
 
   - layout: item
     label: Course 04
@@ -50,7 +48,7 @@ slides:
     name: Anthropic's *courses* on GitHub
     what: Prompting, tool use and evals, straight from the team that builds Claude.
     tool: anthropic
-    meta: ["Intermediate", "Notebooks"]
+    meta: [ "Intermediate", "Notebooks" ]
 
   - layout: item
     label: Course 05
@@ -58,7 +56,7 @@ slides:
     name: Kaggle AI *agents* intensive
     what: A free live course from Google with codelabs and a capstone you can show off.
     tool: kaggle
-    meta: ["Intermediate", "Capstone"]
+    meta: [ "Intermediate", "Capstone" ]
 
   - layout: recap
     flag: Save this loadout

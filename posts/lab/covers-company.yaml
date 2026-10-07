@@ -1,0 +1,77 @@
+# Cover gallery · Company. One slide per new cover style. Copy any slide into a real post as its cover.
+brand: thedouble-company
+format: LAB
+title: Cover styles · Company
+slides:
+  - layout: cover
+    style: split
+    label: The Double
+    label_r: Your clone
+    foot_r: "[ Knowledge ]"
+    headline: 5 things *your Double* learns
+    sub: The rest it figures out.
+    image: image-assets/scene-knowledge-room.png
+    position: 62% center
+
+  - layout: cover
+    style: vs
+    label: The Double
+    label_r: Know the difference
+    a: { text: "Chatbot *replies*", image: assets/agents/snow.png, color: snow }
+    b: { text: "Double *answers*", image: assets/agents/cobalt.png, color: cobalt }
+
+  - layout: cover
+    style: scatter
+    label: The Double
+    label_r: The stack
+    foot: "[ Save it ]"
+    foot_r: Team
+    headline: The AI *team* menu
+    sub: (Save it if you're hiring this year)
+    items:
+      - { image: assets/agents/tangerine.png, label: Follow-ups }
+      - { image: assets/agents/grape.png, label: Knowledge }
+      - { image: assets/agents/sky.png, label: Voice }
+      - { image: assets/agents/green.png, label: WhatsApp }
+      - { image: assets/agents/bubblegum.png, label: Personality }
+      - { image: assets/agents/yellow.png, label: Bookings }
+      - { tool: gmail, label: Inbox }
+      - { tool: googlecalendar, label: Calendar }
+
+  - layout: cover
+    style: pair
+    kicker: WhatsApp × Your Double
+    headline: Give your *business* a WhatsApp clone.
+    sub: It replies like you. One message away.
+    pair: [ whatsapp, assets/agents/cobalt.png ]
+    visual:
+      chat:
+        app: whatsapp
+        name: Your Double
+        avatar: assets/agents/cobalt.png
+        messages:
+          - { from: them, text: "Can you help with a booking?", time: "10:24" }
+          - { from: me, text: "Of course. What day works for you?", time: "10:24" }
+
+  - layout: cover
+    style: count
+    number: "5"
+    kicker: Every startup needs these
+    headline: AI *agents*
+    image: assets/agents/grape.png
+    logos: [ gmail, whatsapp, googlecalendar, notion ]
+
+  - layout: cover
+    style: banner
+    color: cobalt
+    kicker: How to build a
+    tool: whatsapp
+    headline: WhatsApp
+    tagline: AI clone (free)
+    image: assets/agents/cobalt.png
+    logos: [ googlecalendar, googlesheets ]
+
+  - layout: cta
+    style: ring
+    keyword: Clone
+    sub: To get the full setup with its templates

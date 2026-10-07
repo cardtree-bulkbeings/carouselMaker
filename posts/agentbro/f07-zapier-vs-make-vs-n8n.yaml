@@ -8,11 +8,13 @@ caption: |
   Which one are you on? Comment below.
 slides:
   - layout: cover
-    style: person
-    kicker: Versus
-    headline: Zapier vs Make vs *n8n*
-    tagline: For AI agents
-    logos: [zapier, make, n8n]
+    style: pair
+    kicker: Versus · for AI agents
+    headline: Which one should you *learn?*
+    sub: Zapier vs Make vs n8n. I tested all three.
+    pair: [ zapier, make, n8n ]
+    joiner: vs
+    labels: true
 
   - layout: statement
     kicker: Choose your fighter

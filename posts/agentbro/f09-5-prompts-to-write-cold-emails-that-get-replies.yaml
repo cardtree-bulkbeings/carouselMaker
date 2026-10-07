@@ -7,14 +7,19 @@ caption: |
   Comment PROMPTS and I'll DM you the whole bag.
 slides:
   - layout: cover
-    style: person
-    kicker: Loot drop
-    headline: 5 prompts for cold emails that get *replies*
-    tagline: Common → legendary
-    logos: [claude, gmail]
-    stats:
-      - { label: Items, value: "5" }
-      - { label: Best, value: "Legendary" }
+    style: guide
+    tool: gmail
+    tool_label: Loot drop
+    headline: 5 cold email *prompts* that get replies
+    chips: [ claude, openai, gmail, linkedin ]
+    checklist: [ Copy the prompt, Fill the brackets, Send ]
+    tag: Common → legendary. Steal all five.
+    image: assets/uploads/muqw6p40-chatgpt-image-sep-25-2026-09-05-40-pm.png
+    image_zoom: 1.1
+    image_x: 3
+    image_y: -29
+    move:
+      image: { y: -4, x: -7 }
 
   - layout: prompt
     rarity: legendary
@@ -53,3 +58,4 @@ slides:
     keyword: PROMPTS
     sub: I'll DM you all 5 with examples.
     doc_title: Cold email loot bag
+theme: red

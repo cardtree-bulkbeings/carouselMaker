@@ -73,6 +73,19 @@ async function listFormats() {
   return out;
 }
 
+// ---------- version history (never lose a post) ----------
+const histDir = (p) => path.join(ROOT, '.history', toRel(p).replace(/^posts\//, '').replace(/\.ya?ml$/, ''));
+async function backup(p, next) {
+  if (!fss.existsSync(p)) return;
+  const prev = await fs.readFile(p, 'utf8'); if (prev === next) return;
+  const dir = histDir(p); await fs.mkdir(dir, { recursive: true });
+  const files = (await fs.readdir(dir)).filter((f) => f.endsWith('.yaml')).sort();
+  // Autosave fires often: keep at most one snapshot per 20 s, and the newest 200.
+  const last = files.length ? Number(files.at(-1).replace('.yaml', '')) : 0;
+  if (Date.now() - last > 20000) await fs.writeFile(path.join(dir, `${Date.now()}.yaml`), prev);
+  for (const f of files.slice(0, Math.max(0, files.length - 199))) await fs.unlink(path.join(dir, f));
+}
+
 const slugify = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60) || 'post';
 
 async function readBody(req, limit = 30 * 1024 * 1024) {
@@ -114,10 +127,20 @@ export function createServer() {
           return send(res, 200, { text: await fs.readFile(p, 'utf8'), mtime: st.mtimeMs });
         }
         if (req.method === 'PUT') {
-          await fs.writeFile(p, (await readBody(req)).toString('utf8'));
+          const next = (await readBody(req)).toString('utf8');
+          await backup(p, next);
+          await fs.writeFile(p, next);
           return send(res, 200, { ok: true, mtime: (await fs.stat(p)).mtimeMs });
         }
         if (req.method === 'DELETE') { await fs.unlink(p); return send(res, 200, { ok: true }); }
+      }
+
+      // Version history: every save keeps the previous file in .history/<post>/<time>.yaml
+      if (url.pathname === '/api/history') {
+        const p = safePath(q.path); const dir = histDir(p);
+        if (q.v) return send(res, 200, { text: await fs.readFile(path.join(dir, path.basename(q.v)), 'utf8') });
+        const files = fss.existsSync(dir) ? (await fs.readdir(dir)).filter((f) => f.endsWith('.yaml')).sort().reverse() : [];
+        return send(res, 200, files.map((f) => ({ v: f, time: Number(f.replace('.yaml', '')) })));
       }
 
       if (url.pathname === '/api/mtime') {

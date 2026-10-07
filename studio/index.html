@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Carousel Studio</title>
+<title>Carousel Studio · The Double</title>
+<link rel="icon" href="/brands/_shared/thedouble/icon-black.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="/engine/slides.css">
 <link rel="stylesheet" href="/engine/kits.css">
 <link rel="stylesheet" href="/engine/worlds.css">
@@ -14,80 +15,104 @@
 </head>
 <body>
 <div class="app">
+  <!-- TOP BAR -->
+  <header class="top">
+    <div class="brandlock"><img src="/brands/_shared/thedouble/icon-black.svg" alt=""><b>Carousel Studio</b></div>
+    <div class="tb-title"><b id="postTitle">Pick a post</b><span id="postMeta"></span></div>
+    <div class="tb-group">
+      <div class="seg" id="viewSeg"><button data-v="strip" class="on">Slides</button><button data-v="grid">Profile</button><button data-v="reserve">Slide 2 first</button></div>
+      <span class="zoom"><button id="zOut" title="Smaller">−</button><span id="zVal">40%</span><button id="zIn" title="Bigger">+</button></span>
+    </div>
+    <div class="tb-group">
+      <button class="btn sm ghost" id="undoBtn" title="Undo (Ctrl+Z)">↶</button><button class="btn sm ghost" id="redoBtn" title="Redo (Ctrl+Shift+Z)">↷</button>
+      <button class="btn sm" id="histBtn" title="Earlier versions of this post">History</button>
+    </div>
+    <div class="tb-group">
+      <span class="seg" id="modeSeg" hidden><button data-m="light">Light</button><button data-m="dark">Dark</button></span>
+      <span class="colors" id="colors" title="Accent colour"></span>
+      <button class="btn" id="exportBtn" title="Render PNGs into out/">Export PNGs</button>
+      <button class="btn primary" id="zipBtn" title="Download every slide as a .zip">Download all</button>
+    </div>
+  </header>
+
   <!-- LEFT: posts -->
   <aside class="side">
-    <div class="side-head">
-      <b>Carousel Studio</b>
-      <button class="btn primary sm" id="newBtn">+ New</button>
+    <button class="btn lime wide" id="newBtn">+ New carousel</button>
+    <div class="acct" id="brandFilter">
+      <button data-b="" class="on">All</button>
+      <button data-b="founder"><i style="background:#2F43F2"></i>Founder</button>
+      <button data-b="company"><i style="background:#D4F53C"></i>Company</button>
+      <button data-b="agentbro"><i style="background:#E5172F"></i>Agent Bro</button>
     </div>
-    <div class="seg" id="brandFilter">
-      <button data-b="" class="on">All</button><button data-b="founder">Founder</button><button data-b="company">Company</button><button data-b="agentbro">Agent Bro</button>
-    </div>
+    <input class="search" id="postSearch" placeholder="Search posts…">
     <div class="posts" id="posts"></div>
   </aside>
 
   <!-- CENTRE: slides -->
   <main class="main">
-    <div class="toolbar">
-      <div class="tb-title"><b id="postTitle">Pick a post</b><span id="postMeta"></span></div>
-      <div class="tb-group">
-        <div class="seg" id="viewSeg"><button data-v="strip" class="on">Slides</button><button data-v="grid">Profile grid</button><button data-v="reserve">Slide 2 first</button></div>
-        <span class="zoom"><button id="zOut">−</button><span id="zVal">40%</span><button id="zIn">+</button></span>
-      </div>
-      <div class="tb-group">
-        <span class="colors" id="colors" title="Accent colour"></span>
-        <button class="btn" id="exportBtn" title="Render PNGs into out/">Export PNGs</button>
-        <button class="btn primary" id="zipBtn" title="Download every slide as a .zip">⬇ Download all</button>
-      </div>
-    </div>
-    <div class="stage" id="stage"><div class="empty-state">Choose a post on the left, or create one with <b>+ New</b>.</div></div>
-    <div class="imgbar" id="imgbar" hidden>
-      <span class="ib-label">Image</span>
+    <div class="stage" id="stage"><div class="empty-state">Choose a post on the left, or start one with <b>+ New carousel</b>.</div></div>
+    <div class="imgbar" id="elbar" hidden>
+      <span class="ib-label" id="elName">Element</span>
+      <button class="btn sm" data-a="smaller" title="Smaller (or scroll down)">−</button>
+      <button class="btn sm" data-a="bigger" title="Bigger (or scroll up / drag a corner)">+</button>
+      <span class="ib-sep"></span>
+      <button class="btn sm" data-a="back" title="Send to back">Back</button>
+      <button class="btn sm" data-a="backward" title="Send backward">↓</button>
+      <button class="btn sm" data-a="forward" title="Bring forward">↑</button>
+      <button class="btn sm" data-a="front" title="Bring to front">Front</button>
+      <span class="ib-sep"></span>
+      <button class="btn sm" data-a="crop" title="Pan / zoom the picture inside its frame">Crop</button>
       <button class="btn sm" data-a="replace">Replace…</button>
-      <button class="btn sm" data-a="zoomout">− Zoom</button>
-      <button class="btn sm" data-a="zoomin">+ Zoom</button>
-      <button class="btn sm" data-a="reset">Reset position</button>
-      <span class="ib-hint">Drag the image to move it · scroll to zoom · drop a file to replace</span>
-      <button class="btn sm ghost" data-a="close">Done</button>
+      <button class="btn sm" data-a="reset" title="Back to the layout's position">Reset</button>
+      <button class="btn sm ghost" data-a="close" title="Esc">Done</button>
     </div>
   </main>
 
-  <!-- RIGHT: editor -->
+  <!-- RIGHT: panel -->
   <aside class="panel">
-    <div class="seg tabs" id="tabs"><button data-t="edit" class="on">Edit</button><button data-t="check">Checklist <span id="checkCount"></span></button><button data-t="assets">Images</button><button data-t="help">Help</button></div>
-    <div class="tab" data-t="edit">
-      <div class="ed-head"><span id="saveState" class="save-state">—</span><span class="ed-hint">Double-click any text on a slide to edit it there. Ctrl+S saves.</span></div>
+    <div class="tabs" id="tabs"><button data-t="design" class="on">Design</button><button data-t="edit">Text</button><button data-t="check">Check <span id="checkCount"></span></button><button data-t="assets">Images</button><button data-t="help">Help</button></div>
+    <div class="tab" data-t="design"><div id="design"><p class="muted pad">Open a post, then click a slide.</p></div></div>
+    <div class="tab" data-t="edit" hidden>
+      <div class="ed-head"><span id="saveState" class="save-state">—</span><span class="ed-hint">Double-click text on a slide to edit it there · Ctrl+S saves</span></div>
       <textarea id="yaml" spellcheck="false"></textarea>
       <div class="err" id="err" hidden></div>
     </div>
     <div class="tab" data-t="check" hidden><div id="checklist"></div></div>
     <div class="tab" data-t="assets" hidden>
       <input class="search" id="assetSearch" placeholder="Filter images…">
-      <p class="muted">Drag an image onto a slide's image slot, or click to copy its path.</p>
+      <p class="muted">Drag onto an image slot, or select a slot and click an image.</p>
       <div class="assets" id="assets"></div>
     </div>
     <div class="tab" data-t="help" hidden>
       <div class="help">
+        <h4>Make a carousel fast</h4><p><b>+ New carousel</b> → pick the account and format → write over the sample text (double-click it). Click a slide, then use <b>Design</b> to change its type, or the cover's style. <b>+</b> between slides adds one from the library.</p>
+        <h4>Move anything</h4><p>Click any text, image, mockup or logo. Drag to move, drag a corner (or scroll) to resize, ↑ ↓ Front / Back for layers, arrow keys nudge. <b>Crop</b> pans a picture inside its frame. <b>Reset</b> puts it back.</p>
         <h4>Text</h4><p><code>*word*</code> emphasis · <code>**bold**</code> · <code>~~strike~~</code> · <code>{variable}</code> chip · <code>[[note]]</code> handwriting.</p>
-        <h4>Colour</h4><p>Pick a preset dot or the picker in the toolbar. It writes <code>theme:</code> into the post.</p>
-        <h4>Images</h4><p>Click an image on a slide to select it. Drag to move, scroll or ± to zoom, <b>Replace…</b> to swap. Or drop a file / library image onto it.</p>
-        <h4>Download</h4><p><b>⬇ Download all</b> gives a .zip of every slide (1080×1350 PNG). The ⬇ under a slide downloads just that one.</p>
-        <h4>Layouts</h4><p id="layoutList"></p>
-        <p class="muted">Full guide: <code>docs/DESIGN-SYSTEM.md</code></p>
+        <h4>Colour</h4><p>The dots in the top bar recolour the whole post.</p>
+        <h4>With an AI agent</h4><p>Tell Claude (or any agent in this folder): <i>"Make 3 Company carousels, format F03, about …"</i>. It follows <code>CLAUDE.md</code> and <code>docs/SLIDE-LIBRARY.md</code>, writes the posts and checks them with <code>npm run check</code>.</p>
       </div>
     </div>
   </aside>
 </div>
 
-<!-- new post dialog -->
+<!-- slide library -->
+<dialog id="libDlg" class="lib">
+  <div class="lib-head"><b id="libTitle">Add a slide</b><span class="muted" id="libSub">Live previews in this post's brand.</span><button class="btn sm ghost" id="libClose">Close</button></div>
+  <div class="lib-body" id="libBody"></div>
+</dialog>
+
+<!-- version history -->
+<dialog id="histDlg"><div class="dlg"><h3>Version history</h3><p class="muted">A copy is kept before every save. Restoring is undoable.</p><div id="histBody" class="hist-list"></div><div class="dlg-btns"><button class="btn" id="histClose">Close</button></div></div></dialog>
+
+<!-- new post -->
 <dialog id="newDlg">
   <form method="dialog" class="dlg">
     <h3>New carousel</h3>
-    <label>Handle<select id="nBrand"></select></label>
+    <label>Account<select id="nBrand"></select></label>
     <label>Format<select id="nFormat"></select></label>
     <p class="muted" id="nFormatHint"></p>
     <label>Title<input id="nTitle" placeholder="e.g. 5 AI Agents Every Clinic Needs"></label>
-    <div class="dlg-btns"><button class="btn" value="cancel">Cancel</button><button class="btn primary" id="nCreate" value="ok">Create</button></div>
+    <div class="dlg-btns"><button class="btn" value="cancel">Cancel</button><button class="btn lime" id="nCreate" value="ok">Create</button></div>
   </form>
 </dialog>
 <input type="file" id="filePick" accept="image/*" hidden>

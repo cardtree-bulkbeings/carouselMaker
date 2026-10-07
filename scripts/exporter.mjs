@@ -5,7 +5,10 @@ import path from 'node:path';
 import { ROOT } from '../server.mjs';
 
 let browserPromise;
-const getBrowser = () => (browserPromise ||= chromium.launch());
+// Playwright's own Chromium first; if it isn't installed for this user, fall back to system Chrome / Edge.
+const getBrowser = () => (browserPromise ||= chromium.launch()
+  .catch(() => chromium.launch({ channel: 'chrome' }))
+  .catch(() => chromium.launch({ channel: 'msedge' })));
 
 export async function closeBrowser() {
   if (browserPromise) { const b = await browserPromise; browserPromise = null; await b.close(); }

@@ -21,10 +21,10 @@ caption: |
   Follow for the weekly drop.
 slides:
   - layout: cover
-    style: type
+    style: number
+    number: "5"
     kicker: "[Date] · Weekly drop"
-    headline: This week in AI. 5 things you *missed.*
-    tagline: In 60 seconds
+    headline: AI things you *missed* this week
 
   - layout: news
     masthead: This week in AI

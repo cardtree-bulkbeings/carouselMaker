@@ -56,10 +56,15 @@ export async function initLibraries() {
   for (const f of local) LOCAL[f.slug] = f;
 }
 
+// Display names for the local 3D logos that Simple Icons doesn't title for us.
+const TITLES = { linkedin: 'LinkedIn', openai: 'ChatGPT', zoho: 'Zoho CRM', microsoftteams: 'Teams', microsoftword: 'Word', microsoftexcel: 'Excel', microsoftpowerpoint: 'PowerPoint', adobeacrobatreader: 'Acrobat', googlemeet: 'Google Meet' };
+
 const ALIAS = {
   'google-sheets': 'googlesheets', sheets: 'googlesheets', 'google-calendar': 'googlecalendar', calendar: 'googlecalendar',
   gemini: 'googlegemini', 'make.com': 'make', drive: 'googledrive', meta: 'meta', ig: 'instagram', wa: 'whatsapp',
   'google-ads': 'googleads', 'meta-ads': 'meta', gcal: 'googlecalendar', docs: 'googledocs', x: 'x', twitter: 'x',
+  chatgpt: 'openai', gpt: 'openai', teams: 'microsoftteams', word: 'microsoftword', excel: 'microsoftexcel', powerpoint: 'microsoftpowerpoint',
+  slides: 'googleslides', forms: 'googleforms', maps: 'googlemaps', meet: 'googlemeet', acrobat: 'adobeacrobatreader', zohocrm: 'zoho',
 };
 const slugOf = (name) => { const s = String(name).toLowerCase().trim().replace(/[\s.+]+/g, ''); return ALIAS[String(name).toLowerCase().trim()] || ALIAS[s] || s; };
 
@@ -68,13 +73,21 @@ function lum(hex) {
   return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
 }
 
+// Inside UI kits (WhatsApp, Claude, n8n, Gmail …) logos stay flat like the real apps; the 3D clay set is
+// only for places where the logo itself is the picture (tiles, tool rows, grids, cover orbit).
+let flatDepth = 0;
+export const flat = (fn) => { flatDepth++; try { return fn(); } finally { flatDepth--; } };
+
 /** A tool logo: { mark, title } where mark is an <i>/<img> element. Accepts "claude" or {name, src}. */
 export function logo(tool) {
   const t = typeof tool === 'string' ? { name: tool } : (tool || {});
   const slug = slugOf(t.slug || t.name || '');
-  if (t.src || LOCAL[slug]) {
-    const src = t.src || LOCAL[slug].path;
-    return { mark: `<img class="lg-img" src="/${esc(src)}" alt="">`, title: t.label || t.name || LOCAL[slug]?.title || slug };
+  const local = LOCAL[slug] && !(flatDepth && /\.png$/i.test(LOCAL[slug].path) && SI[slug]) ? LOCAL[slug] : null;
+  if (t.src || local) {
+    const src = t.src || local.path;
+    // PNGs in assets/logos are the 3D (clay) set: they carry their own shape and shadow, so tiles drop their fill.
+    const cls = /\.png$/i.test(src) ? 'lg-img lg-3d' : 'lg-img';
+    return { mark: `<img class="${cls}" src="/${esc(src)}" alt="">`, title: t.label || TITLES[slug] || SI[slug]?.title || (t.name && t.name !== slug ? t.name : null) || LOCAL[slug]?.title || slug };
   }
   const ic = SI[slug];
   if (ic) {
@@ -86,9 +99,25 @@ export function logo(tool) {
 }
 
 // ---------- UI icons (Phosphor) ----------
-export function icon(name, weight = 'bold') {
+// 3D stand-ins for Phosphor names, used ONLY when the icon is the slide's picture (icon(name, w, { three: true })).
+// Everywhere else (rows, cards, UI kits, chrome) Phosphor stays: it's cleaner at small sizes.
+const ICON3D = {
+  'chat-circle-dots': 'icons/chat', 'chats-circle': 'icons/chat', 'chat-circle': 'icons/chat', 'chat-centered-dots': 'icons/chat', chats: 'icons/chat', 'chat-dots': 'icons/chat', 'chat-teardrop-dots': 'icons/chat',
+  envelope: 'icons/email', 'envelope-simple': 'icons/email', 'envelope-open': 'icons/email',
+  phone: 'icons/phone', 'phone-call': 'icons/phone', 'phone-incoming': 'icons/phone',
+  globe: 'icons/globe', 'globe-simple': 'icons/globe', browser: 'icons/browser', browsers: 'icons/browser', 'app-window': 'icons/website',
+  database: 'icons/database', cloud: 'icons/cloud', 'file-pdf': 'icons/pdf',
+  'video-camera': 'icons/video', 'user-circle': 'icons/contact', 'address-book': 'icons/contact', 'identification-card': 'icons/contact',
+  'list-checks': 'icons/planner', kanban: 'icons/planner',
+  'whatsapp-logo': 'logos/whatsapp', 'calendar-check': 'logos/googlecalendar', calendar: 'logos/googlecalendar', 'calendar-blank': 'logos/googlecalendar',
+  'file-text': 'logos/googledocs', notepad: 'logos/googledocs', scroll: 'logos/googledocs', 'presentation-chart': 'logos/googleslides',
+  'map-pin': 'logos/googlemaps', table: 'logos/googlesheets', 'microsoft-excel-logo': 'logos/microsoftexcel', 'google-logo': 'logos/google',
+};
+
+export function icon(name, weight = 'bold', { three = false } = {}) {
   if (!name) return '';
-  if (/[\/.]/.test(name)) return `<img class="ic-img" src="/${esc(name)}" alt="">`;
+  if (/[\/.]/.test(name)) return `<img class="ic-img${/\.png$/i.test(name) ? ' lg-3d' : ''}" src="/${esc(name)}" alt="">`;
+  if (three && !flatDepth && ICON3D[name]) return `<img class="ic-img lg-3d" src="/assets/${ICON3D[name]}.png" alt="">`;
   const w = weight === 'regular' ? '' : `-${weight}`;
   return `<i class="ic" style="--src:url(/node_modules/@phosphor-icons/core/assets/${weight}/${esc(name)}${w}.svg)"></i>`;
 }

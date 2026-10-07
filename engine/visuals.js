@@ -9,7 +9,7 @@
 //   cards   – 2–3 side-by-side cards (lanes, options, before/after)
 //   checklist – ticked list
 //   doc     – a guide/document mockup (for CTAs)
-import { md, esc, logo, icon, colorVars, cycleColor } from './core.js';
+import { md, esc, logo, icon, flat, colorVars, cycleColor } from './core.js';
 
 /**
  * An image slot. `adj` is the object that holds the image field; it may also carry
@@ -62,12 +62,14 @@ const V = {
   chat(v, c, k) {
     const ch = v.chat; const app = ch.app || 'whatsapp';
     const initial = esc((ch.name || '?').replace(/[^A-Za-z0-9]/g, '')[0] || '?');
-    const avatar = ch.avatar ? `<img class="wa-av" src="/${esc(ch.avatar)}" alt="">` : `<span class="wa-av">${initial}</span>`;
+    // Felt characters (assets/agents) sit whole inside a tinted circle; photos fill it.
+    const felt = /assets\/agents\//.test(ch.avatar || '');
+    const avatar = ch.avatar ? `<img class="wa-av ${felt ? 'felt' : ''}" src="/${esc(ch.avatar)}" alt="">` : `<span class="wa-av">${initial}</span>`;
     const ticks = `<i class="wa-ticks">${icon('checks', 'bold')}</i>`;
     if (app === 'call') {
       return `<div class="wa-call ${v.frame === 'phone' || ch.frame === 'phone' ? 'in-phone' : ''}">
         <div class="wa-call-top"><span>${icon('lock-simple', 'fill')} End-to-end encrypted</span></div>
-        ${avatar}<b data-k="${k}.chat.name">${md(ch.name || 'Incoming call')}</b><span class="wa-call-st" data-k="${k}.chat.status">${md(ch.status || 'Calling…')}</span>
+        <span class="wa-call-ring">${avatar}</span><b data-k="${k}.chat.name">${md(ch.name || 'Incoming call')}</b><span class="wa-call-st" data-k="${k}.chat.status">${md(ch.status || 'Calling…')}</span>
         <div class="wa-bigwave">${'<i></i>'.repeat(24)}</div>
         ${ch.transcript ? `<div class="wa-transcript" data-k="${k}.chat.transcript">${md(ch.transcript)}</div>` : ''}
         <div class="wa-callbtns"><span>${icon('speaker-high', 'fill')}</span><span>${icon('video-camera', 'fill')}</span><span>${icon('microphone-slash', 'fill')}</span><span class="end">${icon('phone-disconnect', 'fill')}</span></div>
@@ -132,9 +134,9 @@ const V = {
   },
 
   cards(v, c, k) {
-    return `<div class="vz-cards n${v.cards.length}">${v.cards.map((cd, i) => `<div class="cd" style="${colorVars(c.brand, cd.color || cycleColor(c.brand, i))}">
+    return `<div class="vz-cards n${v.cards.length} ${v.cards.some((cd) => cd.image) ? 'has-img' : ''}">${v.cards.map((cd, i) => `<div class="cd" style="${colorVars(c.brand, cd.color || cycleColor(c.brand, i))}">
       ${cd.label ? `<span class="lbl" data-k="${k}.cards.${i}.label">${md(cd.label)}</span>` : ''}
-      ${cd.icon ? `<span class="tile">${icon(cd.icon)}</span>` : ''}
+      ${cd.image ? `<div class="cd-img"><img src="/${esc(cd.image)}" alt=""></div>` : cd.icon ? `<span class="tile">${icon(cd.icon)}</span>` : ''}
       <div class="t" data-k="${k}.cards.${i}.title">${md(cd.title)}</div>
       ${cd.text ? `<div class="s" data-k="${k}.cards.${i}.text">${md(cd.text)}</div>` : ''}
     </div>`).join('')}</div>`;
@@ -164,6 +166,8 @@ Object.assign(V, {
         <span class="cl-nav">${icon('plus')} New chat</span><span class="cl-nav on">${icon('folder-simple')} Projects</span><span class="cl-nav">${icon('squares-four')} Artifacts</span>
         <span class="cl-sec">Recents</span>${(cl.recents || ['Sales follow-ups', 'Clinic FAQ bot', 'Weekly report']).map((r) => `<span class="cl-rec">${esc(r)}</span>`).join('')}</aside>`}
       <main>${cl.project ? `<div class="cl-proj" data-k="${k}.claude.project">${md(cl.project)}</div>` : ''}
+        ${cl.files && !(cl.messages || []).length ? `<div class="cl-files"><div class="cl-files-h"><b>Project knowledge</b><span>${cl.files.length} files</span></div>${cl.instructions ? `<div class="cl-instr"><span>Instructions</span><div data-k="${k}.claude.instructions">${md(cl.instructions)}</div></div>` : ''}${cl.files.map((f, i) => { const ext = String(f.name || '').split('.').pop().toLowerCase(); const ic = ext === 'pdf' ? 'file-pdf' : /mp3|wav|m4a/.test(ext) ? 'file-audio' : /png|jpe?g/.test(ext) ? 'file-image' : /csv|xlsx/.test(ext) ? 'file-xls' : 'file-text';
+          return `<div class="cl-file"><span class="cl-fic">${icon(ic)}</span><div><b data-k="${k}.claude.files.${i}.name">${md(f.name)}</b><small>${esc(f.meta || '')}</small></div></div>`; }).join('')}</div>` : ''}
         <div class="cl-thread">${(cl.messages || []).map((m, i) => m.from === 'me'
           ? `<div class="cl-me" data-k="${k}.claude.messages.${i}.text">${md(m.text)}</div>`
           : `<div class="cl-ai">${logo('claude').mark}<div data-k="${k}.claude.messages.${i}.text">${md(m.text)}</div></div>`).join('')}</div>
@@ -197,7 +201,7 @@ Object.assign(V, {
   // Gmail-style inbox: gmail: [{from, subject, tag, unread}]
   gmail(v, c, k) {
     return `<div class="ui-gmail"><div class="gm-bar">${logo('gmail').mark}<span class="gm-search">${icon('magnifying-glass')} Search mail</span></div>
-      ${v.gmail.map((m, i) => `<div class="gm-row ${m.unread ? 'unread' : ''}"><span class="gm-from" data-k="${k}.gmail.${i}.from">${md(m.from)}</span><span class="gm-subj" data-k="${k}.gmail.${i}.subject">${md(m.subject)}</span>${m.tag ? `<span class="gm-tag">${esc(m.tag)}</span>` : ''}<small>${esc(m.time || '')}</small></div>`).join('')}</div>`;
+      ${v.gmail.map((m, i) => `<div class="gm-row ${m.unread ? 'unread' : ''} ${m.snippet ? 'has-snip' : ''}"><span class="gm-av" style="--h:${(String(m.from).charCodeAt(0) * 47) % 360}">${esc(String(m.from || '?').replace(/[^A-Za-z]/g, '')[0] || '?')}</span><span class="gm-from" data-k="${k}.gmail.${i}.from">${md(m.from)}</span><span class="gm-subj"><span data-k="${k}.gmail.${i}.subject">${md(m.subject)}</span>${m.snippet ? `<em class="gm-snip" data-k="${k}.gmail.${i}.snippet">${md(m.snippet)}</em>` : ''}</span>${m.tag ? `<span class="gm-tag">${esc(m.tag)}</span>` : ''}<small>${esc(m.time || '')}</small></div>`).join('')}</div>`;
   },
 
   // Google Sheets-style grid: sheet: {title, cols, rows}
@@ -211,7 +215,8 @@ Object.assign(V, {
 
   // Lock-screen notifications: notify: [{app, title, text, time}]
   notify(v, c, k) {
-    return `<div class="ui-notify">${v.notify.map((n, i) => { const l = logo(n.app || 'whatsapp');
+    const clock = v.clock ? `<div class="nt-clock"><span>${esc(v.date || 'Tuesday, 14 October')}</span><b>${esc(v.clock)}</b></div>` : '';
+    return `<div class="ui-notify ${v.clock ? 'lock' : ''}">${clock}${v.notify.map((n, i) => { const l = logo(n.app || 'whatsapp');
       return `<div class="nt">${n.app ? `<span class="nt-ic">${l.mark}</span>` : ''}<div><b><span data-k="${k}.notify.${i}.title">${md(n.title || l.title)}</span><small>${esc(n.time || 'now')}</small></b><span data-k="${k}.notify.${i}.text">${md(n.text)}</span></div></div>`; }).join('')}</div>`;
   },
 });
@@ -222,7 +227,7 @@ V.hub = (v, c, k) => {
   const centerKind = Object.keys(V).find((kind) => kind !== 'hub' && h.center && h.center[kind] !== undefined);
   return `<div class="vz-hub">
     <div class="hub-tools">${(h.tools || []).map((t) => { const l = logo(t); return `<span class="hub-tool">${l.mark}<b>${esc(l.title)}</b></span>`; }).join('')}</div>
-    <div class="hub-center">${centerKind ? V[centerKind](h.center, c, `${k}.hub.center`) : ''}</div>
+    <div class="hub-center">${centerKind ? flat(() => V[centerKind](h.center, c, `${k}.hub.center`)) : ''}</div>
     <div class="hub-feats">${(h.features || []).map((f, i) => `<div class="hub-feat"><span class="hub-ic">${icon(f.icon || 'sparkle')}</span><div><b data-k="${k}.hub.features.${i}.title">${md(f.title)}</b>${f.text ? `<span data-k="${k}.hub.features.${i}.text">${md(f.text)}</span>` : ''}</div></div>`).join('')}</div>
   </div>`;
 };
@@ -253,9 +258,15 @@ V.memo = (v, c, k) => {
 };
 
 /** Render a visual object. k = data-k prefix (e.g. "slides.3.visual"). */
+// How far each visual may zoom up to fill its area (engine.js zoomToFill). Single-column mockups read
+// best large; multi-column grids get cramped if they grow, so they stay near their designed size.
+// Product UIs drawn as the real apps look: flat logos and Phosphor glyphs inside, never the 3D set.
+const UI_KITS = new Set(['chat', 'claude', 'double', 'n8n', 'gmail', 'sheet', 'notify', 'code', 'table']);
+const GROW = { cards: 1.22, hub: 1.1, flow: 1.3, tools: 1.2, double: 1.25, table: 1.45, n8n: 1.2, claude: 1.2, badge: 1.35, memo: 1.25 };
+
 export function visual(v, c, k) {
   if (!v) return '';
   if (typeof v === 'string') v = { image: v };
-  for (const kind of Object.keys(V)) if (v[kind] !== undefined) return `<div class="visual vk-${kind}">${V[kind](v, c, k)}${v.caption ? `<div class="vcap" data-k="${k}.caption">${md(v.caption)}</div>` : ''}</div>`;
+  for (const kind of Object.keys(V)) if (v[kind] !== undefined) return `<div class="visual vk-${kind}" data-el="${k}" data-grow="${v.grow ?? GROW[kind] ?? 1.4}">${UI_KITS.has(kind) ? flat(() => V[kind](v, c, k)) : V[kind](v, c, k)}${v.caption ? `<div class="vcap" data-k="${k}.caption">${md(v.caption)}</div>` : ''}</div>`;
   return '';
 }

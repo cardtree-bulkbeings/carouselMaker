@@ -8,18 +8,19 @@ caption: |
   Comment BUILD and I'll send you the full setup.
 slides:
   - layout: cover
-    style: person
-    kicker: How I built an
-    headline: AI receptionist for *dentists*
-    tagline: Books patients *24/7*
+    style: banner
+    kicker: How I built an AI
+    tool: whatsapp
+    headline: Receptionist
+    tagline: for dentists · 24/7
     image: image-assets/character.png
-    texture: image-assets/texture-felt-cobalt.png
-    logos: [ claude, whatsapp, googlecalendar ]
-    tag: Receptionist · live
+    logos: [ claude, googlecalendar ]
     badge: FREE
     image_x: 23
     image_y: 20
     image_zoom: 1.1
+    move:
+      image: { s: 0.86, x: -80, y: 20 }
 
   - layout: statement
     kicker: The result

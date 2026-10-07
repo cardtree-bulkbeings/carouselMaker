@@ -16,6 +16,8 @@ slides:
     sub: Before your next hire.
     image: assets/agents/grape.png
     color: grape
+    move:
+      headline: { x: 11, y: -4 }
 
   - layout: statement
     kicker: Memo
@@ -32,37 +34,41 @@ slides:
 
   - layout: item
     label: Staff 01
+    cap: channels
     name: The *inbox* closer
     tool: gmail
     what: Replies to every lead in under a minute, day or night.
-    meta: ["Dept. of Channels", "Night shift"]
+    meta: [ "Dept. of Channels", "Night shift" ]
     visual:
       badge: { name: "Ivy", role: "Inbox closer", dept: "Channels", no: "#001", photo: assets/agents/cobalt.png, color: channels }
 
   - layout: item
     label: Staff 02
+    cap: knowledge
     name: The *support* desk
     tool: whatsapp
     what: Answers the same 30 questions so your team doesn't have to.
-    meta: ["Dept. of Knowledge", "24/7"]
+    meta: [ "Dept. of Knowledge", "24/7" ]
     visual:
       badge: { name: "Kit", role: "Support desk", dept: "Knowledge", no: "#002", photo: assets/agents/grape.png, color: knowledge }
 
   - layout: item
     label: Staff 03
+    cap: voice
     name: The *meeting* prep
     tool: googlecalendar
     what: Reads the CRM before every call and briefs you in 3 lines.
-    meta: ["Dept. of Voice", "Before every call"]
+    meta: [ "Dept. of Voice", "Before every call" ]
     visual:
       badge: { name: "Echo", role: "Meeting prep", dept: "Voice", no: "#003", photo: assets/agents/sky.png, color: voice }
 
   - layout: item
     label: Staff 04
+    cap: actions
     name: The *follow-up*
     tool: googlesheets
     what: Chases every quote you sent and forgot about.
-    meta: ["Dept. of Actions", "Day 3 · 7 · 14"]
+    meta: [ "Dept. of Actions", "Day 3 · 7 · 14" ]
     visual:
       badge: { name: "Rex", role: "Follow-up", dept: "Actions", no: "#004", photo: assets/agents/tangerine.png, color: actions }
     stamp: Never late
@@ -81,5 +87,6 @@ slides:
     style: question
     kicker: Hiring form
     headline: Which one would you hire *first?*
-    answers: ["01", "02", "03", "04", "05"]
+    answers: [ "01", "02", "03", "04", "05" ]
     sub: Comment the number. We'll show you how to set it up.
+theme: lime

@@ -1,0 +1,137 @@
+/* Design language "folio": the Codex look (engine/skins/codex.css, kept untouched for the archive posts)
+   made font-agnostic so Founder and Agent Bro can share it with their own type.
+   Brands set: --font-display (headlines), --font-emph (the *emphasis* face, usually an italic),
+   --display-weight, and the accent. Cards are tinted from the accent (--tint). */
+
+
+
+.sk-folio { --pad: 84px; --seal: #B23A2E; --tint: color-mix(in srgb, var(--accent) 6%, #FFFFFF); background: #FFFFFF; }
+.sk-folio::before { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background: radial-gradient(700px 520px at 100% 0%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 70%); }
+
+/* chrome: tiny running labels like a book */
+.sk-folio .chrome-top { top: 58px; }
+.sk-folio .brand-mark { height: 28px; }
+.sk-folio .series { font: 600 17px var(--font-body); letter-spacing: .3em; color: var(--muted); }
+.sk-folio .counter { display: none; }
+.sk-folio .counter-b { display: inline; font: 400 26px var(--font-display); font-style: italic; color: var(--muted); }
+.sk-folio .handle { font: 500 19px var(--font-body); color: var(--faint); letter-spacing: .04em; }
+.sk-folio .next-teaser { background: var(--paper); box-shadow: 0 8px 24px -10px color-mix(in srgb, var(--accent) 35%, transparent), 0 0 0 1px var(--line); padding: 12px 24px 12px 12px; font: 400 26px var(--font-display); font-style: italic; color: var(--ink); }
+.sk-folio .next-teaser .nt-ic { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 20px; }
+.sk-folio.has-next .handle { display: none; }
+.sk-folio .swipe.mini { display: none; }
+.sk-folio .body { top: 140px; }
+
+/* type: editorial serif, centred */
+.sk-folio .stack { align-items: center; text-align: center; gap: 26px; }
+.sk-folio .h-xl, .sk-folio .h-lg, .sk-folio .h-md, .sk-folio .h-law { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: var(--display-track); line-height: 1.0; max-width: 15ch; margin-inline: auto; color: var(--ink); }
+.sk-folio .h-xl { font-size: 116px; }
+.sk-folio .h-lg { font-size: 104px; }
+.sk-folio .h-law { font-size: 124px; max-width: 12ch; }
+.sk-folio em { font-family: var(--font-emph, var(--font-display)); font-style: italic; font-weight: var(--emph-weight, 400); color: var(--accent); background: none; letter-spacing: -.01em; }
+.sk-folio .lede { font-size: 32px; line-height: 1.42; color: var(--muted); max-width: 28ch; margin-inline: auto; }
+.sk-folio .kicker { padding: 10px 20px; border-radius: 99px; background: var(--hi-soft); color: var(--accent); font: 600 19px var(--font-body); letter-spacing: .2em; align-self: center; }
+.sk-folio .note { font-family: var(--font-hand); font-weight: 700; color: var(--accent); font-size: 46px; align-self: flex-end; transform: rotate(-4deg); }
+.sk-folio .note::before { content: "↳ "; }
+
+/* Folio / Law labels: italic roman numerals in the pigment */
+.sk-folio .step-head, .sk-folio .item-head { justify-content: center; }
+.sk-folio .dots, .sk-folio .xp, .sk-folio .item .num { display: none; }
+.sk-folio .pill-step, .sk-folio .pill-c, .sk-folio .law-num { background: none; box-shadow: none; padding: 0; color: var(--accent); font: 400 48px var(--font-display); font-style: italic; letter-spacing: 0; text-transform: none; align-self: center; }
+.sk-folio .meta { background: var(--hi-soft); color: var(--accent); font: 600 18px var(--font-body); letter-spacing: .14em; text-transform: uppercase; }
+.sk-folio .law-src { font-family: var(--font-display); font-style: italic; font-size: 30px; }
+.sk-folio .law-src::before { content: "— "; }
+
+/* cards: soft pigment tint, no borders (meghanify) */
+.sk-folio .vz-rows, .sk-folio .ui-double, .sk-folio .vz-table, .sk-folio .vz-check, .sk-folio .example, .sk-folio .lrow, .sk-folio .ri,
+.sk-folio .stt, .sk-folio .rc-box, .sk-folio .fnode, .sk-folio .prompt-card, .sk-folio .sc-table, .sk-folio .ifc {
+  background: var(--tint); box-shadow: none; border: 0; border-radius: 26px; text-align: left; }
+.sk-folio .vz-rows { padding: 16px 30px; }
+.sk-folio .vz-rows .row + .row { border-top-color: color-mix(in srgb, var(--accent) 12%, transparent); }
+.sk-folio .vz-rows .spine, .sk-folio .tile { background: #FFFFFF; color: var(--accent); border-radius: 50%; }
+.sk-folio .vz-rows .t { font-family: var(--font-display); font-weight: var(--display-weight); font-size: 36px; letter-spacing: -.01em; }
+.sk-folio .stt { background: var(--tint); } .sk-folio .stt:last-child { background: var(--accent); color: #fff; }
+.sk-folio .stt b { font-family: var(--font-display); font-weight: var(--display-weight); }
+
+/* Q&A: question as a pull-quote, the clone answers from a medallion card */
+.sk-folio .q-wrap { align-self: center; align-items: center; max-width: 92%; }
+.sk-folio .q { background: none; color: var(--ink); font: var(--emph-weight, 400) 50px/1.12 var(--font-emph, var(--font-display)); font-style: italic; padding: 0; border-radius: 0; text-align: center; }
+.sk-folio .q::before { content: "“"; } .sk-folio .q::after { content: "”"; }
+.sk-folio .q-wrap .who { letter-spacing: .3em; }
+.sk-folio .a-card { background: var(--tint); box-shadow: none; padding: 48px 52px; align-items: center; text-align: center; border-radius: 34px; }
+.sk-folio .a-head { flex-direction: column; gap: 10px; }
+.sk-folio .a-head .av { width: 140px; height: 140px; border: 5px solid #fff; box-shadow: 0 0 0 2px var(--accent); }
+.sk-folio .a-head .av.letter { background: var(--accent); color: #fff; font-family: var(--font-display); font-weight: 400; }
+.sk-folio .a-head b { font: 600 20px var(--font-body); letter-spacing: .3em; text-transform: uppercase; }
+.sk-folio .status { display: none; }
+.sk-folio .a { font: var(--display-weight) 50px/1.18 var(--font-display); letter-spacing: var(--display-track); }
+
+/* quote */
+.sk-folio .qmarks { font-family: var(--font-display); color: var(--accent); }
+.sk-folio .h-quote { font-family: var(--font-display); font-weight: var(--display-weight); font-style: normal; font-size: 96px; letter-spacing: -.02em; line-height: 1.0; }
+
+/* the wax seal (small, the only red) */
+.sk-folio .stamp { right: 90px; bottom: 160px; width: 150px; height: 150px; padding: 0; border: 0; border-radius: 50%; display: grid; place-items: center; text-align: center;
+  background: radial-gradient(circle at 38% 34%, #D8645A, var(--seal) 55%, #7E2219); color: #FBEDE6; font: 700 18px/1.15 var(--font-body); letter-spacing: .14em;
+  box-shadow: 0 0 0 9px color-mix(in srgb, var(--seal) 60%, transparent), 0 14px 26px -10px rgba(90,20,10,.5); opacity: 1; transform: rotate(-12deg); }
+
+/* COVER: serif title on white, the founder in an arched niche of ultramarine */
+.sk-folio .cv-text { align-items: center; text-align: center; padding-top: 120px; gap: 18px; }
+.sk-folio .h-cover { font-family: var(--font-display); font-weight: var(--display-weight); font-size: 128px; letter-spacing: var(--display-track); line-height: .96; max-width: 10ch; color: var(--ink); }
+.sk-folio .cv-text .kicker { font-size: 18px; }
+.sk-folio .cv-tagline { justify-content: center; font: 400 36px var(--font-display); font-style: italic; letter-spacing: 0; text-transform: none; color: var(--muted); }
+.sk-folio .cv-tagline::before { content: none; }
+.sk-folio .cv-stage.person .tray { left: 50%; right: auto; width: 620px; transform: translateX(-50%); top: 8%; bottom: -40px; border-radius: 310px 310px 0 0;
+  background: radial-gradient(420px 460px at 50% 28%, color-mix(in srgb, var(--accent) 55%, #fff), var(--accent) 62%); }
+.sk-folio .cv-stage.person .tray .tex { display: none; }
+.sk-folio .cv-stage.person .cutout { width: 84%; height: 108%; }
+.sk-folio .cv-stage.person .cutout.filled { left: 50%; width: 586px; top: calc(8% + 17px); bottom: -40px; height: auto; border-radius: 293px 293px 0 0; overflow: hidden; }
+.sk-folio .cv-stage.person .cutout.filled img { object-position: center 30%; }
+.sk-folio .orbit { display: none; }
+.sk-folio .float-tag { left: 50%; right: auto; bottom: 30px; transform: translateX(-50%); background: #fff; border: 0; border-radius: 99px; box-shadow: 0 8px 24px -10px rgba(0,0,0,.3); font: 600 17px var(--font-body); letter-spacing: .26em; padding: 12px 22px; }
+.sk-folio .float-tag .sq { display: none; }
+.sk-folio .sticker { background: var(--seal); color: #FBEDE6; border-radius: 50%; width: 120px; height: 120px; padding: 0; display: grid; place-items: center; font: 700 20px var(--font-body); letter-spacing: .12em; transform: rotate(-12deg); top: 80px; right: 80px; }
+.sk-folio.L-cover .swipe { background: var(--ink); }
+
+/* CTA: a title page */
+.sk-folio .cta-top { font: var(--display-weight) 60px/1.04 var(--font-display); letter-spacing: var(--display-track); color: var(--ink); max-width: 15ch; }
+.sk-folio .kw-c { font: 400 64px var(--font-display); font-style: italic; color: var(--muted); text-transform: none; }
+.sk-folio .kw { background: var(--accent); color: #fff; font: var(--display-weight) 132px/1 var(--font-display); letter-spacing: var(--display-track); padding: 14px 54px 22px; border-radius: 99px; transform: none; box-shadow: 0 20px 40px -18px color-mix(in srgb, var(--accent) 70%, transparent); }
+.sk-folio .vz-doc .pg { border-radius: 18px; background: #fff; }
+.sk-folio .vz-doc .p2 { background: var(--tint); } .sk-folio .vz-doc .p3 { background: var(--hi-soft); }
+.sk-folio .vz-doc b { font-family: var(--font-display); font-weight: var(--display-weight); font-size: 46px; }
+.sk-folio .follow { font-family: var(--font-display); font-style: italic; font-size: 30px; }
+
+/* ======================================================= folio additions (formats the codex prototypes never used) */
+/* the big-number cover: the count in the display face, the accent italic for a "+" */
+.sk-folio .cv-number .cv-text { padding-top: 110px; }
+.sk-folio .cv-number .h-cover { font-size: 112px; max-width: 12ch; }
+.sk-folio .cv-stage.number { justify-content: flex-start; }
+.sk-folio .cv-stage.number .giant { color: var(--accent); font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: -.05em; }
+.sk-folio .cv-stage.number .obj { right: 40px; }
+/* arch niche behind a number-cover cut-out, like the person cover */
+.sk-folio .cv-stage.number::after { content: ""; position: absolute; right: 70px; bottom: -40px; width: 520px; height: 640px; border-radius: 260px 260px 0 0; background: var(--tint); z-index: 0; }
+.sk-folio .cv-stage.number .obj, .sk-folio .cv-stage.number .giant { z-index: 2; }
+/* item slides without a visual: the mark sits in a tinted medallion */
+.sk-folio .hero-mark .tile { background: var(--tint); box-shadow: none; border-radius: 50%; }
+/* a big tool row, a recap, a grid: same soft tinted cards */
+.sk-folio :is(.mg, .vs .side, .opt, .tldr, .rc-box) { background: var(--tint); box-shadow: none; border: 0; border-radius: 26px; }
+.sk-folio .vs .side.win { background: var(--accent); color: var(--accent-ink); }
+.sk-folio .ri .num, .sk-folio .lrow .n { font-family: var(--font-display); font-weight: var(--display-weight); color: var(--accent); }
+.sk-folio .ri b, .sk-folio .lrow b { font-family: var(--font-display); font-weight: var(--display-weight); letter-spacing: -.01em; }
+.sk-folio .save-flag, .sk-folio .crit, .sk-folio .cat-bar { background: var(--hi-soft); color: var(--accent); }
+.sk-folio .cat-bar b { color: var(--accent); }
+.sk-folio .masthead { border-bottom: 2px solid var(--ink); }
+.sk-folio .masthead b { font-family: var(--font-display); font-weight: var(--display-weight); text-transform: none; letter-spacing: var(--display-track); font-size: 48px; }
+.sk-folio .breaking { background: var(--accent); }
+.sk-folio .pc-head { background: var(--accent); color: var(--accent-ink); }
+.sk-folio .prompt-card { background: #fff; box-shadow: 0 0 0 2px var(--accent), 0 18px 40px -22px color-mix(in srgb, var(--accent) 60%, transparent); }
+.sk-folio .rarity { background: var(--hi-soft); color: var(--accent); }
+.sk-folio .quiz-prompt, .sk-folio .result-pill { background: var(--accent); color: var(--accent-ink); }
+.sk-folio .cta-q .answers span { background: var(--tint); box-shadow: none; font-family: var(--font-display); font-weight: var(--display-weight); }
+.sk-folio .rc-kpi { background: var(--accent); color: var(--accent-ink); }
+.sk-folio .rc-kpi b { font-family: var(--font-display); font-weight: var(--display-weight); }
+.sk-folio .fnode { background: var(--tint); }
+.sk-folio .fnode b { font-family: var(--font-display); font-weight: var(--display-weight); }
+.sk-folio .status-chip { font-family: var(--font-body); }
+.sk-folio .kicker { font-size: 20px; }

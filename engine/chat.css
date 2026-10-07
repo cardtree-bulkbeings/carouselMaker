@@ -106,3 +106,5 @@
 /* never inherit a world's emphasis styling inside app UIs */
 .wa em, .wa-call em { background: none !important; color: inherit; font-style: normal; padding: 0; -webkit-text-fill-color: currentColor; }
 .wa-input em { color: #8696A0; }
+/* narrow hub mockups: drop the call icons so the contact name never truncates */
+.hub-center .wa-icons { display: none; }

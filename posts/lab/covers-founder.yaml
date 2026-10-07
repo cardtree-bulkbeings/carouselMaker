@@ -1,0 +1,47 @@
+# Cover gallery · Founder. One slide per cover style that fits a face-led handle.
+brand: thedouble-founder
+format: LAB
+title: Cover styles · Founder
+slides:
+  - layout: cover
+    style: banner
+    kicker: How to build a
+    tool: whatsapp
+    headline: WhatsApp
+    tagline: AI agent (free)
+    image: image-assets/character.png
+    logos: [ claude, n8n ]
+
+  - layout: cover
+    style: count
+    number: "4"
+    kicker: Every business needs these
+    headline: AI *agents*
+    image: image-assets/character.png
+    logos: [ claude, hubspot, googlecalendar, whatsapp ]
+
+  - layout: cover
+    style: guide
+    tool: claude
+    tool_label: Claude Projects
+    headline: This is the *best guide* to set up your AI clone in 10 minutes
+    image: image-assets/character.png
+    chips: [ claude, whatsapp, notion, googlesheets ]
+    checklist: [ Upload your notes, Set the tone, Start chatting ]
+    tag: The fastest way to a clone that sounds like you
+
+  - layout: cover
+    style: pair
+    kicker: WhatsApp × Claude
+    headline: Give Claude a *WhatsApp* number.
+    sub: Your AI assistant. One message away.
+    pair: [ whatsapp, claude ]
+
+  - layout: cover
+    style: split
+    label: Founder notes
+    foot_r: "[ Day 8 ]"
+    headline: 5 AI habits *that run my week*
+    sub: Not tools. Habits.
+    image: image-assets/character.png
+

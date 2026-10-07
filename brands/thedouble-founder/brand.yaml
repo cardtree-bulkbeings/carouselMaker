@@ -1,40 +1,45 @@
-# Founder — design language "bold" (after aiagently: white ground, face-led covers, one hot accent
-# with soft corner glows, centred titles with a colour→ink gradient, pale-tint icon rows).
-# A touch of The Double: cobalt is the one accent.
+# Founder: the founder's notebook in the Double system (after "Carousel A — I built my Double").
+# Same family as Company (Funnel Display, Newsreader italic, Geist, Silkscreen, capability colours) so collabs
+# read as one brand. Founder's own taste: left-aligned and first person · cover and CTA on cobalt ·
+# every inner slide on its capability's FLAT soft tint with ONE full-strength block (Company uses washes) ·
+# his face as a sticker on the block's corner · Silkscreen status chips · big solid step numerals.
 name: Founder
 handle: "@founder"          # TODO: real handle
-logo: brands/_shared/thedouble/icon-black.svg
-emphasis: color             # *word* → accent colour
-design: bold                # engine/skins/bold.css
+logo: assets/brand/logos/mark-ink.svg
+emphasis: serif             # *word* → Newsreader italic (engine/double.css)
+design: bold                # engine/skins/bold.css (layout) + brands/thedouble-founder/skin.css
+skin: brands/thedouble-founder/skin.css
+rhythm: capabilities        # inner slides take knowledge → personality → voice → channels → actions
+face: image-assets/character.png   # sticker on the slide's one bold block; set `face: false` on a slide to hide
 fonts:
-  - https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&family=Caveat:wght@700&display=block
+  - https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600;700;800&family=Newsreader:ital,opsz,wght@1,6..72,400&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Silkscreen&family=Caveat:wght@700&display=block
 
 tokens:
   ground: "#FFFFFF"
   paper: "#FFFFFF"
-  ink: "#111114"
-  muted: "#4A4B55"
-  faint: "#8A8B95"
-  line: "rgba(17,17,20,.08)"
-  chip: "#EEF0FF"            # pale accent tint for rows and tiles
-  accent: "#2F43F2"          # cobalt (The Double)
+  ink: "#15172B"
+  muted: "#57596D"
+  faint: "#6E7084"
+  line: "rgba(21,23,43,.10)"
+  chip: "#EEF0FF"
+  accent: "#2F43F2"          # cobalt
   accent-ink: "#FFFFFF"
-  accent-deep: "#16205F"
+  accent-deep: "#2132BB"
   hi: "#2F43F2"
-  hi-soft: "#E6E9FF"
-  glow: "rgba(47,67,242,.16)"
-  deep: "#111114"
+  hi-soft: "#DEE2FF"
+  glow: "rgba(47,67,242,.14)"
+  deep: "#151B55"
   deep-ink: "#FFFFFF"
   tray: "#2F43F2"
-  live: "#22C55E"
-  good: "#16A34A"
+  live: "#D4F53C"
+  good: "#2F43F2"
   bad: "#E5484D"
   note: "#2F43F2"
-  font-display: "'Poppins', Arial, sans-serif"
-  font-human: "'Poppins', Arial, sans-serif"
-  font-body: "'Inter', system-ui, sans-serif"
-  font-mono: "'JetBrains Mono', ui-monospace, monospace"
-  font-pixel: "'Inter', sans-serif"
+  font-display: "'Funnel Display', 'Poppins', Arial, sans-serif"
+  font-human: "'Newsreader', Georgia, serif"
+  font-body: "'Geist', 'Inter', system-ui, sans-serif"
+  font-mono: "'Geist Mono', ui-monospace, monospace"
+  font-pixel: "'Silkscreen', monospace"
   font-hand: "'Caveat', cursive"
   display-weight: "700"
   display-track: "-0.035em"
@@ -44,21 +49,29 @@ tokens:
   shadow: "0 1px 2px rgba(17,17,20,.04), 0 12px 32px -8px rgba(47,67,242,.14), 0 0 0 1px rgba(47,67,242,.06)"
 
 palette:
-  cobalt:    ["#2F43F2", "#E6E9FF", "#FFFFFF"]
-  tangerine: ["#FF7417", "#FFE9DA", "#111114"]
-  grape:     ["#6A2CF5", "#EDE5FF", "#FFFFFF"]
-  sky:       ["#16B0FA", "#DDF2FD", "#111114"]
-  bubblegum: ["#FF4FAE", "#FFE3F2", "#111114"]
-  ink:       ["#111114", "#EDEDF0", "#FFFFFF"]
+  cobalt:    ["#2F43F2", "#DEE2FF", "#FFFFFF"]
+  grape:     ["#6A2CF5", "#E9E1FF", "#FFFFFF"]
+  bubblegum: ["#FF4FAE", "#FFDDEF", "#15172B"]
+  sky:       ["#16B0FA", "#D5EEFB", "#15172B"]
+  tangerine: ["#FF7417", "#FFE4D1", "#15172B"]
+  ink:       ["#15172B", "#ECECEF", "#FFFFFF"]
+  knowledge:   ["#6A2CF5", "#E9E1FF", "#FFFFFF"]
+  personality: ["#FF4FAE", "#FFDDEF", "#15172B"]
+  voice:       ["#16B0FA", "#D5EEFB", "#15172B"]
+  channels:    ["#2F43F2", "#DEE2FF", "#FFFFFF"]
+  actions:     ["#FF7417", "#FFE4D1", "#15172B"]
 
-# Colour presets shown in the studio (post: `theme: green` or `theme: { accent: "#..." }`).
+# Accent presets (post: `theme: grape`). Cobalt is the brand; the others are capability colours.
+# Per-slide colour comes from `cap:` (or the automatic capability rhythm), not from theme.
 accents:
-  cobalt:  { accent: "#2F43F2" }
-  green:   { accent: "#16A34A" }
-  red:     { accent: "#E5262E" }
-  orange:  { accent: "#FF6A13" }
-  violet:  { accent: "#6A2CF5" }
-  ink:     { accent: "#111114" }
+  cobalt:    { accent: "#2F43F2" }
+  grape:     { accent: "#6A2CF5" }
+  tangerine: { accent: "#FF7417", accent_ink: "#15172B" }
+  deep:      { accent: "#151B55" }
+  # older names kept so existing posts render
+  violet:    { accent: "#6A2CF5" }
+  orange:    { accent: "#FF7417", accent_ink: "#15172B" }
+  ink:       { accent: "#15172B" }
 
 # Imagery: the founder's real face on the cover; felt agents may appear inside agent-build posts.
 rules:

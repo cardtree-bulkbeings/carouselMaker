@@ -1,1 +1,113 @@
-/* agentbro skin: brand-specific tweaks on top of engine/slides.css */
+/* Agent Bro: "the lab". Its own world, nothing shared with Company or Founder.
+   One identity, two palettes: LIGHT (default, white paper) and DARK (`mode: dark`, near-black).
+   The lab signature in both: a faint engineering grid · a red square before the wordmark · mono "// labels"
+   · red quest tags · hairline cards · white→ink headline shine with the one emphasis in red.
+   UI mockups (WhatsApp, Gmail, Claude …) stay light like real screenshots.
+   Loaded last (engine.js); every rule is scoped to .slide.b-agentbro. */
+
+/* ---------------------------------------------------------------- palettes */
+.slide.b-agentbro {
+  --lab-bg: #FFFFFF; --lab-grid: rgba(13,13,16,.045); --lab-glow: color-mix(in srgb, var(--accent) 12%, transparent);
+  --lab-card: #FFFFFF; --lab-line: rgba(13,13,16,.10); --lab-card-shadow: 0 18px 40px -26px rgba(13,13,16,.28);
+  --lab-head: linear-gradient(180deg, #34353D 0%, #0B0B0E 70%); --lab-em-top: color-mix(in srgb, var(--accent) 55%, #fff);
+  --lab-pill: #0D0D10; --lab-pill-ink: #FFFFFF; --lab-chip-line: rgba(13,13,16,.16); --lab-sil: #E6E6EA;
+  --chip: color-mix(in srgb, var(--accent) 10%, #fff) !important; --hi-soft: color-mix(in srgb, var(--accent) 12%, #fff) !important;
+}
+.slide.b-agentbro.mode-dark {
+  --ground: #0C0C0F; --paper: #17171C; --ink: #F5F5F7; --muted: #A6A6AF; --faint: #75757E; --line: rgba(255,255,255,.10);
+  --deep: #000; --note: #FF5A6C; --good: #22C55E;
+  --lab-bg: #0C0C0F; --lab-grid: rgba(255,255,255,.035); --lab-glow: color-mix(in srgb, var(--accent) 26%, transparent);
+  --lab-card: #17171C; --lab-line: rgba(255,255,255,.09); --lab-card-shadow: none;
+  --lab-head: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 40%, #C9C9D2 100%); --lab-em-top: #FF8A97;
+  --lab-pill: #FFFFFF; --lab-pill-ink: #0C0C0F; --lab-chip-line: rgba(255,255,255,.18); --lab-sil: #24242B;
+  --chip: rgba(255,255,255,.07) !important; --hi-soft: color-mix(in srgb, var(--accent) 16%, transparent) !important;
+  color: var(--ink);
+}
+.slide.b-agentbro {
+  background:
+    radial-gradient(620px 520px at 104% -8%, var(--lab-glow), transparent 70%),
+    radial-gradient(520px 420px at -10% 110%, color-mix(in srgb, var(--lab-glow) 50%, transparent), transparent 70%),
+    linear-gradient(var(--lab-grid) 1px, transparent 1px) 0 0 / 54px 54px,
+    linear-gradient(90deg, var(--lab-grid) 1px, transparent 1px) 0 0 / 54px 54px,
+    var(--lab-bg) !important;
+}
+
+/* ---------------------------------------------------------------- chrome */
+.slide.b-agentbro .brand-mark.text { color: var(--ink); display: inline-flex; align-items: center; gap: 12px; font-size: 30px; }
+.slide.b-agentbro .brand-mark.text::before { content: ""; width: 16px; height: 16px; border-radius: 4px; background: var(--accent); box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 70%, transparent); }
+.slide.b-agentbro .counter { font: 500 22px var(--font-mono); color: var(--muted); letter-spacing: .08em; }
+.slide.b-agentbro .handle { font: 500 20px var(--font-mono); color: var(--faint); }
+.slide.b-agentbro .next-teaser { background: var(--lab-pill); color: var(--lab-pill-ink); box-shadow: 0 14px 30px -14px color-mix(in srgb, var(--accent) 50%, transparent); }
+.slide.b-agentbro .swipe.mini { background: var(--chip); color: var(--ink); box-shadow: none; }
+.slide.b-agentbro.L-cover .swipe { background: var(--lab-pill); color: var(--lab-pill-ink); }
+
+/* ---------------------------------------------------------------- type */
+.slide.b-agentbro :is(.h-xl, .h-lg, .h-md, .h-cover, .cta-top, .kw-c) {
+  background: var(--lab-head) !important; -webkit-background-clip: text !important; background-clip: text !important; color: transparent !important; -webkit-text-fill-color: transparent !important; }
+.slide.b-agentbro :is(.h-xl, .h-lg, .h-md, .h-cover, .cta-top) em {
+  background: linear-gradient(180deg, var(--lab-em-top) 0%, var(--accent) 45%, var(--accent-deep) 100%) !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; }
+.slide.b-agentbro .kicker { font: 500 22px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.slide.b-agentbro .kicker::before { content: "// "; color: var(--faint); }
+.slide.b-agentbro .lede { color: var(--muted); }
+.slide.b-agentbro .lede b { color: var(--ink); }
+.slide.b-agentbro .st.novis .h-xl { font-size: 128px; line-height: .94; }
+.slide.b-agentbro .note { color: var(--note); }
+
+/* ---------------------------------------------------------------- tags + chips */
+.slide.b-agentbro :is(.pill-step, .pill-c) { background: var(--accent); color: #fff; box-shadow: 0 10px 24px -12px var(--accent); }
+.slide.b-agentbro :is(.pill-step, .pill-c)::before { background: #fff; box-shadow: none; }
+.slide.b-agentbro .meta { background: transparent; color: var(--ink); box-shadow: 0 0 0 1.5px var(--lab-chip-line); }
+.slide.b-agentbro .xp::before { color: var(--ink); }
+.slide.b-agentbro .xp-track { background: var(--lab-line); }
+
+/* ---------------------------------------------------------------- cards: hairline, flat */
+.slide.b-agentbro :is(.vz-rows, .ui-double, .vz-table, .vz-check, .example, .lrow, .ri, .stt, .rc-box, .fnode, .sc-table, .opt, .vs .side, .prompt-card, .ifc, .hub-tool, .hub-feat, .tldr, .mg, .cta-q .answers span, .cv-stats span, .item-head .tile.big) {
+  background: var(--lab-card) !important; box-shadow: inset 0 0 0 1.5px var(--lab-line), var(--lab-card-shadow) !important; color: var(--ink); }
+.slide.b-agentbro .vz-rows .row + .row { border-top-color: var(--lab-line); }
+.slide.b-agentbro .vz-rows .spine { background: color-mix(in srgb, var(--accent) 14%, transparent); color: var(--accent); }
+.slide.b-agentbro .stt:last-child, .slide.b-agentbro .vs .side.win { background: var(--accent) !important; color: #fff; box-shadow: 0 24px 50px -24px var(--accent) !important; }
+.slide.b-agentbro .vs .side.win .sd-text { color: #fff; }
+.slide.b-agentbro .sd-text { color: var(--ink); opacity: .82; }
+.slide.b-agentbro .sc-row { border-top-color: var(--lab-line); }
+.slide.b-agentbro .sc-row > span.win { background: color-mix(in srgb, var(--accent) 12%, transparent); }
+.slide.b-agentbro .mg.pick { outline-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, var(--lab-card)) !important; }
+.slide.b-agentbro .mg span { color: var(--muted); }
+.slide.b-agentbro :is(.cat-bar, .save-flag, .stamp) { background: var(--lab-pill); color: var(--lab-pill-ink); }
+.slide.b-agentbro .cat-bar b { color: var(--accent); }
+.slide.b-agentbro .ifc-ic { background: var(--accent); }
+.slide.b-agentbro .masthead { border-bottom-color: var(--lab-chip-line); }
+.slide.b-agentbro .tldr { box-shadow: inset 0 0 0 2px var(--accent) !important; }
+.slide.b-agentbro .tl .sq { background: var(--accent); }
+.slide.b-agentbro .ri .num, .slide.b-agentbro .lrow .n { color: var(--accent); }
+.slide.b-agentbro .lrow span:not(.n) { color: var(--muted); }
+.slide.b-agentbro .pc-body { color: var(--ink); }
+.slide.b-agentbro.mode-dark .var { background: color-mix(in srgb, var(--rar, var(--accent)) 22%, transparent); color: #fff; }
+.slide.b-agentbro .vz-code, .slide.b-agentbro .ui-n8n { box-shadow: inset 0 0 0 1.5px var(--lab-line), 0 30px 60px -30px rgba(0,0,0,.5); }
+.slide.b-agentbro .hero-mark .tile { background: #fff !important; box-shadow: inset 0 0 0 1.5px var(--lab-line), 0 30px 70px -30px color-mix(in srgb, var(--accent) 55%, transparent) !important; }
+.slide.b-agentbro .follow { color: var(--muted); }
+
+/* the guide mockup on the CTA stays paper-white in both modes */
+.slide.b-agentbro.mode-dark .vz-doc .pg { background: #fff; } .slide.b-agentbro.mode-dark .vz-doc .p1 { color: #0C0C0F; }
+.slide.b-agentbro.mode-dark .vz-doc .p2 { background: color-mix(in srgb, var(--accent) 35%, #fff); } .slide.b-agentbro.mode-dark .vz-doc .p3 { background: color-mix(in srgb, var(--accent) 18%, #fff); }
+.slide.b-agentbro.mode-dark .vz-doc .ln { background: #E8E8EC; } .slide.b-agentbro.mode-dark .vz-doc .ln.t { color: #55555E; background: none; }
+.slide.b-agentbro.mode-dark .kw-line::before { background: rgba(232,164,0,.18); color: #FFC94D; }
+
+/* ---------------------------------------------------------------- covers */
+.slide.b-agentbro .cv-tagline { color: var(--muted); }
+.slide.b-agentbro .sil { fill: var(--lab-sil); }
+.slide.b-agentbro .imgbox.silhouette::after { color: var(--faint); }
+.slide.b-agentbro .cv-type .h-cover { font-size: 200px; line-height: .86; letter-spacing: -.05em; max-width: 6ch; }
+.slide.b-agentbro .cv-type .cv-tagline { font: 500 26px var(--font-mono); letter-spacing: .16em; }
+.slide.b-agentbro .cv-type .cv-tagline::before { background: var(--accent); }
+.slide.b-agentbro .cv-pair .pr-box { background: #fff; box-shadow: inset 0 0 0 1.5px var(--lab-line), 0 30px 60px -30px color-mix(in srgb, var(--accent) 45%, transparent); }
+.slide.b-agentbro .cv-pair .pr-tile b { color: var(--ink); }
+.slide.b-agentbro .cv-count .cn-num, .slide.b-agentbro .cv-count .cn-kicker { color: var(--ink); }
+.slide.b-agentbro .cv-guide .gd-chip, .slide.b-agentbro .cv-guide .gd-card, .slide.b-agentbro .cv-guide .gd-pill { background: #fff; color: #0C0C0F; box-shadow: inset 0 0 0 1.5px var(--lab-line), 0 18px 36px -20px rgba(0,0,0,.3); }
+.slide.b-agentbro .cv-guide .gd-lock { color: var(--ink); }
+.slide.b-agentbro .float-tag { background: #fff; color: #0C0C0F; }
+
+/* text-only statements: the type is the picture */
+.slide.b-agentbro .st.novis .h-xl { font-size: 150px; line-height: .92; max-width: 9ch; }
+.slide.b-agentbro .st.novis .lede { font-size: 36px; max-width: 26ch; margin-top: 10px; }
+.slide.b-agentbro .st.novis .kicker { margin-bottom: 6px; }
+.slide.b-agentbro .stack.prompt-l.novis { justify-content: center; }

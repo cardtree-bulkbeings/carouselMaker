@@ -1,1 +1,83 @@
-/* thedouble-company skin: brand-specific tweaks on top of engine/slides.css */
+/* Company: the Double design system on the calm (centred, editorial) layout.
+   Type: Funnel Display 700 at -3.5% · one Newsreader italic phrase (engine/double.css) · Geist body ·
+   Geist Mono labels (+10%) · Silkscreen status. Ground: linen. Capability slides wear their pigment wash.
+   Loaded last; scoped to .slide.b-thedouble-company. */
+
+/* ---------------------------------------------------------------- type */
+.slide.b-thedouble-company :is(.h-cover, .h-xl, .h-lg, .h-md, .cta-top, .ln-t, .ix-t, .tr-root, .br-fact b, .rg-kw, .ph-kw, .vs-word, .nb-title span) {
+  font-family: var(--font-display); font-weight: 700; letter-spacing: -.035em; }
+.slide.b-thedouble-company .h-cover { line-height: .98; }
+.slide.b-thedouble-company :is(.h-xl, .h-lg) { line-height: 1.0; }
+.slide.b-thedouble-company :is(.kicker, .crit, .pill-step, .pill-c, .cv-tagline, .ed-pill, .ln-lbl, .lg-row.th, .br-fact span, .pp-cmp span, .vs-ask .who, .series, .counter-b, .handle, .next-teaser, .cv-corner, .meta, .lbl) {
+  font-family: var(--font-mono) !important; font-weight: 500 !important; letter-spacing: .12em !important; }
+.slide.b-thedouble-company .lede { font-family: var(--font-body); color: var(--muted); }
+.slide.b-thedouble-company .series { font-size: 19px; }
+.slide.b-thedouble-company .brand-mark { height: 34px; }
+.slide.b-thedouble-company .note { font-family: var(--font-human); font-style: italic; color: var(--accent); }
+
+/* soft surfaces: separation by fill, radius scale, no hairline rings */
+.slide.b-thedouble-company :is(.vz-rows, .ui-double, .vz-table, .vz-check, .lrow, .ri, .stt, .opt, .vs .side, .sc-table, .prompt-card, .ui-memo) {
+  box-shadow: 0 1px 2px rgba(21,23,43,.04), 0 18px 40px -26px rgba(21,23,43,.28); }
+.slide.b-thedouble-company .vs .side.win, .slide.b-thedouble-company .stt:last-child { background: var(--ds-cobalt); color: #fff; }
+.slide.b-thedouble-company .vs .side.win .sd-text { color: #fff; }
+.slide.b-thedouble-company .vs.has-av .side.win .sd-av { background: rgba(255,255,255,.14); }
+
+/* ---------------------------------------------------------------- capability slides: one pigment wash each */
+.slide.b-thedouble-company.has-cap { background: var(--ds-ground) center / cover no-repeat; }
+.slide.b-thedouble-company.cap-knowledge { background-image: url(/assets/brand/washes/wash-grape.webp); }
+.slide.b-thedouble-company.cap-personality { background-image: url(/assets/brand/washes/wash-bubblegum.webp); }
+.slide.b-thedouble-company.cap-voice { background-image: url(/assets/brand/washes/wash-sky.webp); }
+.slide.b-thedouble-company.cap-channels { background-image: url(/assets/brand/washes/wash-cobalt.webp); }
+.slide.b-thedouble-company.cap-actions { background-image: url(/assets/brand/washes/wash-tangerine.webp); }
+/* text on a wash is ink; body at 85% ink */
+.slide.b-thedouble-company.has-cap { --muted: rgba(21,23,43,.85); --faint: rgba(21,23,43,.7); --hi: var(--cap-soft); }
+/* every wash card gets one full-strength thing: the capability tile / step label */
+.slide.b-thedouble-company.has-cap :is(.vz-rows .spine, .tile) { background: var(--cap); color: var(--cap-ink); }
+.slide.b-thedouble-company.has-cap :is(.pill-step, .pill-c, .kicker) { color: var(--ds-ink); }
+.slide.b-thedouble-company.has-cap :is(.ix-card, .br-box, .pp-card, .tr-kid, .lane) { background: rgba(255,255,255,.72); }
+.slide.b-thedouble-company.has-cap .ed-pill { background: #fff; border-color: transparent; }
+
+/* ---------------------------------------------------------------- covers */
+.slide.b-thedouble-company .cv-text .kicker, .slide.b-thedouble-company .cv-tagline { color: var(--ds-ink); }
+.slide.b-thedouble-company .cv-stage.number .giant { font-family: var(--font-display); font-weight: 700; letter-spacing: -.06em; }
+/* the split cover's light half sits on linen */
+.slide.b-thedouble-company .cv-split .sp-text .h-cover { letter-spacing: -.035em; }
+
+/* three definition cards: Funnel Display runs wider than Inter Tight */
+.slide.b-thedouble-company .vz-cards.n3 .cd .t { font-size: 40px; letter-spacing: -.03em; overflow-wrap: anywhere; }
+.slide.b-thedouble-company .vz-cards.n3 .cd { padding: 30px 20px 30px; }
+.slide.b-thedouble-company .vcap { font-family: var(--font-body); letter-spacing: 0; font-size: 22px; color: var(--muted); }
+
+/* ---------------------------------------------------------------- v2: calmer washes, readable content */
+/* The pigment wash is a ground, not a picture: soften it with linen so ink text and small type read. */
+.slide.b-thedouble-company.has-cap { background-image: linear-gradient(rgba(246,244,239,.42), rgba(246,244,239,.42)), var(--wash) !important; background-size: cover; }
+.slide.b-thedouble-company.cap-knowledge { --wash: url(/assets/brand/washes/wash-grape.webp); }
+.slide.b-thedouble-company.cap-personality { --wash: url(/assets/brand/washes/wash-bubblegum.webp); }
+.slide.b-thedouble-company.cap-voice { --wash: url(/assets/brand/washes/wash-sky.webp); }
+.slide.b-thedouble-company.cap-channels { --wash: url(/assets/brand/washes/wash-cobalt.webp); }
+.slide.b-thedouble-company.cap-actions { --wash: url(/assets/brand/washes/wash-tangerine.webp); }
+/* small type never sits on the wash directly: tables, timelines and notes get a white panel */
+.slide.b-thedouble-company.has-cap :is(.lg-table, .pp-card) { background: rgba(255,255,255,.94); border-radius: 30px; padding: 18px 30px; }
+.slide.b-thedouble-company.has-cap :is(.ix-card, .br-box, .tr-kid, .lane, .opt) { background: rgba(255,255,255,.9); }
+.slide.b-thedouble-company.has-cap .lede, .slide.b-thedouble-company.has-cap .ed-foot.it { color: var(--ds-ink); }
+.slide.b-thedouble-company.has-cap .br-fact { background: rgba(255,255,255,.9); border-color: transparent; }
+/* the quote: a readable pull-quote, Funnel Display with the one italic phrase */
+.slide.b-thedouble-company .h-quote { font: 700 84px/1.04 var(--font-display) !important; font-style: normal !important; letter-spacing: -.035em; color: var(--ds-ink); }
+/* quiz "?" marks: present, not faint */
+.slide.b-thedouble-company .opt .qmark { color: var(--ds-cobalt); opacity: .35; }
+
+/* ---------------------------------------------------------------- v3: light tint ground, one saturated block inside
+   Capability slides: flat soft tint (no wash photo); the slide's visual sits on a solid capability block,
+   mockups stay white on it. Same pattern as Founder, kept centred. Covers/CTA unchanged. */
+.slide.b-thedouble-company.has-cap { background: var(--cap-soft) !important; --muted: rgba(21,23,43,.78); --faint: rgba(21,23,43,.62); }
+.slide.b-thedouble-company.has-cap:not(.L-cover):not(.L-cta) .stack > .vis-area {
+  background: var(--cap); border-radius: 44px; padding: 44px 40px; box-shadow: none; margin-top: 34px; min-height: 0; overflow: visible; }
+.slide.b-thedouble-company.has-cap .stack > .vis-area:has(.vk-image) { padding: 0; background: none; }
+.slide.b-thedouble-company.has-cap .stack > .vis-area :is(.vz-rows, .ui-double, .vz-table, .vz-check, .ui-notify .nt, .vz-cards .cd) { box-shadow: 0 18px 40px -24px rgba(10,16,60,.45); }
+.slide.b-thedouble-company.has-cap .vz-rows { background: rgba(255,255,255,.96); }
+.slide.b-thedouble-company.has-cap .vz-rows .row { background: none; }
+.slide.b-thedouble-company.has-cap .vz-rows .spine { background: var(--cap-soft); color: var(--cap); }
+.slide.b-thedouble-company.has-cap .vz-flow :is(.node b, .arr) { color: var(--cap-ink); }
+.slide.b-thedouble-company.has-cap :is(.ri, .lrow, .stt, .example, .fnode, .rc-box, .opt, .ix-card, .br-box, .tr-kid, .lane, .lg-table, .pp-card) { background: #fff; }
+.slide.b-thedouble-company.has-cap :is(.stt:last-child, .rc-kpi, .fnode.k-agent) { background: var(--cap); color: var(--cap-ink); }
+.slide.b-thedouble-company.has-cap .pill-c { background: #fff; }

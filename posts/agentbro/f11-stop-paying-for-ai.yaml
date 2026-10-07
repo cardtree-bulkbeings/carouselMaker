@@ -16,13 +16,13 @@ slides:
     headline: More AI tools = more *output.*
     visual:
       table:
-        cols: ["Tool", "Monthly"]
+        cols: [ "Tool", "Monthly" ]
         rows:
-          - ["Chat assistant", "$20"]
-          - ["Image generator", "$30"]
-          - ["Writing tool", "$29"]
-          - ["Meeting notes", "$18"]
-          - ["**Total**", "**$97**"]
+          - [ "Chat assistant", "$20" ]
+          - [ "Image generator", "$30" ]
+          - [ "Writing tool", "$29" ]
+          - [ "Meeting notes", "$18" ]
+          - [ "**Total**", "**$97**" ]
         highlight: 1
     note: per month. Every month.
 
@@ -64,5 +64,5 @@ slides:
     style: question
     kicker: Your turn
     headline: Agree or *disagree?*
-    answers: ["Agree", "Disagree", "It depends"]
+    answers: [ "Agree", "Disagree", "It depends" ]
     sub: Tell me in the comments which one you'd keep.

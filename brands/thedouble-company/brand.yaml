@@ -1,46 +1,49 @@
-# The Double (company) — design language "calm" (after theonlyworkshop + Wellbeing Nutrition:
-# off-white, centred tight sans, mono kicker, one word underlined in lime, product UI cards,
-# felt imagery bleeding off the edge). Touch of brand: lime underline, cobalt details, felt world.
+# The Double (company): the Double design system (DoubleDesignSystem.html) on the "calm" layout.
+# Bold objects, calm ground: linen ground, Funnel Display 700 headlines with ONE Newsreader italic phrase
+# (cobalt on light, lime on cobalt), Geist body, Geist Mono labels, Silkscreen status chips.
+# Colour = capability (knowledge grape · personality bubblegum · voice sky · channels cobalt · actions tangerine).
+# Inner slides may wear a pigment wash (`cap:` per slide or `rhythm: capabilities`); covers/CTA cobalt; `bg: deep` = Night.
 name: The Double
 handle: "@thedouble.ai"
-logo: brands/_shared/thedouble/logo-black.svg
-emphasis: underline          # *word* → lime marker underline
+logo: assets/brand/logos/lockup-ink.svg
+emphasis: serif              # *word* → Newsreader italic in cobalt (engine/double.css)
 design: calm                 # engine/skins/calm.css
+skin: brands/thedouble-company/skin.css
 fonts:
-  - https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@1&family=Caveat:wght@700&display=block
+  - https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,400&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&family=Silkscreen&family=Caveat:wght@700&display=block
 
 tokens:
-  ground: "#F7F6F3"
+  ground: "#F6F4EF"          # linen
   paper: "#FFFFFF"
-  ink: "#0E0F12"
-  muted: "#5C5D63"
-  faint: "#8C8D93"
-  line: "rgba(14,15,18,.08)"
-  chip: "rgba(14,15,18,.05)"
-  accent: "#0E0F12"
+  ink: "#15172B"
+  muted: "#57596D"           # ink-2
+  faint: "#6E7084"           # ink-3
+  line: "rgba(21,23,43,.10)"
+  chip: "rgba(21,23,43,.05)"
+  accent: "#2F43F2"          # cobalt: the italic phrase, links, the brand
   accent-ink: "#FFFFFF"
-  accent-deep: "#0E0F12"
-  hi: "#D4F53C"              # lime marker
-  hi-soft: "#EEF8C8"
+  accent-deep: "#2132BB"
+  hi: "#DEE2FF"              # soft chip / marker fill (follows the post's capability via theme:)
+  hi-soft: "#EEF0FF"
   glow: "transparent"
-  deep: "#0E0F12"
+  deep: "#151B55"
   deep-ink: "#FFFFFF"
   tray: "#2F43F2"
-  live: "#22C55E"
-  good: "#16A34A"
+  live: "#D4F53C"            # lime = live, squares and chips only
+  good: "#2F43F2"
   bad: "#E5484D"
   note: "#2F43F2"
-  font-display: "'Inter Tight', Arial, sans-serif"
-  font-human: "'Instrument Serif', Georgia, serif"
-  font-body: "'Inter', system-ui, sans-serif"
-  font-mono: "'DM Mono', ui-monospace, monospace"
-  font-pixel: "'DM Mono', monospace"
+  font-display: "'Funnel Display', 'Inter Tight', Arial, sans-serif"
+  font-human: "'Newsreader', Georgia, serif"
+  font-body: "'Geist', 'Inter', system-ui, sans-serif"
+  font-mono: "'Geist Mono', ui-monospace, monospace"
+  font-pixel: "'Silkscreen', monospace"
   font-hand: "'Caveat', cursive"
-  display-weight: "600"
-  display-track: "-0.045em"
-  r-card: "28px"
-  r-block: "36px"
-  r-tile: "18px"
+  display-weight: "700"
+  display-track: "-0.035em"
+  r-card: "28px"              # radius-28
+  r-block: "32px"             # radius-32
+  r-tile: "13px"              # radius-icon
   shadow: "0 1px 2px rgba(0,0,0,.04), 0 16px 40px -16px rgba(0,0,0,.16), 0 0 0 1px rgba(0,0,0,.04)"
 
 palette:
@@ -51,6 +54,11 @@ palette:
   bubblegum: ["#FF4FAE", "#FFE2F1", "#0E0F12"]
   sky:       ["#16B0FA", "#DCF1FC", "#0E0F12"]
   ink:       ["#0E0F12", "#ECECEE", "#FFFFFF"]
+  # added with the new felt characters (assets/agents/green|yellow|red|ink|snow.png)
+  green:     ["#16A34A", "#DCF5E4", "#FFFFFF"]
+  yellow:    ["#FFC21A", "#FFF3CC", "#0E0F12"]
+  red:       ["#E5372F", "#FFE1DE", "#FFFFFF"]
+  snow:      ["#9AA0AC", "#EEF0F4", "#0E0F12"]
   # departments (the five capabilities), used by staff badges and meta chips
   knowledge:   ["#6A2CF5", "#E7DDFF", "#FFFFFF"]
   personality: ["#FF4FAE", "#FFDDEE", "#0E0F12"]
@@ -60,11 +68,20 @@ palette:
 
 # Colour presets (post: `theme: yellow`). Calm uses `highlight` for the marker underline.
 accents:
-  lime:    { highlight: "#D4F53C" }
-  yellow:  { highlight: "#FFD60A" }
-  cobalt:  { highlight: "#A9B4FF" }
-  pink:    { highlight: "#FFB3D9" }
-  orange:  { highlight: "#FFB27A" }
+  # theme: sets the post's capability colour for chips, markers and soft fills. Italic stays cobalt.
+  channels:    { highlight: "#DEE2FF" }
+  knowledge:   { highlight: "#E9E1FF" }
+  personality: { highlight: "#FFDDEF" }
+  voice:       { highlight: "#D5EEFB" }
+  actions:     { highlight: "#FFE4D1" }
+  # older names (kept so existing posts still render)
+  lime:    { highlight: "#DEE2FF" }
+  cobalt:  { highlight: "#DEE2FF" }
+  yellow:  { highlight: "#FFE4D1" }
+  orange:  { highlight: "#FFE4D1" }
+  pink:    { highlight: "#FFDDEF" }
+  sky:     { highlight: "#D5EEFB" }
+  mint:    { highlight: "#D5EEFB" }
 
 # Imagery: no humans. Felt agents (assets/agents) and felt scenes only.
 rules:

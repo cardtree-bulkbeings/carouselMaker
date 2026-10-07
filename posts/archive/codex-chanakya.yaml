@@ -17,6 +17,8 @@ slides:
     image_zoom: 1.25
     image_y: 30
     tag: Counsel of Chanakya
+    move:
+      image: { s: 0.98, x: -2, y: 4 }
 
   - layout: qa
     kicker: The first question

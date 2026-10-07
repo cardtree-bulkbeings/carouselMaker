@@ -1,0 +1,37 @@
+# Cover gallery · Agent Bro. His photo goes in the empty slots (assets/people/agentbro/).
+brand: agentbro
+format: LAB
+title: Cover styles · Agent Bro
+slides:
+  - layout: cover
+    style: pair
+    kicker: "01"
+    headline: Give Claude a *phone number.*
+    sub: Yes, seriously.
+    pair: [ claude, assets/icons/phone.png ]
+    joiner: "→"
+    labels: true
+
+  - layout: cover
+    style: guide
+    tool: claude
+    tool_label: Hermes Agent
+    headline: This is the *best guide* to set up Hermes in 5 minutes
+    chips: [ claude, openai, github, googledrive ]
+    checklist: [ Connect your model, Install Hermes, Start chatting ]
+    tag: The fastest beginner-friendly guide
+
+  - layout: cover
+    style: banner
+    kicker: How to build a
+    tool: whatsapp
+    headline: WhatsApp
+    tagline: AI agent (free)
+    logos: [ claude, n8n ]
+
+  - layout: cover
+    style: count
+    number: "4"
+    kicker: Every business needs these
+    headline: AI *agents*
+    logos: [ claude, hubspot, googlecalendar, whatsapp ]

@@ -9,12 +9,12 @@ caption: |
   Which one are you starting with? Comment the number.
 slides:
   - layout: cover
-    style: person
-    kicker: 5 AI habits
-    headline: Every founder *needs*
-    tagline: Not tools. Habits.
+    style: count
+    number: "5"
+    kicker: Every founder needs these
+    headline: AI *habits*
+    logos: [ claude, notion, googlecalendar, whatsapp ]
     image: image-assets/character.png
-    logos: [claude, notion, googlecalendar]
     tag: Weekly · since 2025
 
   - layout: item
@@ -67,5 +67,5 @@ slides:
     style: question
     kicker: Your turn
     headline: Which one are you starting *this week?*
-    answers: ["01", "02", "03", "04", "05"]
+    answers: [ "01", "02", "03", "04", "05" ]
     sub: Comment the number. I'll share how I set it up.

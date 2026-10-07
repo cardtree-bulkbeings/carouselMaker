@@ -7,11 +7,16 @@ caption: |
   Comment TEAM and I'll send you the setup.
 slides:
   - layout: cover
-    style: scene
-    kicker: I built an entire
-    headline: Sales team with *AI*
-    tagline: 3 agents · 0 salaries
-    image: image-assets/scene-team-table-cobalt.png
+    style: guide
+    tool: hubspot
+    tool_label: 3 agents · 0 salaries
+    headline: I built an entire *sales team* with AI
+    image: image-assets/character.png
+    chips: [ linkedin, gmail, hubspot, whatsapp ]
+    checklist: [ Finds the leads, Writes the first email, Books the call ]
+    tag: Here's every agent, and what it does
+    move:
+      image: { s: 1.29, x: 123, y: -129 }
 
   - layout: org
     kicker: Meet the team

@@ -1,0 +1,339 @@
+/* Design system v2: the spacing, type and fill rules measured from refrences/ (docs/DESIGN-SYSTEM.md §4–5).
+   Loaded LAST (after the brand's design language in engine/skins/), so these rules hold on every handle.
+   Each handle keeps its own personality (fonts, colour, alignment); this file only fixes the rhythm.
+
+   The five rules:
+   1. Fill the frame. The visual zooms to fill its area (engine.js zoomToFill); lists and cards stretch.
+   2. Read at phone size. Instagram shows a slide at ~360 px wide, so nothing is below 22 px here and
+      body copy is 34–38 px.
+   3. One rhythm. label → 14 → headline → 22 → sub → 44 → visual. Same on every slide of a post.
+   4. Numbers are the loudest thing. A count on a cover is a giant numeral; list items carry one number.
+   5. No duplicate signals. One label per slide ("STAFF 01"), not "01 + logo + STAFF 01". */
+
+/* ---------------------------------------------------------------- 2. reading sizes */
+.slide .lede { font-size: 35px; line-height: 1.36; max-width: 30ch; }
+.sk-calm .lede { font-size: 36px; }
+.sk-bold .lede { font-size: 35px; }
+.sk-quest .lede { font-size: 34px; max-width: 34ch; }
+.slide .meta { font-size: 20px; }
+.sk-calm .meta { font-size: 19px; padding: 9px 16px; }
+.sk-calm .kicker, .sk-calm .pill-step, .sk-calm .pill-c, .sk-calm .crit { font-size: 23px; }
+.sk-calm .counter-b, .sk-calm .handle, .sk-calm .next-teaser { font-size: 22px; }
+.sk-quest .kicker { font-size: 24px; }
+.sk-quest .meta { font-size: 22px; padding: 10px 18px; }
+.vcap { font-size: 22px; }
+
+/* ---------------------------------------------------------------- 3. rhythm */
+.sk-calm .stack, .sk-bold .stack { gap: 24px; }
+.sk-calm .stack > .vis-area, .sk-bold .stack > .vis-area { margin-top: 20px; }
+/* headline + sub stay one block; the visual gets everything below */
+.stack > .h-xl + .lede, .stack > .h-lg + .lede { margin-top: -4px; }
+
+/* ---------------------------------------------------------------- 5. one label per item slide */
+.item-head .num, .item-head .tile.big { display: none; }
+/* without a visual, the tool mark becomes the picture: big enough to hold the slide */
+.hero-mark { flex: 1 1 auto !important; align-items: center; min-height: 0; }
+.hero-mark .tile { width: 300px; height: 300px; border-radius: 76px; font-size: 168px; }
+.sk-quest .hero-mark .tile { background: #fff; box-shadow: 0 30px 60px -28px color-mix(in srgb, var(--accent) 45%, transparent), 0 0 0 1px var(--line); }
+
+/* ---------------------------------------------------------------- 1. fill: versus, recap, CTA */
+/* versus columns stretch into the free space instead of floating as a short row */
+.vs { flex: 1 1 auto !important; max-height: 820px; margin-block: 0; }
+.vs .side { min-height: 0; }
+.sd-text { font-size: 40px; }
+.vs.n3 .sd-text { font-size: 34px; line-height: 1.28; } .vs.n3 .sd-head b { font-size: 38px; }
+.sd-head { font-size: 44px; }
+
+/* recap: one full-width row per item, big numbers, filling the slide (meghanify / theaiagents lists) */
+.rc-items { flex: 1 1 auto !important; display: grid; grid-template-columns: 1fr !important; grid-auto-rows: minmax(0, 168px); align-content: center; gap: 18px; margin-block: 0; max-width: 920px; width: 100%; }
+.rc-items.n7, .rc-items.n8, .rc-items.n9, .rc-items.n10 { grid-template-columns: 1fr 1fr !important; }
+.ri { gap: 28px; padding: 22px 34px; text-align: left; }
+.ri .num { font: var(--display-weight) 64px/1 var(--font-display); letter-spacing: -.04em; min-width: 84px; color: var(--c, var(--accent)); }
+.sk-calm .ri .num { font-family: var(--font-display); font-weight: 600; color: var(--ink); }
+.ri .tile { width: 92px; height: 92px; font-size: 50px; border-radius: 24px; }
+.ri b { font-size: 40px; line-height: 1.1; }
+
+/* question CTA: the ask sits in the optical centre; the follow line pins to the bottom */
+.cta-q > :first-child { margin-top: auto; }
+.cta-q > .spacer { display: none; }
+.cta-q > .follow { margin-top: auto; }
+.cta-q .answers { gap: 18px; justify-content: center; }
+.cta-q .answers span { min-width: 120px; text-align: center; padding: 24px 34px; font: var(--display-weight) 44px/1 var(--font-display); letter-spacing: -.02em; }
+.sk-calm .cta-q .answers span { font-weight: 600; }
+.sk-quest .cta-q { align-items: flex-start; }
+.sk-quest .cta-q .answers { justify-content: flex-start; }
+.cta-q .lede { font-size: 36px; }
+
+/* keyword CTA: the guide mockup gets the free space, the keyword stays the loudest thing */
+.cta-c .vis-area { min-height: 380px; }
+
+/* ---------------------------------------------------------------- 4. the giant number cover */
+/* The count is the hook ("5", "50+"). It sits bottom-left at ~620 px; the character / person bleeds off
+   the bottom edge on the right (Wellbeing: imagery runs off the frame, never floats with a cut edge). */
+.cv-stage.number { padding: 0 var(--pad) 96px; }
+.cv-stage.number .giant { font-size: 660px; line-height: .76; position: relative; z-index: 1; }
+.cv-stage.number .obj { right: 28px; bottom: 0; width: 580px; height: 700px; z-index: 2; }
+.cv-stage.number .obj img { object-position: center bottom; }
+.cv-stage.number .imgbox.cutout, .cv-stage.number .imgbox.empty { right: 0; bottom: 0; }
+
+/* Founder (bold): the number in the accent shine, the founder standing beside it */
+.sk-bold .cv-stage.number .giant {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 70%, #fff) 0%, var(--accent) 45%, var(--accent-deep) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: -.06em; }
+.sk-bold.L-cover .cv-number .cv-text { padding-top: 110px; }
+
+/* Agent Bro (quest): headline top-left, a huge red count under it, his photo on the right */
+.sk-quest .cv-stage.number .giant {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 60%, #fff) 0%, var(--accent) 50%, var(--accent-deep) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent; letter-spacing: -.07em; }
+.sk-quest .cv-number .h-cover { max-width: 9ch; font-size: 120px; }
+.sk-quest .cv-number .cv-text { padding-top: 120px; }
+
+/* Company (calm): the number in ink is already the loudest thing; keep it */
+.sk-calm .cv-stage.number .giant { color: var(--c, var(--ink)); }
+
+/* ---------------------------------------------------------------- versus: 3-way = full-width rows */
+/* Three narrow columns leave tall empty cards. Three rows read like the references' problem/solution
+   cards: name + verdict on the left, the answer large on the right, the winner inverted. */
+.vs.n3 { flex-direction: column; gap: 18px; max-height: 900px; }
+.vs.n3 .side { flex: 1 1 0; display: grid; grid-template-columns: 250px 1fr; align-items: center; gap: 34px; padding: 30px 40px; }
+.vs.n3 .sd-head { flex-direction: column; align-items: flex-start; gap: 16px; }
+.vs.n3 .sd-head b { font-size: 46px; flex: none; }
+.vs.n3 .sd-text { font-size: 38px; line-height: 1.24; }
+.vs.n3 .side .lg, .vs.n3 .side .ic-img { font-size: 48px; }
+
+/* scorecard: the table owns the free space, rows breathe */
+.sc-table { flex: 1 1 auto !important; max-height: 860px; display: flex; flex-direction: column; }
+.sc-row { flex: 1 1 0; min-height: 96px; }
+.sc-row.th { flex: none; }
+.sc-row > span { font-size: 30px; }
+.sc-row > span.crit-c { font-size: 30px; }
+.sc-row.th > span { font-size: 30px; }
+
+/* cover headline beside a giant number never wraps to 4 lines */
+.cv-number .h-cover { max-width: 12ch; }
+.sk-bold .cv-number .h-cover { font-size: 112px; max-width: 11ch; }
+.sk-calm .cv-number .h-cover { max-width: 12ch; }
+
+/* worlds with their own margin rhythm: the CTA still centres */
+.slide .stack.cta-q > :first-child { margin-top: auto; }
+.slide .stack.cta-q > .follow { margin-top: auto; }
+.sk-bold .kicker { font-size: 24px; }
+.vs.n3 .side { min-height: 0; }
+
+/* prompt packs: the prompt is the hero (algowinner sets it at ~56 px); it shrinks only if it must */
+.pc-body { font-size: 44px; line-height: 1.38; }
+.sk-quest .pc-body { font: 500 42px/1.42 var(--font-body); }
+.pc-head { font-size: 24px; padding: 22px 34px; }
+
+/* ---------------------------------------------------------------- reading sizes inside layouts */
+/* quiz (Spot the AI): the two replies are the whole slide */
+.opt .otext { font-size: 40px; line-height: 1.32; }
+.opt .why { font-size: 28px; }
+/* roster: the facts read at a glance */
+.ck { font-size: 32px; }
+.rc-box .lbl, .rc-kpi span { font-size: 22px; }
+.rc-kpi b { font-size: 88px; }
+.rc-grid .tool { font-size: 26px; }
+/* flow nodes (trigger → agent → action) */
+.fnode { padding: 30px 36px; gap: 30px; }
+.fnode b { font-size: 44px; }
+.fnode .sub { font-size: 30px; }
+.fnode .kind { font-size: 21px; }
+.fnode .tile { width: 96px; height: 96px; font-size: 50px; }
+.vz-flow { flex-wrap: nowrap; }
+.vz-flow .node { width: 180px; }
+/* stat cards hold the slide */
+.stt { padding: 46px 40px; gap: 14px; }
+.stt span { font-size: 30px; }
+/* mega grid (F10): tiles are big, so is their text */
+.mg { padding: 26px 24px; gap: 10px; }
+.mg > .lg, .mg > .ic, .mg > .lg-img { font-size: 56px; }
+.mg b { font-size: 31px; line-height: 1.12; }
+.mg span { font-size: 23px; }
+/* news TL;DR */
+.tldr { padding: 38px 42px; gap: 22px; }
+.tl { font-size: 38px; }
+/* list rows ("honest limits") */
+.lrow b { font-size: 40px; }
+.lrow span:not(.n) { font-size: 30px; }
+.lrow .n { font-size: 40px; }
+/* footer counter: readable, not a whisper */
+.sk-bold .counter { font-size: 22px; color: var(--muted); }
+/* a news slide with only a TL;DR: the summary is the visual, so it takes the space */
+.news:has(> .spacer) > .spacer { display: none; }
+.news:has(> .spacer) > .tldr { flex: 1 1 auto !important; max-height: 760px; justify-content: center; gap: 34px; }
+.news:has(> .spacer) .tl { font-size: 46px; line-height: 1.25; }
+
+/* ---------------------------------------------------------------- 3D icon set (assets/logos/*.png, assets/icons) */
+/* The clay icons carry their own shape, colour and depth. Any box that holds one drops its tint/shadow and
+   lets the icon fill it, slightly larger than a flat glyph would be (the PNGs have ~4% transparent margin). */
+.lg-3d { width: 1.18em; height: 1.18em; object-fit: contain; margin: -.09em; filter: drop-shadow(0 .06em .08em rgba(0,0,0,.14)); }
+:is(.tile, .spine, .orb, .hub-ic, .ifc-ic, .nt-ic):has(> .lg-3d) { background: none !important; box-shadow: none !important; }
+:is(.tile, .spine, .orb, .hub-ic):has(> .lg-3d) > .lg-3d { width: 100%; height: 100%; margin: 0; }
+.vz-rows .spine:has(> .lg-3d) { border-radius: 0; }
+.hero-mark .tile:has(> .lg-3d) > .lg-3d { filter: drop-shadow(0 30px 40px rgba(0,0,0,.18)); }
+.orbit .orb:has(> .lg-3d) > .lg-3d { filter: drop-shadow(0 16px 22px rgba(0,0,0,.22)); }
+.vz-tools .tile:has(> .lg-3d) > .lg-3d { filter: drop-shadow(0 18px 24px rgba(0,0,0,.18)); }
+
+/* ---------------------------------------------------------------- no clipped glyphs */
+/* Gradient headlines paint their colour with background-clip:text, which only covers the element's box.
+   With tight line-heights the descenders (g, y, p) and tall caps fell outside it and vanished. Give every
+   gradient text room above and below, and take the same room back with negative margins so layout holds. */
+.sk-quest :is(.h-xl, .h-lg, .h-md, .h-cover, .cta-top, .kw-c),
+.sk-bold :is(.h-cover, .L-step .h-lg, .L-item .h-lg, .L-prompt .h-lg),
+.sk-bold.L-step .h-lg, .sk-bold.L-item .h-lg, .sk-bold.L-prompt .h-lg {
+  padding-block: .06em .16em; margin-block: -.06em -.16em; }
+.sk-quest .stack > :is(.h-xl, .h-lg, .h-md) { margin-bottom: calc(22px - .16em); }
+:is(.sk-quest, .sk-bold) :is(.h-xl, .h-lg, .h-md, .h-cover, .cta-top) em { padding: .08em .02em .16em; margin: 0 -.02em; }
+.cv-stage.number .giant { padding-block: .04em .06em; }
+/* text never crops at a right edge it doesn't own */
+.h-cover, .h-xl, .h-lg, .h-md { overflow: visible; }
+
+/* ---------------------------------------------------------------- softer letterforms */
+/* Tracking below about -0.04em made letters touch at 100+ px (startup, skills): harsh at phone size. */
+.sk-calm .h-cover { letter-spacing: -.042em; }
+.sk-calm :is(.h-xl, .h-lg, .h-md), .sk-calm .cta-top { letter-spacing: -.036em; }
+.sk-quest .h-cover { letter-spacing: -.04em; }
+.sk-quest :is(.h-xl, .h-lg, .h-md), .sk-quest .cta-top { letter-spacing: -.036em; }
+.sk-bold .h-cover { letter-spacing: -.035em; }
+.sk-bold :is(.h-xl, .h-lg) { letter-spacing: -.028em; }
+.kw, .kw-c { letter-spacing: -.03em; }
+
+/* ---------------------------------------------------------------- softer edges */
+/* Rounder corners, layered soft shadows (no hard 1px rings), and imagery that fades into the ground
+   where the frame cuts it, instead of ending on a hard line. */
+.slide { --r-card: 30px; --r-block: 40px; }
+.b-agentbro { --r-card: 28px; --r-block: 36px; }
+.sk-quest :is(.vz-rows, .ui-double, .vz-table, .vz-check, .example, .lrow, .ri, .stt, .rc-box, .fnode, .sc-table, .opt, .vs .side, .prompt-card, .ifc, .hub-tool, .hub-feat, .tldr) {
+  border-radius: 30px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.03), 0 10px 24px -12px rgba(0,0,0,.12), 0 30px 60px -30px rgba(0,0,0,.14); }
+.sk-quest .mg { border-radius: 24px; box-shadow: 0 1px 2px rgba(0,0,0,.03), 0 12px 28px -16px rgba(0,0,0,.16); }
+.sk-quest .cat-bar, .cat-bar { border-radius: 22px; }
+.sk-quest .pill-step, .sk-quest .pill-c, .sk-quest .meta, .sk-quest .rarity { border-radius: 99px; }
+.sk-calm :is(.vz-rows, .ui-double, .vz-table, .vz-check, .lrow, .ri, .stt, .opt, .vs .side, .sc-table, .prompt-card, .ui-memo) {
+  box-shadow: 0 1px 2px rgba(14,15,18,.03), 0 12px 30px -14px rgba(14,15,18,.12), 0 34px 70px -36px rgba(14,15,18,.16); }
+.ui-memo { border-radius: 22px; }
+.ui-badge { border-radius: 36px; }
+.sq { border-radius: 50%; }
+.crit, .sk-quest .crit { border-radius: 99px; }
+.tile { border-radius: 28px; }
+.cv-stage.scene .imgbox { border-radius: var(--r-block); }
+.sk-calm .cv-stage.scene { margin: 56px var(--pad) 0; }
+
+/* ---------------------------------------------------------------- footer / CTA collisions */
+.next-teaser { max-width: 720px; }
+.cta-c .follow { position: relative; z-index: 3; background: var(--ground); padding: 8px 18px; border-radius: 99px; }
+.cta-c .vis-area { margin-bottom: 8px; }
+
+/* ---------------------------------------------------------------- folio per brand */
+/* Agent Bro: heavy grotesk + a serif italic for the emphasised word. The serif has a smaller x-height,
+   so it's set a touch larger to sit on the same optical size. */
+.b-agentbro.sk-folio em { font-size: 1.1em; line-height: .9; letter-spacing: -.02em; }
+.b-agentbro.sk-folio .h-cover { font-size: 124px; line-height: .95; }
+.b-agentbro.sk-folio .cv-stage.number .giant { letter-spacing: -.06em; }
+.b-agentbro.sk-folio .q { font-size: 56px; }
+/* Founder: Fraunces at display sizes wants its optical size axis maxed for crisp, soft letterforms */
+.b-thedouble-founder.sk-folio :is(.h-cover, .h-xl, .h-lg, .h-md, .cta-top, .kw, .giant, .a, .q, .stt b) { font-variation-settings: "opsz" 144; }
+.b-thedouble-founder.sk-folio em { font-variation-settings: "opsz" 144; }
+
+/* ---------------------------------------------------------------- EXCHANGE + the cobalt surface */
+/* `bg: cobalt` (any brand): a full-bleed brand-blue slide, white type, pink for the one emphasis.
+   Contrast: white on #3452F0 = 5.0:1, ink on pink #FF9BC8 = 11:1. */
+/* The highlight is the post's own (brand default or `theme:`), so a lime / orange / yellow post keeps its
+   colour on the blue slides too. Every preset is a light tint: ink-on-highlight and highlight-on-blue both read. */
+.slide.bg-cobalt { background: #3452F0; --ground: #3452F0; color: #fff; --ink: #fff; --muted: rgba(255,255,255,.82); --faint: rgba(255,255,255,.7);
+  --hi-soft: rgba(255,255,255,.14); --line: rgba(255,255,255,.2); --chip: rgba(255,255,255,.14); --paper: #fff; }
+.slide.bg-cobalt::before { content: none; }
+.bg-cobalt .brand-mark:not(.text) { filter: brightness(0) invert(1); }
+.bg-cobalt :is(.h-xl, .h-lg, .h-md) em, .bg-cobalt.emph-underline em { color: var(--hi); background: none; padding: 0; }
+/* the recurring mascot sits on a white disc so a blue character never disappears into the blue */
+.bg-cobalt .mascot img { background: #fff; border-radius: 50%; padding: 8px; width: 92px; height: 92px; margin-bottom: 0; box-shadow: 0 10px 24px -10px rgba(10,20,80,.5); }
+.bg-cobalt .next-teaser, .bg-cobalt .counter-b, .bg-cobalt .handle, .bg-cobalt .nt-ic { color: #fff; }
+.bg-cobalt .mascot .bubble { color: #0E0F12; }
+
+.exchange { gap: 0 !important; align-items: stretch !important; text-align: left !important; justify-content: center; }
+.exchange > .ex-tag { align-self: flex-start; display: inline-flex; align-items: center; gap: 14px; font: 700 24px var(--font-body); letter-spacing: .14em; text-transform: uppercase; margin-bottom: 22px; }
+.ex-tag i { width: 18px; height: 18px; background: var(--hi); border-radius: 3px; }
+.exchange > .h-lg { font-size: 112px; font-weight: 700; letter-spacing: -.045em; line-height: .98; max-width: none; margin: 0 0 56px; text-align: left; }
+.ex-thread { display: flex; flex-direction: column; gap: 26px; }
+.ex-msg { max-width: 78%; padding: 26px 32px 30px; border-radius: 26px; background: #fff; color: #0E0F12; box-shadow: 0 24px 50px -30px rgba(10,20,80,.5); }
+.ex-msg.right { align-self: flex-end; background: var(--hi); border-bottom-right-radius: 8px; }
+.ex-msg.left { align-self: flex-start; border-bottom-left-radius: 8px; }
+.ex-msg.tone-ink { background: #0E0F12; color: #fff; } .ex-msg.tone-ink .ex-who { color: rgba(255,255,255,.6); }
+.ex-who { display: block; font: 700 20px var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: rgba(14,15,18,.55); margin-bottom: 10px; }
+.ex-text { font: 500 38px/1.3 var(--font-body); letter-spacing: -.01em; }
+.ex-verdict { margin-top: 44px; align-self: flex-start; display: inline-flex; align-items: center; gap: 14px; padding: 16px 26px; border-radius: 99px; background: rgba(255,255,255,.14); font: 600 28px var(--font-body); }
+.ex-verdict::before { content: "✓"; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--hi); color: #0E0F12; font-size: 20px; }
+/* calm skin centres everything; the exchange keeps its left rhythm */
+.sk-calm .exchange > .h-lg { margin-inline: 0; }
+.quote-l .qmarks { margin-top: 26px; }
+.slide .quote-l .qmarks { margin-top: 64px; display: block; }
+
+/* ---------------------------------------------------------------- gradient type */
+/* Founder (bold) and Agent Bro (quest) keep their gradient shine. No shadow or filter on text: it blurs. */
+.slide { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+/* ---------------------------------------------------------------- versus, three-way, v3 */
+/* Row = label + verdict on one line, the answer large underneath. Rows are as tall as their content
+   and the group centres in the free space, so short answers don't leave a mostly empty card. */
+.vs.n3 { flex: 0 1 auto !important; margin-block: auto; gap: 20px; max-height: none; }
+.vs.n3 .side { flex: none; display: flex; flex-direction: column; align-items: stretch; gap: 14px; padding: 32px 40px 36px; }
+.vs.n3 .sd-head { flex-direction: row; align-items: center; gap: 16px; }
+.vs.n3 .sd-head b { font-size: 34px; flex: 1; letter-spacing: -.02em; }
+.vs.n3 .verdict { width: 48px; height: 48px; font-size: 26px; }
+.vs.n3 .sd-text { font-size: 42px; line-height: 1.22; letter-spacing: -.015em; color: inherit; opacity: .92; }
+.sk-calm .vs.n3 .sd-text { font-family: var(--font-display); font-weight: 500; }
+
+/* definition cards (vz-cards): stretch to the free space, bigger type, roomy padding */
+.vis-area > .vk-cards { align-self: stretch; height: 100%; max-height: 700px; margin-block: auto; }
+.vz-cards { height: 100%; gap: 22px; }
+.vz-cards .cd { padding: 40px 30px 36px; gap: 18px; text-align: left; align-items: flex-start; }
+.vz-cards .cd .tile { width: 84px; height: 84px; font-size: 44px; border-radius: 24px; }
+.vz-cards .cd .t { font-size: 54px; line-height: 1.0; }
+.vz-cards .cd .s { font-size: 30px; line-height: 1.3; }
+.vz-cards .cd .lbl { font-size: 20px; }
+.vz-cards .cd .s { margin-top: 4px; }
+.vis-area > .vk-cards { height: auto; max-height: 560px; }
+.vz-cards { height: auto; }
+/* cover float-tag sits above the Swipe pill, never on it */
+.float-tag { bottom: 132px !important; }
+.vis-area > .vk-cards { max-height: none; }
+.vz-cards .cd { min-height: 0; }
+.vz-cards.n2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .vz-cards.n3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } .vz-cards.n4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.vz-cards .cd .t { hyphens: none; overflow-wrap: normal; }
+.vz-cards.n3 .cd .t { font-size: 46px; letter-spacing: -.035em; }
+.vz-cards.n3 .cd { padding: 34px 24px 32px; }
+.vz-cards.n3 .cd .s { font-size: 27px; }
+
+/* ---------------------------------------------------------------- free placement (studio move / resize / layer) */
+/* Cut-outs and objects are never cropped by their box: move or enlarge them and they stay whole. */
+.imgbox.cutout, .imgbox.obj, .vz-felt .imgbox, .rc-av, .om-av { overflow: visible; }
+/* Cover text and cover imagery share ONE layer stack (no z-index on .cv-text), so "bring forward" /
+   "send back" in the studio works between a headline and the photo. */
+.cv-text { z-index: auto; }
+.cv-text > * { position: relative; z-index: 4; }
+
+/* ---------------------------------------------------------------- versus with avatars (chat rows) */
+.vs-ask { align-self: flex-start; display: flex; flex-direction: column; gap: 10px; max-width: 86%; margin: 6px 0 10px; text-align: left; }
+.sk-calm .vs-ask { align-self: center; align-items: center; }
+.vs-ask .who { font: 500 20px var(--font-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.vs-ask .bub { padding: 26px 34px; border-radius: 34px 34px 34px 10px; background: var(--paper); font: 600 50px/1.12 var(--font-display); letter-spacing: -.035em; color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 20px 44px -26px rgba(0,0,0,.3); }
+.vs.has-av { flex: 1 1 auto !important; max-height: 900px; justify-content: center; gap: 18px; }
+.vs.has-av .side { flex: 1 1 0 !important; display: grid !important; grid-template-columns: 128px 1fr; grid-template-rows: auto 1fr; column-gap: 30px; row-gap: 10px; align-items: center; padding: 26px 40px 26px 26px !important; min-height: 0; }
+.vs.has-av .sd-av { grid-row: 1 / 3; width: 128px; height: 128px; object-fit: contain; border-radius: 30px; background: color-mix(in srgb, var(--c, #8C8D93) 14%, #fff); padding: 10px; }
+.vs.has-av .side.win .sd-av { background: rgba(255,255,255,.12); }
+.vs.has-av .sd-head { align-self: end; flex-direction: row !important; align-items: center; gap: 14px; }
+.vs.has-av .sd-head b { font: 500 22px var(--font-mono) !important; letter-spacing: .16em; text-transform: uppercase; flex: none !important; opacity: .7; }
+.vs.has-av .verdict { width: 40px; height: 40px; font-size: 22px; }
+.vs.has-av .sd-text { align-self: start; font: 600 40px/1.18 var(--font-display) !important; letter-spacing: -.03em; opacity: 1 !important; }
+
+/* definition cards with a character on top */
+.vz-cards.has-img .cd { align-items: center; text-align: center; padding: 30px 22px 34px; gap: 12px; }
+.vz-cards.has-img .cd-img { width: 100%; height: 240px; display: grid; place-items: center; }
+.vz-cards.has-img .cd-img img { max-width: 92%; max-height: 100%; object-fit: contain; filter: drop-shadow(0 16px 20px rgba(0,0,0,.16)); }
+.vz-cards.has-img .cd .t { font-size: 46px; } .vz-cards.has-img .cd .s { margin-top: 0; }
+.vs.has-av .side { grid-template-rows: auto auto; align-content: center; }
+.vs.has-av .sd-head, .vs.has-av .sd-text { align-self: center; }
+.vs.has-av .sd-text { font-size: 44px !important; }
+.vs.has-av .sd-av { width: 136px; height: 136px; }

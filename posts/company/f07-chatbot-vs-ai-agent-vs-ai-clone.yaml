@@ -8,46 +8,48 @@ caption: |
   Which one are you using today?
 slides:
   - layout: cover
-    style: object
-    kicker: Know the difference
-    headline: Chatbot vs agent vs *clone*
-    sub: They are not the same thing.
-    image: assets/agents/cobalt.png
-    color: cobalt
-    tag: Clone · live
+    style: vs
+    label: The Double
+    label_r: Chatbot · Agent · Clone
+    headline: Chatbot vs agent vs clone
+    a: { text: "Chatbot *replies*", image: assets/agents/snow.png, color: snow }
+    b: { text: "Clone *answers*", image: assets/agents/cobalt.png, color: cobalt }
 
   - layout: statement
     kicker: In one line each
     headline: Pick the one you *think* you have.
     visual:
       cards:
-        - { label: "Chatbot", title: "Follows a script", text: "Buttons and FAQs. Breaks off-script.", icon: chat-centered-dots, color: ink }
-        - { label: "AI agent", title: "Does tasks", text: "Uses tools to get a job done.", icon: robot, color: cobalt }
-        - { label: "AI clone", title: "Is you", text: "Your knowledge, voice and judgement.", icon: user-circle, color: lime }
+        - { label: "Chatbot", title: "Follows a script", text: "Buttons and FAQs. Breaks off-script.", image: assets/agents/snow.png, color: snow }
+        - { label: "AI agent", title: "Does tasks", text: "Uses tools to get a job done.", image: assets/agents/sky.png, color: sky }
+        - { label: "AI clone", title: "Is you", text: "Your knowledge, voice and judgement.", image: assets/agents/cobalt.png, color: lime }
 
   - layout: versus
+    cap: knowledge
     criterion: Round 1 · Off-script questions
-    headline: “Can I pay *half* now?”
+    ask: "Can I pay half now and half next month?"
     sides:
-      - { label: "Chatbot", text: "“Please choose an option below.”", verdict: bad }
-      - { label: "Agent", text: "Checks policy, offers a plan.", verdict: meh }
-      - { label: "Clone", text: "Answers how *you* would, then books.", verdict: good, color: cobalt }
+      - { label: "Chatbot", avatar: assets/agents/snow.png, text: "“Please choose an option below.”", verdict: bad }
+      - { label: "Agent", avatar: assets/agents/sky.png, text: "Checks the policy. Offers a payment plan.", verdict: meh }
+      - { label: "Clone", avatar: assets/agents/cobalt.png, text: "“Sure. Pay half today, I'll book your slot now.”", verdict: good, color: cobalt }
 
   - layout: versus
+    cap: personality
     criterion: Round 2 · Memory
-    headline: Remembers last *month?*
+    ask: "Hi, it's Riya again. Same as last month?"
     sides:
-      - { label: "Chatbot", text: "Every chat starts from zero.", verdict: bad }
-      - { label: "Agent", text: "Remembers the task.", verdict: meh }
-      - { label: "Clone", text: "Remembers the person.", verdict: good, color: cobalt }
+      - { label: "Chatbot", avatar: assets/agents/snow.png, text: "“Hi! How can I help you today?”", verdict: bad }
+      - { label: "Agent", avatar: assets/agents/sky.png, text: "Finds the last order. Asks to confirm.", verdict: meh }
+      - { label: "Clone", avatar: assets/agents/cobalt.png, text: "“Hi Riya! Two boxes, Thursday delivery?”", verdict: good, color: cobalt }
 
   - layout: versus
+    cap: voice
     criterion: Round 3 · Sounds like you
-    headline: Would a customer *notice?*
+    ask: "Wait, am I talking to a bot?"
     sides:
-      - { label: "Chatbot", text: "Instantly.", verdict: bad }
-      - { label: "Agent", text: "Probably.", verdict: meh }
-      - { label: "Clone", text: "Your tone, your words, your voice.", verdict: good, color: cobalt }
+      - { label: "Chatbot", avatar: assets/agents/snow.png, text: "“I am a virtual assistant.”", verdict: bad }
+      - { label: "Agent", avatar: assets/agents/sky.png, text: "“I'm an AI assistant. How can I help?”", verdict: meh }
+      - { label: "Clone", avatar: assets/agents/cobalt.png, text: "“I'm Sahith's Double. Want him on the call?”", verdict: good, color: cobalt }
 
   - layout: scorecard
     kicker: Scorecard

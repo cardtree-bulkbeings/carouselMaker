@@ -1,1 +1,138 @@
-/* thedouble-founder skin: brand-specific tweaks on top of engine/slides.css */
+/* Founder: the founder's notebook, in the Double system (after "Carousel A — I built my Double").
+   Shared with Company (engine/double.css): Funnel Display 700 · one Newsreader italic phrase · Geist ·
+   Geist Mono labels · Silkscreen status · capability colours · cobalt cover/CTA with a lime button.
+   Founder's own taste:
+   · left-aligned, first person, big headlines that sit high
+   · inner slides on their capability's FLAT soft tint (Company uses textured washes)
+   · ONE full-strength block per slide: the slide's visual sits on a solid capability panel
+   · his face as a sticker on that block's corner (`face:` in brand.yaml / post)
+   · big solid step numerals; text-only statements on linen
+   Loaded last (engine.js); scoped to .slide.b-thedouble-founder. */
+
+.slide.b-thedouble-founder {
+  --linen: #F6F4EF;
+  background: #FFFFFF !important;
+}
+/* capability ground: flat soft tint */
+.slide.b-thedouble-founder.has-cap { background: var(--cap-soft) !important; --muted: rgba(21,23,43,.78); --faint: rgba(21,23,43,.62); }
+.slide.b-thedouble-founder.L-statement:has(.st.novis):not(.has-cap):not(.bg-cobalt):not(.bg-deep) { background: var(--linen) !important; }
+
+/* ---------------------------------------------------------------- chrome */
+.slide.b-thedouble-founder .brand-mark { height: 30px; }
+.slide.b-thedouble-founder .series { font: 500 19px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+.slide.b-thedouble-founder .counter { font: 500 20px var(--font-mono); letter-spacing: .1em; color: var(--muted); }
+.slide.b-thedouble-founder .chrome-bottom { justify-content: space-between; }
+.slide.b-thedouble-founder .next-teaser { background: none; box-shadow: none; padding: 0; gap: 12px; font: 500 20px var(--font-mono); letter-spacing: .04em; color: var(--ink); flex-direction: row-reverse; }
+.slide.b-thedouble-founder .nt-ic { width: 44px; height: 44px; border-radius: 50%; background: var(--ink); color: #fff; }
+.slide.b-thedouble-founder .foot-right { position: static; }
+.slide.b-thedouble-founder .swipe.mini { background: var(--ink); color: #fff; }
+
+/* ---------------------------------------------------------------- type: heavy sans, soft italic */
+.slide.b-thedouble-founder :is(.h-cover, .h-xl, .h-lg, .h-md, .cta-top) {
+  font-family: var(--font-display); font-weight: 700; letter-spacing: -.035em; color: var(--ink) !important;
+  background: none !important; -webkit-text-fill-color: currentColor !important; }
+.slide.b-thedouble-founder .h-xl { font-size: 104px; line-height: .98; max-width: 14ch; }
+.slide.b-thedouble-founder .h-lg { font-size: 96px; line-height: .98; max-width: 14ch; }
+.slide.b-thedouble-founder .lede { font: 400 36px/1.35 var(--font-body); color: var(--muted); max-width: 28ch; }
+.slide.b-thedouble-founder .kicker { font: 500 22px var(--font-mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ink); opacity: .8; }
+.slide.b-thedouble-founder .kicker::before { content: ""; display: inline-block; width: 13px; height: 13px; border-radius: 2px; background: var(--cap, var(--accent)); }
+
+/* layout: left-aligned editorial */
+.slide.b-thedouble-founder:not(.L-cover):not(.L-cta):not(.L-quote) .stack { align-items: flex-start; text-align: left; }
+.slide.b-thedouble-founder:not(.L-cover):not(.L-cta):not(.L-quote) :is(.h-xl, .h-lg, .lede, .kicker, .note) { margin-inline: 0; align-self: flex-start; text-align: left; }
+.slide.b-thedouble-founder:is(.L-step, .L-statement, .L-item) .stack:not(.novis) { justify-content: flex-start; }
+
+/* ---------------------------------------------------------------- the one bold block */
+/* the slide's visual sits on a solid capability panel; mockups stay white on it */
+.slide.b-thedouble-founder:not(.L-cover):not(.L-cta) .stack > .vis-area {
+  background: var(--cap, var(--accent)); border-radius: 44px; padding: 44px 40px; box-shadow: none; margin-top: 34px; min-height: 0; overflow: visible; }
+.slide.b-thedouble-founder .stack > .vis-area:has(.vk-image) { padding: 0; background: none; }
+.slide.b-thedouble-founder .stack > .vis-area :is(.vz-rows, .ui-double, .vz-table, .vz-check, .ui-notify .nt, .vz-cards .cd) { box-shadow: 0 18px 40px -24px rgba(10,16,60,.45); }
+.slide.b-thedouble-founder .vz-rows { background: rgba(255,255,255,.96); }
+.slide.b-thedouble-founder .vz-rows .row { background: none; }
+.slide.b-thedouble-founder .vz-rows .spine { background: var(--cap-soft, #DEE2FF); color: var(--cap, var(--accent)); }
+.slide.b-thedouble-founder .vz-flow .node b { color: var(--cap-ink, #fff); }
+.slide.b-thedouble-founder .vz-flow .arr { color: var(--cap-ink, #fff); opacity: .8; }
+.slide.b-thedouble-founder .stack > .vis-area + .note { margin-top: 28px; }
+/* face sticker sits on the block's top-right corner */
+.slide.b-thedouble-founder.has-face:not(.L-cover):not(.L-cta) .stack > .vis-area::after { top: -62px; right: -14px; }
+
+/* steps: big solid numeral + mono label */
+.slide.b-thedouble-founder .ghost-num { display: none; }
+.slide.b-thedouble-founder .step-head { justify-content: flex-start; align-items: baseline; gap: 18px; align-self: stretch; }
+.slide.b-thedouble-founder.L-step .pill-step { background: none; box-shadow: none; padding: 0; font-size: 0; gap: 0; letter-spacing: 0; }
+.slide.b-thedouble-founder.L-step .pill-step::before { display: none; }
+.slide.b-thedouble-founder.L-step .pill-step::after { content: attr(data-n); font: 800 112px/.86 var(--font-display); letter-spacing: -.05em; color: var(--cap, var(--accent)); }
+.slide.b-thedouble-founder.L-step.cap-voice .pill-step::after, .slide.b-thedouble-founder.L-step.cap-personality .pill-step::after, .slide.b-thedouble-founder.L-step.cap-actions .pill-step::after { color: var(--ink); }
+.slide.b-thedouble-founder.L-step .step-head::after { content: attr(data-label); font: 500 21px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.slide.b-thedouble-founder :is(.pill-c) { align-self: flex-start; background: #fff; color: var(--ink); font: 500 21px var(--font-mono); letter-spacing: .12em; padding: 10px 18px; border-radius: 10px; box-shadow: none; }
+
+/* cards on tinted slides: white, soft */
+.slide.b-thedouble-founder :is(.ri, .lrow, .stt, .example, .fnode, .rc-box, .opt) { background: #fff; box-shadow: 0 1px 2px rgba(21,23,43,.04), 0 18px 40px -26px rgba(21,23,43,.3); }
+.slide.b-thedouble-founder .stt:last-child, .slide.b-thedouble-founder .rc-kpi { background: var(--cap, var(--accent)); color: var(--cap-ink, #fff); }
+.slide.b-thedouble-founder .fnode.k-agent { background: var(--cap, var(--accent)); color: var(--cap-ink, #fff); }
+.slide.b-thedouble-founder .fnode.k-agent .kind, .slide.b-thedouble-founder .fnode.k-agent .sub { color: inherit; opacity: .85; filter: none; }
+
+/* Q&A: question big and plain, the clone answers from a white card */
+.slide.b-thedouble-founder .q-wrap { align-self: flex-start; align-items: flex-start; max-width: 100%; }
+.slide.b-thedouble-founder .q { background: none; color: var(--ink); padding: 0; font: 700 68px/1.04 var(--font-display); letter-spacing: -.035em; border-radius: 0; }
+.slide.b-thedouble-founder .q::before { content: none; }
+.slide.b-thedouble-founder .q-wrap .who { font-family: var(--font-mono); }
+.slide.b-thedouble-founder .a-card { background: #fff; box-shadow: 0 24px 50px -30px rgba(21,23,43,.35); align-self: stretch; padding: 46px 48px; border-radius: 36px; }
+.slide.b-thedouble-founder .a { text-align: left; font: 500 46px/1.26 var(--font-display); letter-spacing: -.02em; }
+.slide.b-thedouble-founder .a-head .av.letter { background: var(--cap, var(--accent)); color: var(--cap-ink, #fff); }
+.slide.b-thedouble-founder .status { font-family: var(--font-pixel); letter-spacing: .04em; }
+
+/* quote: the line that stuck, on cobalt */
+.slide.b-thedouble-founder.L-quote { background: radial-gradient(760px 620px at 50% 8%, #4557FF, #2F43F2 55%, #2638D6) !important; color: #fff; --ink: #fff; --muted: #DDE2FF; }
+.slide.b-thedouble-founder.L-quote .h-quote { color: #fff; font: 700 96px/1.02 var(--font-display); letter-spacing: -.035em; max-width: 14ch; }
+.slide.b-thedouble-founder.L-quote .qmarks { color: #D4F53C; font-family: var(--font-human); }
+.slide.b-thedouble-founder.L-quote .by b { color: #fff; } .slide.b-thedouble-founder.L-quote .by-role { color: #DDE2FF; }
+.slide.b-thedouble-founder.L-quote .brand-mark { filter: brightness(0) invert(1); }
+.slide.b-thedouble-founder.L-quote .h-quote em { color: #D4F53C !important; -webkit-text-fill-color: #D4F53C !important; }
+
+/* ---------------------------------------------------------------- covers */
+/* covers sit on cobalt (person, banner, count); the face stands in a stage light */
+.slide.b-thedouble-founder.L-cover:has(.cv-person, .cv-count, .cv-number, .cv-type) { background: radial-gradient(760px 640px at 50% 62%, #4A5CFF, #2F43F2 55%, #2132BB) !important; color: #fff; --ink: #fff; --muted: #DDE2FF; }
+.slide.b-thedouble-founder.L-cover:has(.cv-person, .cv-count, .cv-number, .cv-type) :is(.h-cover, .cn-num, .cn-kicker, .giant) { color: #fff !important; -webkit-text-fill-color: #fff !important; background: none !important; }
+.slide.b-thedouble-founder.L-cover:has(.cv-person, .cv-count, .cv-number, .cv-type) .h-cover em { color: #D4F53C !important; -webkit-text-fill-color: #D4F53C !important; }
+.slide.b-thedouble-founder.L-cover :is(.cv-text .kicker, .cv-tagline) { font: 500 22px var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: #DDE2FF; }
+.slide.b-thedouble-founder.L-cover .cv-tagline::before, .slide.b-thedouble-founder.L-cover .cv-tagline::after { background: #D4F53C; }
+.slide.b-thedouble-founder .cv-stage.person .tray { background: none; }
+.slide.b-thedouble-founder.L-cover .swipe { background: #fff; color: #15172B; }
+.slide.b-thedouble-founder .h-cover { font-size: 124px; line-height: .96; letter-spacing: -.04em; max-width: 9ch; }
+/* guide + split + pair covers stay light (paper), Founder-left */
+.slide.b-thedouble-founder.L-cover:has(.cv-guide, .cv-split, .cv-pair) .h-cover em { color: var(--accent) !important; -webkit-text-fill-color: var(--accent) !important; }
+.slide.b-thedouble-founder.L-cover:has(.cv-guide, .cv-split, .cv-pair) .cv-text .kicker { color: var(--ink); }
+.slide.b-thedouble-founder .cv-split { background: var(--linen); }
+
+/* fixes */
+.slide.b-thedouble-founder :is(.cv-banner, .cv-count, .cv-guide, .cv-split, .cv-pair) .h-cover { max-width: none; }
+.slide.b-thedouble-founder .cv-banner .h-cover { font-size: 150px; }
+/* a cover can opt out of cobalt with `bg: paper` (e.g. a photo with its own background) */
+.slide.b-thedouble-founder.L-cover.bg-paper { background: #fff !important; --ink: #15172B; --muted: #57596D; color: var(--ink); }
+.slide.b-thedouble-founder.L-cover.bg-paper :is(.h-cover, .giant) { color: #15172B !important; -webkit-text-fill-color: #15172B !important; }
+.slide.b-thedouble-founder.L-cover.bg-paper .h-cover em { color: var(--accent) !important; -webkit-text-fill-color: var(--accent) !important; }
+.slide.b-thedouble-founder.L-cover.bg-paper :is(.cv-text .kicker, .cv-tagline) { color: #15172B; }
+.slide.b-thedouble-founder.L-cover.bg-paper .swipe { background: #15172B; color: #fff; }
+/* the quote slide's swipe dot */
+.slide.b-thedouble-founder.L-quote .swipe.mini { background: #fff; color: #15172B; }
+/* Q&A: the answer is the slide's one bold block */
+.slide.b-thedouble-founder .a-card { background: var(--cap, var(--accent)); color: var(--cap-ink, #fff); box-shadow: none; }
+.slide.b-thedouble-founder .a-card .a { color: inherit; }
+.slide.b-thedouble-founder .a-card .a em { color: inherit !important; -webkit-text-fill-color: currentColor !important; text-decoration: underline 3px; text-underline-offset: 8px; text-decoration-color: color-mix(in srgb, currentColor 40%, transparent); }
+.slide.b-thedouble-founder .a-card .a-head b, .slide.b-thedouble-founder .a-card .status { color: inherit; }
+.slide.b-thedouble-founder .a-card .a-head .av.letter { background: #fff; color: var(--cap, var(--accent)); }
+.slide.b-thedouble-founder.has-face:not(.L-cover):not(.L-cta) .stack > .vis-area::after { top: -104px; right: 26px; width: 136px; height: 136px; }
+.slide.b-thedouble-founder .rc-hero { background: #fff; }
+
+/* v3: cobalt is for covers, quotes and CTAs only. A slide without a capability gets a calm linen panel
+   and an ink highlight, so a post never reads as wall-to-wall blue. */
+.slide.b-thedouble-founder:not(.has-cap):not(.L-cover):not(.L-cta) .stack > .vis-area { background: #EEEBE3; }
+.slide.b-thedouble-founder:not(.has-cap) .stt:last-child { background: #15172B; color: #fff; }
+.slide.b-thedouble-founder:not(.has-cap):not(.L-cover):not(.L-cta):not(.L-quote) { background: #F6F4EF !important; }
+/* the face sticker rides on the capability block only */
+.slide.b-thedouble-founder.has-face:not(.has-cap) .stack > .vis-area::after { display: none; }
+.slide.b-thedouble-founder:not(.has-cap) .vz-flow .node b { color: var(--ink); }
+.slide.b-thedouble-founder:not(.has-cap) .vz-flow .arr { color: var(--muted); }
+.slide.b-thedouble-founder:not(.has-cap) .fnode.k-agent { background: #15172B; color: #fff; }

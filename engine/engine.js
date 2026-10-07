@@ -24,12 +24,29 @@ export async function loadBrand(id) {
   const vars = Object.entries(brand.tokens || {}).map(([k, v]) => `--${k}:${v};`).join('');
   document.head.insertAdjacentHTML('beforeend', `<style data-brand="${id}">.b-${id}{${vars}}</style>`);
   // Design language (engine/skins/<design>.css) + optional brand-specific skin.css on top.
-  for (const href of [brand.design && `/engine/skins/${brand.design}.css`, brand.skin && `/${brand.skin}`].filter(Boolean)) {
+  for (const href of [brand.design && `/engine/skins/${brand.design}.css`].filter(Boolean)) {
     if (document.querySelector(`link[href="${href}"]`)) continue;
     const link = Object.assign(document.createElement('link'), { rel: 'stylesheet', href });
     const loaded = new Promise((r) => { link.onload = link.onerror = r; });
     document.head.appendChild(link);
     await loaded;
+  }
+  // The design-system layer (engine/system.css) always loads after every skin so its rhythm rules win.
+  for (const href of ['/engine/system.css', '/engine/covers.css', '/engine/editorial.css', '/engine/double.css']) {
+    let sys = document.querySelector(`link[data-system="${href}"]`);
+    if (!sys) {
+      sys = Object.assign(document.createElement('link'), { rel: 'stylesheet', href });
+      sys.dataset.system = href;
+      const loaded = new Promise((r) => { sys.onload = sys.onerror = r; });
+      document.head.appendChild(sys);
+      await loaded;
+    } else document.head.appendChild(sys);
+  }
+  // The brand's own skin comes last, so a handle's identity (brands/<id>/skin.css) wins over shared layers.
+  if (brand.skin && !document.querySelector(`link[href="/${brand.skin}"]`)) {
+    const link = Object.assign(document.createElement('link'), { rel: 'stylesheet', href: `/${brand.skin}` });
+    const loaded = new Promise((r) => { link.onload = link.onerror = r; });
+    document.head.appendChild(link); await loaded;
   }
   await initLibraries();
   return (brandCache[id] = brand);
@@ -63,6 +80,20 @@ export function themeStyle(post, brand) {
 const ROMAN = [[1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'], [100, 'C'], [90, 'XC'], [50, 'L'], [40, 'XL'], [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']];
 const roman = (n) => ROMAN.reduce((out, [v, r]) => { while (n >= v) { out += r; n -= v; } return out; }, '');
 
+// The Double's five capabilities, in setup order (DoubleDesignSystem › Color). A slide's capability sets its
+// colour job: --cap (full strength), --cap-soft (tint ground), --cap-ink (text on the full colour).
+export const CAPS = {
+  knowledge: ['#6A2CF5', '#E9E1FF', '#FFFFFF', 'grape'],
+  personality: ['#FF4FAE', '#FFDDEF', '#15172B', 'bubblegum'],
+  voice: ['#16B0FA', '#D5EEFB', '#15172B', 'sky'],
+  channels: ['#2F43F2', '#DEE2FF', '#FFFFFF', 'cobalt'],
+  actions: ['#FF7417', '#FFE4D1', '#15172B', 'tangerine'],
+};
+const CAP_ORDER = Object.keys(CAPS);
+// The rhythm colours the parallel middle (the steps / items), not every slide: one wash per idea, calm ground between.
+const RHYTHM_LAYOUTS = new Set(['step', 'item', 'prompt', 'law', 'roster', 'flow']);
+const CAP_ALIAS = { grape: 'knowledge', bubblegum: 'personality', sky: 'voice', cobalt: 'channels', tangerine: 'actions' };
+
 /** Render a parsed post. Returns an HTML string of <section class="slide"> elements. */
 export function renderPost(post, brand) {
   const slides = post.slides || [];
@@ -71,8 +102,20 @@ export function renderPost(post, brand) {
   let stepNo = 0, itemNo = 0;
   const theme = themeStyle(post, brand);
   const rules = brand.rules || {};
+  // Capability rhythm (`rhythm: capabilities` on the post or brand): inner slides take the five capability
+  // colours in setup order; a slide's own `cap:` wins, `cap: none` opts out. Cover and the final CTA keep theirs.
+  const rhythm = (post.rhythm ?? brand.rhythm) === 'capabilities';
+  let capI = 0;
+  const face = post.face ?? brand.face;
   return slides.map((s, i) => {
     const layout = LAYOUTS[s.layout] ? s.layout : 'statement';
+    const isInner = i > 0 && !(i === n - 1 && layout === 'cta');
+    // a slide that already carries a capability colour (a roster agent, a badge) keeps it as its ground
+    const own = isInner ? CAP_ALIAS[s.color] || (CAPS[s.color] ? s.color : null) : null;
+    let cap = s.cap === 'none' ? null : CAP_ALIAS[s.cap] || s.cap || own || (rhythm && isInner && !s.bg && RHYTHM_LAYOUTS.has(layout) ? CAP_ORDER[capI++ % 5] : null);
+    if (cap && !CAPS[cap]) cap = null;
+    const capVars = cap ? `--cap:${CAPS[cap][0]};--cap-soft:${CAPS[cap][1]};--cap-ink:${CAPS[cap][2]};` : '';
+    const faceVar = face && s.face !== false ? `--face:url(/${esc(s.face || face)});` : '';
     if (layout === 'step') stepNo++;
     if (['item', 'prompt', 'roster', 'law'].includes(layout)) itemNo++;
     const k = `slides.${i}`;
@@ -99,21 +142,25 @@ export function renderPost(post, brand) {
     if (next === undefined && post.auto_next !== false && nx && !isCover && i > 0 && ['step', 'item', 'prompt', 'roster', 'qa'].includes(nx.layout)) {
       const label = nx.layout === 'step' ? `${nx.label || c.lex('step', 'Step')} ${c.num(stepNo + 1).replace(/^0/, '')}` : nx.layout === 'qa' ? c.lex('next_qa', 'Next question') : c.lex('next', 'Next');
       const t = String(nx.title || nx.name || nx.q || '').replace(/[*~{}[\]]/g, '');
-      next = t ? `${label}: ${t.length > 34 ? t.slice(0, 32).trim() + '…' : t}` : null;
+      // Cut at a word boundary so the teaser never ends mid-word ("smarter th…").
+      const short = t.length > 34 ? t.slice(0, 34).replace(/\s+\S*$/, '').replace(/[\s,:;·-]+$/, '') + '…' : t;
+      next = t ? `${label}: ${short}` : null;
     }
     const nextHtml = next ? `<span class="next-teaser"><span class="nt-ic">${arrow}</span><span data-k="${k}.next">${md(next)}</span></span>` : '';
     // Recurring character: post-level `mascot:` image shows on middle slides; a slide's `says:` gives it a line.
     const m = s.mascot === false || rules.mascot === false ? null : (s.mascot || post.mascot);
     const showMascot = m && (s.says || (!isCover && layout !== 'cta'));
     const left = showMascot
-      ? `<span class="mascot"><img src="/${esc(m.image || m)}" alt="">${s.says ? `<span class="bubble" data-k="${k}.says">${md(s.says)}</span>` : ''}</span>`
+      ? `<span class="mascot" data-el="${k}.mascot"><img src="/${esc(m.image || m)}" alt="">${s.says ? `<span class="bubble" data-k="${k}.says">${md(s.says)}</span>` : ''}</span>`
       : `<span class="handle">${esc(brand.handle || '')}</span>`;
     const bottom = `<footer class="chrome-bottom">${left}${nextHtml}<span class="foot-right"><span class="counter-b">${isCover ? '' : counter}</span>${swipe}</span></footer>`;
     const bg = s.bg ? `bg-${s.bg}` : '';
     const bgImg = s.background ? `<img class="slide-bg" src="/${esc(s.background)}" alt="">` : '';
     // A stamp / seal / badge pressed onto the slide (world artifact): `stamp: "Sealed"`.
     const stamp = s.stamp ? `<span class="stamp" data-k="${k}.stamp">${md(s.stamp)}</span>` : '';
-    return `<section class="slide b-${brand.id} sk-${brand.design || 'base'} L-${layout} ${bg} ${next ? 'has-next' : ''} ${showMascot ? 'has-mascot' : ''} emph-${brand.emphasis || 'serif'}" data-i="${i}" style="${theme}">${bgImg}${top}<div class="body">${inner}</div>${stamp}${bottom}</section>`;
+    // Free placement from the studio: `move: { headline: {x, y, s, z}, image: {…} }` (see applyMoves).
+    const moves = s.move ? ` data-move="${esc(JSON.stringify(s.move))}"` : '';
+    return `<section class="slide b-${brand.id} sk-${brand.design || 'base'} L-${layout} mode-${s.mode || post.mode || brand.mode || 'light'} ${cap ? `has-cap cap-${cap}` : ''} ${faceVar ? 'has-face' : ''} ${bg} ${next ? 'has-next' : ''} ${showMascot ? 'has-mascot' : ''} emph-${brand.emphasis || 'serif'}" data-i="${i}"${moves} style="${theme}${theme ? ';' : ''}${capVars}${faceVar}">${bgImg}${top}<div class="body">${inner}</div>${stamp}${bottom}</section>`;
   }).join('');
 }
 
@@ -153,7 +200,10 @@ export async function fitText(root) {
   for (const el of root.querySelectorAll('.giant')) {
     el.style.fontSize = '';
     let size = parseFloat(getComputedStyle(el).fontSize), guard = 40;
-    while (el.scrollWidth > el.clientWidth + 1 && guard--) { size *= 0.94; el.style.fontSize = `${size}px`; }
+    // a giant cover number shrinks to fit both the width and the space left under the headline
+    const slide = el.closest('.slide'), sb = () => slide.getBoundingClientRect(), k = sb().height / slide.offsetHeight || 1;
+    const tooLow = () => (sb().bottom - el.getBoundingClientRect().bottom) / k < 56;
+    while ((el.scrollWidth > el.clientWidth + 1 || tooLow()) && guard--) { size *= 0.94; el.style.fontSize = `${size}px`; }
   }
   for (const el of root.querySelectorAll('.fit')) {
     el.style.fontSize = '';
@@ -167,16 +217,73 @@ export async function fitText(root) {
     let guard = 40;
     while (over() && size > min && guard--) { size *= 0.95; el.style.fontSize = `${size}px`; }
   }
-  // Visuals with intrinsic height (chats, rows, tables) scale down to fit their area instead of clipping.
+  // Visuals with intrinsic height (chats, rows, tables) zoom to fill their area: the visual is laid out
+  // narrower (width ÷ s) and scaled up by s, so a small card grows its text instead of floating in empty
+  // space (references: the mockup spans ~90% of the slide). Dense visuals shrink the same way.
   for (const area of areas) {
     const v = area.querySelector(':scope > .visual');
-    if (v && !v.classList.contains('vk-image')) {
-      // Shrink to fit, or grow up to 1.25× so small mockups fill the space like the references do.
-      const s = Math.min(v.dataset.grow === 'false' ? 1 : 1.25, (area.clientHeight - 8) / v.scrollHeight, area.clientWidth / Math.max(1, ...[...v.children].map((ch) => ch.offsetWidth)));
-      if (Math.abs(s - 1) > 0.02) v.style.transform = `scale(${s})`;
-    }
+    if (v && !v.classList.contains('vk-image')) { zoomToFill(v, area); hugPanel(v, area); }
     area.style.overflow = '';
   }
+  applyMoves(root);
+}
+
+/** The element a slide-relative key ("headline", "image", "logos.0", "visual") points at. */
+export function movable(section, key) {
+  const k = `slides.${section.dataset.i}.${key}`;
+  return section.querySelector(`[data-el="${k}"], [data-img="${k}"], [data-k="${k}"]`);
+}
+
+/**
+ * Apply studio placement on top of the layout. Uses the individual `translate` / `scale` properties so it
+ * composes with any transform the design already has (rotated stickers, zoomed visuals). z sets the layer.
+ */
+export function applyMoves(root) {
+  for (const sec of root.querySelectorAll('.slide[data-move]')) {
+    let moves; try { moves = JSON.parse(sec.dataset.move); } catch { continue; }
+    for (const [key, m] of Object.entries(moves || {})) {
+      const el = movable(sec, key); if (!el || !m) continue;
+      el.style.translate = m.x || m.y ? `${m.x || 0}px ${m.y || 0}px` : '';
+      el.style.scale = m.s && m.s !== 1 ? String(m.s) : '';
+      if (m.z != null) { el.style.zIndex = m.z; if (getComputedStyle(el).position === 'static') el.style.position = 'relative'; }
+    }
+  }
+}
+
+/** A visual area drawn as a panel (it has a background) shrinks to wrap its mockup, so it never shows
+    a big empty tinted box around a small card. */
+function hugPanel(v, area) {
+  area.style.height = ''; area.style.removeProperty('flex');
+  const cs = getComputedStyle(area);
+  if (!area.classList.contains('vis-area') || cs.backgroundColor === 'rgba(0, 0, 0, 0)' || cs.backgroundColor === 'transparent') return;
+  const k = area.getBoundingClientRect().height / area.offsetHeight || 1;
+  const h = v.getBoundingClientRect().height / k + (parseFloat(cs.paddingTop) || 0) + (parseFloat(cs.paddingBottom) || 0);
+  if (h < area.offsetHeight - 24) { area.style.setProperty('flex', 'none', 'important'); area.style.height = `${Math.ceil(h)}px`; }
+}
+
+/** Largest scale s (≤ max) at which the visual, laid out at areaWidth / s, fits its area. */
+function zoomToFill(v, area) {
+  v.style.width = ''; v.style.transform = ''; v.style.maxWidth = 'none'; v.style.flex = 'none';
+  // .vis-area centres its visual (scale from the centre); .preview stacks it under a label (scale from the top).
+  const centred = area.classList.contains('vis-area');
+  v.style.marginInline = 'auto'; v.style.transformOrigin = centred ? 'center center' : 'top center';
+  // measure the area's content box: a panel with padding (Founder) must keep the mockup inside it
+  const cs = getComputedStyle(area), px = (n) => parseFloat(cs[n]) || 0;
+  const W = area.clientWidth - px('paddingLeft') - px('paddingRight');
+  const r = area.getBoundingClientRect(), k = r.height / area.offsetHeight || 1; // the studio shows slides scaled
+  const H = (centred ? area.clientHeight - px('paddingTop') - px('paddingBottom') : (r.bottom - v.getBoundingClientRect().top) / k) - 8;
+  const max = v.dataset.grow === 'false' ? 1 : Number(v.dataset.grow) || 1.45;
+  const fits = (s) => {
+    v.style.width = `${W / s}px`;
+    const w = Math.max(1, v.scrollWidth, ...[...v.children].map((ch) => ch.scrollWidth));
+    return v.scrollHeight * s <= H && w * s <= W + 1;
+  };
+  let lo = 0.35, hi = max;
+  if (fits(hi)) lo = hi;
+  else for (let i = 0; i < 9; i++) { const mid = (lo + hi) / 2; if (fits(mid)) lo = mid; else hi = mid; }
+  if (Math.abs(lo - 1) < 0.02) { v.style.width = ''; return; }
+  fits(lo);
+  v.style.transform = `scale(${lo})`;
 }
 
 export async function waitImages(root) {
@@ -209,7 +316,10 @@ export function lint(post, brand = {}) {
   else if (hw) add('ok', `Cover headline: ${hw} words.`, 0);
   if (LABEL_HOOK.test(String(cv.headline || ''))) add('tip', 'Cover reads like a topic label. Promise a result, contrast or mistake instead.', 0);
   if (!/\*/.test(String(cv.headline || ''))) add('tip', 'Mark one word or phrase with *stars* on the cover for a single emphasis point.', 0);
-  if (cv.layout === 'cover' && !cv.image && !['type', 'number'].includes(cv.style)) add('tip', 'Faces with direct gaze stop the scroll. Add a cut-out or object.', 0);
+  if (cv.layout === 'cover' && !cv.image && !['type', 'number', 'pair', 'scatter', 'vs'].includes(cv.style)) add('tip', 'Faces with direct gaze stop the scroll. Add a cut-out or object.', 0);
+  // A count is the strongest hook on a cover ("5 AI agents…"): show it as a giant numeral, not inline text.
+  const lead = String(cv.headline || '').replace(/[*~]/g, '').match(/^\s*(\d[\d,.]*\+?)\s/);
+  if (cv.layout === 'cover' && lead && cv.style !== 'number') add('tip', `Cover starts with "${lead[1]}". Use style: number with number: "${lead[1]}" and drop it from the headline. The count reads big.`, 0);
 
   // Slide 2 is a second cover: Instagram may re-serve the post opening on it.
   const s2 = slides[1];
@@ -244,7 +354,8 @@ export function lint(post, brand = {}) {
   if (brand.name && new RegExp(brand.name, 'i').test(String(cv.headline || '') + String(cv.kicker || ''))) add('tip', 'Brand name on the cover: research says early brand appearance lowers engagement. Save it for the CTA.', 0);
 
   // Tone: hype and clickbait lower reactions after the click.
-  slides.forEach((s, i) => { const m = JSON.stringify(s).match(HYPE); if (m) add('warn', `Slide ${i + 1}: "${m[0]}" reads as hype or clickbait.`, i); });
+  // (quoted messages from someone else, e.g. the attacker in an exchange, are allowed to shout)
+  slides.forEach((s, i) => { const own = s.layout === 'exchange' ? { ...s, messages: (s.messages || []).filter((m) => m.side === 'left') } : s; const m = JSON.stringify(own).match(HYPE); if (m) add('warn', `Slide ${i + 1}: "${m[0]}" reads as hype or clickbait.`, i); });
 
   return out;
 }

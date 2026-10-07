@@ -7,13 +7,12 @@ caption: |
   Comment SYSTEM and I'll send you the whole workflow.
 slides:
   - layout: cover
-    style: person
-    kicker: A real estate business
-    headline: Can run on *autopilot*
-    tagline: Here's every step
+    style: split
+    label: Founder notes
+    foot_r: "[ 4 agents ]"
+    headline: A real estate business *can run on autopilot*
+    sub: Here's every step.
     image: image-assets/character.png
-    logos: [whatsapp, googlesheets, googlecalendar]
-    tag: 4 agents · running
 
   - layout: statement
     kicker: The old way

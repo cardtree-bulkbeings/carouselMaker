@@ -1,0 +1,95 @@
+# F02 Step-by-Step Build · Company · Day 3 (collab with Founder: the company voice, felt world)
+# SAMPLE COPY: confirm the free tiers and steps before posting.
+brand: thedouble-company
+format: F02
+title: Make a WhatsApp AI Agent for FREE
+series: WhatsApp × Your Double
+rhythm: capabilities        # the 4 steps wear the pigment washes in setup order
+mascot: assets/agents/green.png
+caption: |
+  A WhatsApp agent that answers in your tone, for ₹0. Four steps.
+  Comment AGENT and we'll send you the setup guide.
+slides:
+  - layout: cover
+    style: pair
+    kicker: Free · about 20 minutes
+    headline: Make a WhatsApp AI agent for *free*
+    sub: It answers, qualifies and books. You sleep.
+    pair: [ whatsapp, assets/agents/green.png ]
+    visual:
+      chat:
+        app: whatsapp
+        name: Glow Salon
+        avatar: assets/agents/green.png
+        messages:
+          - { from: them, text: "Any slot for a haircut tomorrow?", time: "22:41" }
+          - { from: me, text: "Yes! 6:30 PM or 7:15 PM. Which works?", time: "22:41" }
+
+  - layout: statement
+    kicker: What you'll have
+    headline: A reply in *seconds.* At any hour.
+    visual:
+      chat:
+        app: whatsapp
+        name: Glow Salon
+        status: online
+        avatar: assets/agents/green.png
+        messages:
+          - { from: them, text: "Hi! Any slot for a haircut tomorrow evening?", time: "22:41" }
+          - { from: me, text: "Hi! 6:30 PM or 7:15 PM tomorrow. Which works for you?", time: "22:41" }
+          - { from: them, text: "6:30 please", time: "22:42" }
+          - { from: me, kind: card, icon: calendar-check, title: "Booked · Tue 6:30 PM", text: "Reminder 2 hours before" }
+      caption: Illustrative conversation
+
+  - layout: step
+    title: Get a WhatsApp Business *number*
+    body: Use a fresh SIM, not your personal number.
+    visual:
+      rows:
+        - { tool: whatsapp, text: "Install WhatsApp Business", sub: "Free on Android and iPhone" }
+        - { icon: phone, text: "Verify the new number", sub: "One-time SMS code" }
+        - { icon: storefront, text: "Add hours and a short bio", sub: "Customers see it before they type" }
+
+  - layout: step
+    title: Teach it your *business*
+    body: Prices, timings and your top questions. That's its memory.
+    visual:
+      double:
+        name: Your Double · Glow Salon
+        status: Learning
+        capabilities: [ knowledge, personality ]
+        feed:
+          - { text: "Price list uploaded · 24 services", color: knowledge }
+          - { text: "Tone: warm, short, Hinglish ok", color: personality }
+
+  - layout: step
+    title: Connect it to *WhatsApp*
+    body: Scan one QR code. It starts replying from your number.
+    visual:
+      n8n:
+        title: Glow Salon · WhatsApp agent
+        nodes: [ whatsapp, { tool: claude, label: "Your Double" }, googlecalendar ]
+
+  - layout: step
+    title: Test it like a *customer*
+    body: Ask the awkward questions before your customers do.
+    visual:
+      notify:
+        - { app: whatsapp, title: "Test · price check", text: "Replied with the right price in 4 seconds", time: "now" }
+        - { app: whatsapp, title: "Test · after hours", text: "Booked a 9 AM slot for tomorrow", time: "now" }
+        - { app: whatsapp, title: "Test · refund", text: "Handed over to you, as you asked", time: "now" }
+
+  - layout: stat
+    kicker: First week (example numbers)
+    headline: What one salon *saw*
+    stats:
+      - { value: "4s", label: "average reply time" }
+      - { value: "23", label: "bookings made after 9 PM" }
+
+  - layout: cta
+    style: comment
+    headline: Want the full setup?
+    keyword: AGENT
+    sub: We'll send you the step-by-step guide.
+    doc_title: WhatsApp agent for free
+    doc_label: THE GUIDE

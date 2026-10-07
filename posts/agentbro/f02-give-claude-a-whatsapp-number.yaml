@@ -7,12 +7,13 @@ caption: |
   Comment WORKFLOW to unlock the full guide.
 slides:
   - layout: cover
-    style: person
-    kicker: Side quest
-    headline: Give *Claude* a WhatsApp number
-    tagline: Yes, seriously
-    # Drop his cut-out photo here
-    logos: [claude, whatsapp, n8n]
+    style: pair
+    kicker: Side quest · 20 min
+    headline: Give *Claude* a WhatsApp number.
+    sub: Yes, seriously.
+    pair: [ claude, whatsapp ]
+    joiner: "→"
+    labels: true
     stats:
       - { label: Difficulty, value: "★★☆" }
       - { label: Time, value: "20 min" }
@@ -23,11 +24,11 @@ slides:
     headline: What if your WhatsApp could *actually* reply?
     visual:
       hub:
-        tools: [whatsapp, n8n, claude, googlesheets]
+        tools: [ whatsapp, n8n, claude, googlesheets ]
         center:
           chat:
             app: whatsapp
-            name: Your Business
+            name: Glow Salon
             status: Business account
             messages:
               - { from: them, text: "Are you open Saturday?", time: "10:24" }
@@ -43,7 +44,7 @@ slides:
   - layout: step
     title: Get a WhatsApp *number*
     body: Use a fresh number. Your personal one can get flagged.
-    meta: ["Easy", "5 min", "Meta Business"]
+    meta: [ "Easy", "5 min", "Meta Business" ]
     visual:
       rows:
         - { icon: globe, text: "business.facebook.com → WhatsApp", sub: "Create a Business account" }
@@ -53,7 +54,7 @@ slides:
   - layout: step
     title: Tell Claude who it *is*
     body: One prompt with your hours, prices and rules.
-    meta: ["Easy", "5 min", "Claude"]
+    meta: [ "Easy", "5 min", "Claude" ]
     visual:
       claude:
         project: Front desk · WhatsApp
@@ -64,16 +65,16 @@ slides:
   - layout: step
     title: Wire it up with *n8n*
     body: Message in → Claude → reply out. Four nodes.
-    meta: ["Medium", "8 min", "n8n"]
+    meta: [ "Medium", "8 min", "n8n" ]
     visual:
       n8n:
         title: WhatsApp × Claude
-        nodes: [whatsapp, { tool: claude, label: "Claude" }, googlecalendar, { tool: whatsapp, label: "Reply" }]
+        nodes: [ whatsapp, { tool: claude, label: "Claude" }, googlecalendar, { tool: whatsapp, label: "Reply" } ]
 
   - layout: step
     title: Hand off when it's *unsure*
     body: Refunds and complaints come to you.
-    meta: ["Boss check", "2 min"]
+    meta: [ "Boss check", "2 min" ]
     visual:
       notify:
         - { app: whatsapp, title: "Handoff · Priya", text: "Asked about a refund. Your turn.", time: "now" }
@@ -92,3 +93,4 @@ slides:
     keyword: WORKFLOW
     sub: I'll DM you the n8n file + the prompt.
     doc_title: WhatsApp × Claude quest guide
+theme: red

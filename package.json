@@ -6,7 +6,9 @@
   "description": "Write a carousel as a YAML file, get on-brand Instagram slides.",
   "scripts": {
     "studio": "node server.mjs",
-    "export": "node scripts/export.mjs"
+    "export": "node scripts/export.mjs",
+    "check": "node scripts/check.mjs",
+    "docs": "node scripts/library-doc.mjs"
   },
   "dependencies": {
     "@phosphor-icons/core": "^2.1.1",
